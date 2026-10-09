@@ -13,7 +13,7 @@ http.createServer((req, res) => {
   if (!file.startsWith(root)) { res.writeHead(403); return res.end(); }
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(404); return res.end("404"); }
-    res.writeHead(200, { "Content-Type": types[path.extname(file).toLowerCase()] || "application/octet-stream" });
+    res.writeHead(200, { "Content-Type": types[path.extname(file).toLowerCase()] || "application/octet-stream", "Cache-Control": "no-store" });
     res.end(data);
   });
 }).listen(5173, () => console.log("Site em http://localhost:5173"));

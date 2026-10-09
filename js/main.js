@@ -4,12 +4,13 @@
 
   var WHATSAPP = "5554996260648";
 
-  // Menu mobile
+  // Menu do celular
   var toggle = document.querySelector(".nav-toggle");
   if (toggle) {
     toggle.addEventListener("click", function () {
       var open = document.body.classList.toggle("nav-open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
     });
     document.querySelectorAll(".main-nav a").forEach(function (a) {
       a.addEventListener("click", function () {
@@ -19,28 +20,16 @@
     });
   }
 
-  // Filtro de representadas por segmento
-  var chips = document.querySelectorAll(".chip[data-filter]");
-  var cards = document.querySelectorAll(".rep-card[data-segment]");
-  function applyFilter(seg) {
-    chips.forEach(function (c) {
-      c.setAttribute("aria-pressed", c.dataset.filter === seg ? "true" : "false");
-    });
-    cards.forEach(function (card) {
-      card.hidden = !(seg === "todas" || card.dataset.segment === seg);
-    });
-  }
-  chips.forEach(function (chip) {
-    chip.addEventListener("click", function () { applyFilter(chip.dataset.filter); });
-  });
-
-  // Atalhos do hero: filtram e rolam até as representadas
-  document.querySelectorAll("[data-goto-segment]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      applyFilter(btn.dataset.gotoSegment);
-      var target = document.getElementById("representadas");
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    });
+  // Diagrama do topo: acende a linha da marca sob o mouse/foco
+  document.querySelectorAll(".hub-tile").forEach(function (tile) {
+    var line = document.querySelector('.hub-line[data-i="' + tile.dataset.i + '"]');
+    if (!line) return;
+    var on = function () { line.classList.add("is-on"); };
+    var off = function () { line.classList.remove("is-on"); };
+    tile.addEventListener("mouseenter", on);
+    tile.addEventListener("mouseleave", off);
+    tile.addEventListener("focus", on);
+    tile.addEventListener("blur", off);
   });
 
   // Formulário de contato → abre o WhatsApp com a mensagem pronta
@@ -56,8 +45,8 @@
         "*Nome:* " + d.get("nome"),
         d.get("empresa") ? "*Empresa:* " + d.get("empresa") : null,
         "*Telefone:* " + d.get("telefone"),
-        "*Cidade/UF:* " + d.get("cidade"),
-        d.get("interesse") ? "*Interesse:* " + d.get("interesse") : null,
+        "*Cidade:* " + d.get("cidade"),
+        d.get("interesse") ? "*Representada:* " + d.get("interesse") : null,
         d.get("mensagem") ? "" : null,
         d.get("mensagem") || null
       ].filter(function (l) { return l !== null; });

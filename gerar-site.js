@@ -153,7 +153,7 @@ const REPRESENTADAS = [
   },
   {
     slug: "bragagnolo", nome: "Bragagnolo", segmento: "embalagens",
-    resumo: "Embalagens com parque industrial automatizado e frota própria.",
+    resumo: "Papel e embalagens, com parque industrial automatizado e frota própria.",
     local: "Faxinal dos Guedes – SC",
     slogan: "Embalando o presente, preservando o futuro.",
     sobre: [
@@ -231,6 +231,10 @@ function icon(name, extra = "") {
 // ---------------------------------------------------------
 // Partes comuns
 // ---------------------------------------------------------
+const EXTENSO = { 1: "Uma", 2: "Duas", 3: "Três", 4: "Quatro", 5: "Cinco", 6: "Seis", 7: "Sete", 8: "Oito", 9: "Nove", 10: "Dez", 11: "Onze", 12: "Doze" };
+const porExtenso = (n) => EXTENSO[n] || String(n);
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Rua Rotary Internacional, 299, Pedregal, Lagoa Vermelha - RS");
+
 function head({ title, description, canonical, base, extraHead = "" }) {
   return `<!doctype html>
 <html lang="pt-BR">
@@ -246,11 +250,11 @@ function head({ title, description, canonical, base, extraHead = "" }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
-<meta name="theme-color" content="#16244a">
+<meta name="theme-color" content="#13213f">
 <link rel="icon" href="${base}images/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${base}css/style.css">
 ${extraHead}</head>
 <body>
@@ -261,21 +265,9 @@ ${extraHead}</head>
 function header(base, home) {
   const h = home ? "" : `${base}index.html`;
   const msg = "Olá! Vim pelo site da DH Representações e gostaria de falar com um representante.";
-  return `<div class="topbar">
-  <div class="container">
-    <ul>
-      <li><a href="${tel(SITE.telefone)}">${icon("phone")} ${formatFone(SITE.telefone)}</a></li>
-      <li><a href="mailto:${SITE.email}">${icon("mail")} ${SITE.email}</a></li>
-    </ul>
-    <ul>
-      <li>${icon("clock")} ${SITE.horario}</li>
-      <li>${icon("pin")} ${SITE.cidade}</li>
-    </ul>
-  </div>
-</div>
-<header class="site-header">
-  <div class="container">
-    <a class="brand" href="${base}index.html" aria-label="${SITE.nome} — página inicial">
+  return `<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="${base}index.html" aria-label="${SITE.nome}, página inicial">
       <img src="${base}images/logo-dh.png" alt="${SITE.nome}" width="370" height="275">
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
@@ -284,13 +276,13 @@ function header(base, home) {
     <nav class="main-nav" id="menu" aria-label="Menu principal">
       <ul>
         <li><a href="${h}#representadas">Representadas</a></li>
-        <li><a href="${h}#sobre">Sobre</a></li>
-        <li><a href="${h}#equipe">Equipe comercial</a></li>
+        <li><a href="${h}#a-dh">A DH</a></li>
+        <li><a href="${h}#equipe">Equipe</a></li>
         <li><a href="${h}#contato">Contato</a></li>
-        <li class="nav-mobile-cta"><a class="btn btn-whats btn-block" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a></li>
       </ul>
+      <a class="header-phone" href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a>
+      <a class="btn btn-whats" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} WhatsApp</a>
     </nav>
-    <a class="btn btn-whats btn-sm header-cta" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a>
   </div>
 </header>
 `;
@@ -298,45 +290,40 @@ function header(base, home) {
 
 function footer(base, home) {
   const h = home ? "" : `${base}index.html`;
-  const reps = REPRESENTADAS.map((r) => `<li><a href="${base}representadas/${r.slug}.html">${esc(r.nome)}</a></li>`).join("\n          ");
+  const reps = REPRESENTADAS.map((r) => `<li><a href="${base}representadas/${r.slug}.html">${esc(r.nome)}</a></li>`).join("");
   return `<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <img class="footer-logo" src="${base}images/logo-dh.png" alt="${SITE.nome}" width="370" height="275" loading="lazy">
-      <p>Representação comercial de indústrias de componentes para móveis, perfis, vidros e embalagens.</p>
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="${base}images/logo-dh.png" alt="${SITE.nome}" width="370" height="275" loading="lazy">
+      <p>${SITE.endereco}<br>${SITE.cidade}</p>
     </div>
     <div>
-      <h2>Navegação</h2>
+      <h2>Site</h2>
       <ul>
         <li><a href="${h}#representadas">Representadas</a></li>
-        <li><a href="${h}#sobre">Sobre a DH</a></li>
-        <li><a href="${h}#equipe">Equipe comercial</a></li>
+        <li><a href="${h}#a-dh">A DH</a></li>
+        <li><a href="${h}#equipe">Equipe</a></li>
         <li><a href="${h}#contato">Contato</a></li>
         <li><a href="${base}politica-de-privacidade.html">Política de privacidade</a></li>
       </ul>
     </div>
-    <div>
+    <div class="footer-reps">
       <h2>Representadas</h2>
-      <ul>
-          ${reps}
-      </ul>
+      <ul>${reps}</ul>
     </div>
     <div>
       <h2>Contato</h2>
-      <ul class="footer-contact">
-        <li>${icon("pin")}<span>${SITE.endereco}<br>${SITE.cidade}</span></li>
-        <li>${icon("phone")}<a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a></li>
-        <li>${icon("whats")}<a href="${wa(SITE.whatsapp)}" target="_blank" rel="noopener">${formatFone(SITE.whatsapp.slice(2))}</a></li>
-        <li>${icon("mail")}<a href="mailto:${SITE.email}">${SITE.email}</a></li>
-        <li>${icon("clock")}<span>${SITE.horario}</span></li>
+      <ul>
+        <li><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a></li>
+        <li><a href="${wa(SITE.whatsapp)}" target="_blank" rel="noopener">WhatsApp ${formatFone(SITE.whatsapp.slice(2))}</a></li>
+        <li><a href="mailto:${SITE.email}">${SITE.email}</a></li>
+        <li>${SITE.horario}</li>
       </ul>
     </div>
   </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <span>© <span id="ano">${new Date().getFullYear()}</span> ${SITE.nome}. Todos os direitos reservados.</span>
-      <a href="${base}politica-de-privacidade.html">Política de privacidade</a>
-    </div>
+  <div class="wrap footer-base">
+    <span>© <span id="ano">${new Date().getFullYear()}</span> ${SITE.nome}</span>
+    <a href="${base}politica-de-privacidade.html">Política de privacidade</a>
   </div>
 </footer>
 <a class="whats-float" href="${wa(SITE.whatsapp, "Olá! Vim pelo site da DH Representações.")}" target="_blank" rel="noopener" aria-label="Conversar no WhatsApp">${icon("whats")}</a>
@@ -346,24 +333,51 @@ function footer(base, home) {
 `;
 }
 
-function repCard(r, base) {
-  const seg = SEGMENTOS[r.segmento];
+// Linha do índice de representadas (home e páginas internas)
+function repRow(r, base) {
   const url = `${base}representadas/${r.slug}.html`;
-  const meta = r.local ? `<span class="rep-meta">${icon("pin")} ${esc(r.local)}</span>` : r.fundacao ? `<span class="rep-meta">${icon("calendar")} Desde ${r.fundacao}</span>` : "";
-  const cat = r.catalogo ? `<a class="rep-cat" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Catálogo</a>` : "";
-  return `<article class="rep-card" data-segment="${r.segmento}">
-          <a class="rep-logo" href="${url}" tabindex="-1" aria-hidden="true"><img src="${base}images/representadas/${r.logo}" alt="" loading="lazy"></a>
-          <div class="rep-body">
-            <span class="tag">${seg.curto}</span>
-            <h3><a href="${url}">${esc(r.nome)}</a></h3>
-            <p>${esc(r.resumo)}</p>
-            ${meta}
-            <div class="rep-actions">
-              <a class="rep-more" href="${url}">Ver detalhes ${icon("arrow")}</a>
-              ${cat}
+  const onde = [r.local, r.fundacao ? `Desde ${r.fundacao}` : null].filter(Boolean);
+  return `<li class="rep-row">
+            <a class="rep-tile" href="${url}" tabindex="-1" aria-hidden="true"><img src="${base}images/representadas/${r.logo}" alt="" loading="lazy"></a>
+            <div class="rep-info">
+              <h4><a href="${url}">${esc(r.nome)}</a></h4>
+              <p>${esc(r.resumo)}</p>
             </div>
-          </div>
-        </article>`;
+            <p class="rep-where">${onde.map(esc).join("<br>")}</p>
+            <div class="rep-act">
+              ${r.catalogo ? `<a class="btn btn-line" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Catálogo</a>` : ""}
+              <a class="btn btn-text" href="${url}">Ver empresa</a>
+            </div>
+          </li>`;
+}
+
+function repIndex(base, lista) {
+  return Object.entries(SEGMENTOS).map(([k, s]) => {
+    const itens = lista.filter((r) => r.segmento === k);
+    if (!itens.length) return "";
+    return `<div class="seg-group" id="seg-${k}">
+        <h3 class="seg-title">${s.nome} <span>${itens.length} ${itens.length === 1 ? "indústria" : "indústrias"}</span></h3>
+        <ul class="rep-list">
+          ${itens.map((r) => repRow(r, base)).join("\n          ")}
+        </ul>
+      </div>`;
+  }).join("\n      ");
+}
+
+// Diagrama: a DH no centro, ligada a cada representada
+function hub(base) {
+  const n = REPRESENTADAS.length;
+  const pts = REPRESENTADAS.map((r, i) => {
+    const a = (-90 + (360 / n) * i) * Math.PI / 180;
+    return { r, i, x: +(50 + 39 * Math.cos(a)).toFixed(2), y: +(50 + 39 * Math.sin(a)).toFixed(2) };
+  });
+  const lines = pts.map((p) => `<line class="hub-line" data-i="${p.i}" x1="50" y1="50" x2="${p.x}" y2="${p.y}" pathLength="1" style="--d:${p.i}"/>`).join("");
+  const tiles = pts.map((p) => `<a class="hub-tile" data-i="${p.i}" href="${base}representadas/${p.r.slug}.html" style="left:${p.x}%;top:${p.y}%;--d:${p.i}"><img src="${base}images/representadas/${p.r.logo}" alt="${esc(p.r.nome)}"></a>`).join("\n        ");
+  return `<div class="hub" aria-label="Indústrias representadas pela DH">
+        <svg class="hub-lines" viewBox="0 0 100 100" aria-hidden="true">${lines}</svg>
+        <span class="hub-center"><img src="${base}images/logo-dh.png" alt=""></span>
+        ${tiles}
+      </div>`;
 }
 
 // ---------------------------------------------------------
@@ -371,32 +385,18 @@ function repCard(r, base) {
 // ---------------------------------------------------------
 function pageHome() {
   const base = "";
-  const segList = Object.entries(SEGMENTOS).map(([k, s]) => {
-    const marcas = REPRESENTADAS.filter((r) => r.segmento === k).map((r) => r.nome).join(", ");
-    return `<li><button type="button" class="segment-link" data-goto-segment="${k}">
-            <span class="segment-ico">${icon(s.icone)}</span>
-            <span><strong>${s.nome}</strong><small>${esc(marcas)}</small></span>
-            ${icon("arrow", "arrow")}
-          </button></li>`;
-  }).join("\n          ");
+  const n = REPRESENTADAS.length;
+  const msg = "Olá! Vim pelo site da DH Representações e gostaria de um orçamento.";
 
-  const chips = [`<button type="button" class="chip" data-filter="todas" aria-pressed="true">Todas <span class="count">${REPRESENTADAS.length}</span></button>`]
-    .concat(Object.entries(SEGMENTOS).map(([k, s]) => `<button type="button" class="chip" data-filter="${k}" aria-pressed="false">${s.nome} <span class="count">${REPRESENTADAS.filter((r) => r.segmento === k).length}</span></button>`))
-    .join("\n        ");
+  const segNav = Object.entries(SEGMENTOS).map(([k, s]) =>
+    `<li><a href="#seg-${k}">${s.nome}<span>${REPRESENTADAS.filter((r) => r.segmento === k).length}</span></a></li>`).join("");
 
-  const cards = REPRESENTADAS.map((r) => repCard(r, base)).join("\n        ");
-
-  const team = EQUIPE.map((p) => `<article class="person">
-          <div class="person-head">
-            <span class="avatar" aria-hidden="true">${iniciais(p.nome)}</span>
-            <div><h3>${esc(p.nome)}</h3><span class="role">${esc(p.cargo)}</span></div>
-          </div>
-          <ul class="person-contacts">
-            <li><a href="${tel(p.fone)}">${icon("phone")} ${formatFone(p.fone)}</a></li>
-            <li><a href="mailto:${p.email}">${icon("mail")} ${p.email}</a></li>
-          </ul>
-          <a class="btn btn-whats btn-sm" href="${wa(p.fone, `Olá, ${p.nome.split(" ")[0]}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} Chamar no WhatsApp</a>
-        </article>`).join("\n        ");
+  const team = EQUIPE.map((p) => `<li class="person">
+          <div class="person-name"><h3>${esc(p.nome)}</h3><p>${esc(p.cargo)}</p></div>
+          <a class="person-link" href="${tel(p.fone)}">${formatFone(p.fone)}</a>
+          <a class="person-link" href="mailto:${p.email}">${p.email}</a>
+          <a class="btn btn-whats" href="${wa(p.fone, `Olá, ${p.nome.split(" ")[0]}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} Chamar ${esc(p.nome.split(" ")[0])}</a>
+        </li>`).join("\n        ");
 
   const options = REPRESENTADAS.map((r) => `<option>${esc(r.nome)}</option>`).join("");
 
@@ -414,166 +414,99 @@ function pageHome() {
 
   return head({
     title: "DH Representações | Representação comercial em Lagoa Vermelha – RS",
-    description: "A DH Representações conecta empresas a 10 indústrias de componentes e ferragens para móveis, perfis, vidros e embalagens. Fale com nossa equipe comercial.",
+    description: `A DH Representações atende sua empresa com ${n} indústrias de componentes e ferragens para móveis, perfis, vidros e embalagens. Peça catálogo e orçamento.`,
     canonical: SITE.url + "/",
     base,
     extraHead: `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>\n`,
   }) + header(base, true) + `
 <main id="conteudo">
   <section class="hero">
-    <div class="container">
-      <div>
-        <span class="eyebrow">Representação comercial · ${SITE.cidade}</span>
-        <h1>Encurtamos a distância entre a sua empresa e <em>grandes indústrias</em>.</h1>
-        <p class="hero-lead">A DH Representações conecta você a ${REPRESENTADAS.length} fornecedores de componentes e ferragens para móveis, perfis, vidros e embalagens — com atendimento direto da nossa equipe comercial.</p>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1><span>${porExtenso(n)} indústrias.</span> <span>Um só contato.</span></h1>
+        <p class="hero-lead">A DH Representações, de Lagoa Vermelha (RS), leva até a sua empresa componentes e ferragens para móveis, perfis, vidros e embalagens, com atendimento direto da nossa equipe comercial.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#contato">Solicitar orçamento ${icon("arrow")}</a>
-          <a class="btn btn-ghost" href="#representadas">Ver representadas</a>
+          <a class="btn btn-whats btn-lg" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento</a>
+          <a class="btn btn-line btn-lg" href="#representadas">Ver representadas</a>
         </div>
+        <p class="hero-note">Atendimento ${SITE.horario.charAt(0).toLowerCase() + SITE.horario.slice(1)}</p>
       </div>
-      <div class="segments-card">
-        <h2>O que você encontra aqui</h2>
-        <ul>
-          ${segList}
-        </ul>
-      </div>
+      ${hub(base)}
     </div>
   </section>
-
-  <div class="stats">
-    <div class="container">
-      <div class="stats-grid">
-        <div class="stat"><span class="stat-num">${REPRESENTADAS.length}</span><p>indústrias<br>representadas</p></div>
-        <div class="stat"><span class="stat-num">${EQUIPE.length}</span><p>profissionais na<br>equipe comercial</p></div>
-        <div class="stat"><span class="stat-num small">${icon("clock")}</span><p>Atendimento<br>${SITE.horario}</p></div>
-      </div>
-    </div>
-  </div>
 
   <section class="section" id="representadas">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Representadas</span>
-        <h2>Conheça as empresas que representamos</h2>
-        <p>Selecione um segmento para filtrar. Em cada página você encontra a apresentação da empresa, as linhas de produtos e o catálogo.</p>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Representadas</h2>
+        <p>Quatro segmentos, ${n} fabricantes. Baixe o catálogo direto daqui ou abra a página de cada empresa.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filtrar representadas por segmento">
-        ${chips}
-      </div>
-      <div class="rep-grid">
-        ${cards}
-      </div>
+      <ul class="seg-nav" aria-label="Ir para o segmento">${segNav}</ul>
+      ${repIndex(base, REPRESENTADAS)}
     </div>
   </section>
 
-  <section class="section section-navy" id="diferenciais">
-    <div class="container">
-      <div class="section-head center">
-        <span class="eyebrow">Por que comprar com a DH</span>
-        <h2>Vários fornecedores, um só atendimento</h2>
-      </div>
-      <div class="diff-grid">
-        <article class="diff">
-          <span class="diff-ico">${icon("layers")}</span>
-          <h3>Um contato, ${REPRESENTADAS.length} indústrias</h3>
-          <p>Componentes, ferragens, perfis, vidros e embalagens de ${REPRESENTADAS.length} fabricantes, negociados com a mesma equipe.</p>
-        </article>
-        <article class="diff">
-          <span class="diff-ico">${icon("whats")}</span>
-          <h3>Atendimento direto</h3>
-          <p>Fale com o representante pelo WhatsApp, telefone ou e-mail, sem intermediários.</p>
-        </article>
-        <article class="diff">
-          <span class="diff-ico">${icon("download")}</span>
-          <h3>Catálogos à mão</h3>
-          <p>Baixe os catálogos das representadas direto no site e chegue à conversa já sabendo o que quer.</p>
-        </article>
-        <article class="diff">
-          <span class="diff-ico">${icon("award")}</span>
-          <h3>Indústrias consolidadas</h3>
-          <p>Fabricantes com décadas de mercado, sistemas de gestão da qualidade e grandes parques industriais.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-soft" id="sobre">
-    <div class="container about">
-      <div class="about-text">
-        <span class="eyebrow">Sobre a DH</span>
-        <h2>Representação comercial com responsabilidade e comprometimento</h2>
-        <p class="lead">A DH Representações é uma empresa de representação comercial com sede em Lagoa Vermelha (RS).</p>
-        <p>Nosso trabalho é encurtar distâncias entre fornecedores e clientes. Valorizamos produtos que atendam aos padrões de exigência e sustentabilidade do mercado global e buscamos trazer o que existe de melhor para os nossos parceiros.</p>
-        <a class="btn btn-primary" href="#equipe">Falar com a equipe ${icon("arrow")}</a>
+  <section class="section section-alu" id="a-dh">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-intro">
+          <h2>A DH</h2>
+          <p class="about-lead">Uma empresa de representação comercial com sede em Lagoa Vermelha (RS), criada para encurtar a distância entre fornecedores e clientes.</p>
+          <p>Trabalhamos com base em responsabilidade e comprometimento, e valorizamos produtos que atendam aos padrões de exigência e sustentabilidade do mercado.</p>
+        </div>
+        <dl class="reasons">
+          <div><dt>Um contato, ${n} indústrias</dt><dd>Componentes, ferragens, perfis, vidros e embalagens de ${n} fabricantes, negociados com a mesma equipe.</dd></div>
+          <div><dt>Atendimento direto</dt><dd>Você fala com o representante pelo WhatsApp, telefone ou e-mail, sem intermediários.</dd></div>
+          <div><dt>Catálogos à mão</dt><dd>Os catálogos das representadas estão no site para você chegar à conversa sabendo o que quer.</dd></div>
+          <div><dt>Indústrias consolidadas</dt><dd>Fabricantes com décadas de mercado, sistemas de gestão da qualidade e grandes parques industriais.</dd></div>
+        </dl>
       </div>
       <div class="mvv">
-        <article class="mvv-item">
-          <span class="segment-ico">${icon("target")}</span>
-          <div><h3>Missão</h3><p>Além de buscar encurtar distâncias entre fornecedores e clientes, trabalhamos sempre baseados no princípio de responsabilidade e comprometimento. Nossa empresa valoriza produtos que atendam aos padrões de exigência e sustentabilidade do mercado global.</p></div>
-        </article>
-        <article class="mvv-item">
-          <span class="segment-ico">${icon("eye")}</span>
-          <div><h3>Visão</h3><p>Sempre se aprimorando cada vez mais em tecnologia e informação de mercado, a DH Representações busca trazer o que existe de melhor para os seus parceiros.</p></div>
-        </article>
-        <article class="mvv-item">
-          <span class="segment-ico">${icon("award")}</span>
-          <div><h3>Valores</h3><p>Ganhar reconhecimento pelo trabalho de excelência executado, prezando sempre pela honestidade e pelos bons valores.</p></div>
-        </article>
+        <div><h3>Missão</h3><p>Encurtar distâncias entre fornecedores e clientes, trabalhando sempre com responsabilidade e comprometimento e valorizando produtos que atendam aos padrões de exigência e sustentabilidade do mercado global.</p></div>
+        <div><h3>Visão</h3><p>Aprimorar-se cada vez mais em tecnologia e informação de mercado para trazer o que existe de melhor para os nossos parceiros.</p></div>
+        <div><h3>Valores</h3><p>Ganhar reconhecimento pelo trabalho de excelência, prezando sempre pela honestidade e pelos bons valores.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="equipe">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Equipe comercial</span>
-        <h2>Fale direto com quem vai te atender</h2>
-        <p>Nossa equipe está pronta para apresentar as linhas, enviar catálogos e preparar seu orçamento.</p>
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Equipe comercial</h2>
+        <p>Fale direto com quem vai atender o seu pedido.</p>
       </div>
-      <div class="team-grid">
+      <ul class="team">
         ${team}
-      </div>
+      </ul>
     </div>
   </section>
 
-  <section class="section section-soft" id="contato">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Contato</span>
-        <h2>Solicite um orçamento</h2>
-        <p>Conte o que você precisa e indicamos a representada e o representante certos para o seu pedido.</p>
+  <section class="section section-ink" id="contato">
+    <div class="wrap contact-grid">
+      <div class="contact-info">
+        <h2>Peça um orçamento</h2>
+        <p>Conte o que você precisa. Indicamos a representada e o representante certos para o seu pedido.</p>
+        <dl class="office">
+          <div><dt>Endereço</dt><dd><a href="${mapsUrl}" target="_blank" rel="noopener">${SITE.endereco}<br>${SITE.cidade}</a></dd></div>
+          <div><dt>Telefone</dt><dd><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a></dd></div>
+          <div><dt>WhatsApp</dt><dd><a href="${wa(SITE.whatsapp)}" target="_blank" rel="noopener">${formatFone(SITE.whatsapp.slice(2))}</a></dd></div>
+          <div><dt>E-mail</dt><dd><a href="mailto:${SITE.email}">${SITE.email}</a></dd></div>
+          <div><dt>Horário</dt><dd>${SITE.horario}</dd></div>
+        </dl>
       </div>
-      <div class="contact">
-        <form class="form-card" id="form-contato" novalidate>
-          <div class="form-grid">
-            <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
-            <div class="field"><label for="f-empresa">Empresa <span class="opt">(opcional)</span></label><input id="f-empresa" name="empresa" type="text" autocomplete="organization"></div>
-            <div class="field"><label for="f-telefone">Telefone / WhatsApp</label><input id="f-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" required></div>
-            <div class="field"><label for="f-cidade">Cidade / UF</label><input id="f-cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Ex.: Caxias do Sul / RS" required></div>
-            <div class="field full"><label for="f-interesse">Tenho interesse em <span class="opt">(opcional)</span></label>
-              <select id="f-interesse" name="interesse"><option value="">Selecione uma representada</option>${options}<option>Ainda não sei / outro produto</option></select></div>
-            <div class="field full"><label for="f-mensagem">Mensagem <span class="opt">(opcional)</span></label><textarea id="f-mensagem" name="mensagem" placeholder="Produtos, quantidades, prazos…"></textarea></div>
-            <div class="form-actions">
-              <button class="btn btn-whats btn-block" type="submit">${icon("whats")} Enviar pelo WhatsApp</button>
-              <p class="form-note">Ao enviar, abrimos o WhatsApp com a sua mensagem pronta para a nossa equipe. Seus dados são tratados conforme a nossa <a href="politica-de-privacidade.html">política de privacidade</a>.</p>
-            </div>
-          </div>
-        </form>
-        <aside class="info-card">
-          <h3>Escritório</h3>
-          <ul class="info-list">
-            <li><span class="segment-ico">${icon("pin")}</span><div><strong>Endereço</strong><span>${SITE.endereco}, ${SITE.cidade}</span></div></li>
-            <li><span class="segment-ico">${icon("phone")}</span><div><strong>Telefone</strong><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a></div></li>
-            <li><span class="segment-ico">${icon("whats")}</span><div><strong>WhatsApp</strong><a href="${wa(SITE.whatsapp)}" target="_blank" rel="noopener">${formatFone(SITE.whatsapp.slice(2))}</a></div></li>
-            <li><span class="segment-ico">${icon("mail")}</span><div><strong>E-mail</strong><a href="mailto:${SITE.email}">${SITE.email}</a></div></li>
-            <li><span class="segment-ico">${icon("clock")}</span><div><strong>Horário</strong><span>${SITE.horario}</span></div></li>
-          </ul>
-          <div class="map">
-            <iframe title="Mapa: DH Representações em Lagoa Vermelha – RS" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-              src="https://maps.google.com/maps?q=${encodeURIComponent("Rua Rotary Internacional, 299, Pedregal, Lagoa Vermelha - RS")}&t=m&z=15&output=embed"></iframe>
-          </div>
-        </aside>
-      </div>
+      <form class="form" id="form-contato" novalidate>
+        <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-empresa">Empresa <span>opcional</span></label><input id="f-empresa" name="empresa" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-telefone">Telefone ou WhatsApp</label><input id="f-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div class="field"><label for="f-cidade">Cidade e estado</label><input id="f-cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Caxias do Sul, RS" required></div>
+        <div class="field full"><label for="f-interesse">Representada <span>opcional</span></label>
+          <select id="f-interesse" name="interesse"><option value="">Escolha, se já souber</option>${options}<option>Ainda não sei</option></select></div>
+        <div class="field full"><label for="f-mensagem">O que você precisa <span>opcional</span></label><textarea id="f-mensagem" name="mensagem" rows="4" placeholder="Produtos, quantidades, prazos"></textarea></div>
+        <div class="field full">
+          <button class="btn btn-whats btn-lg btn-block" type="submit">${icon("whats")} Enviar pelo WhatsApp</button>
+          <p class="form-note">Abrimos o WhatsApp com a sua mensagem pronta para a nossa equipe. Seus dados seguem a nossa <a href="politica-de-privacidade.html">política de privacidade</a>.</p>
+        </div>
+      </form>
     </div>
   </section>
 </main>
@@ -588,36 +521,36 @@ function pageRep(r) {
   const seg = SEGMENTOS[r.segmento];
   const msg = `Olá! Vim pelo site da DH Representações e gostaria de um orçamento de produtos da ${r.nome}.`;
 
-  const facts = [`<li>${icon(seg.icone)} ${seg.nome}</li>`];
-  if (r.local) facts.push(`<li>${icon("pin")} ${esc(r.local)}</li>`);
-  if (r.fundacao) facts.push(`<li>${icon("calendar")} Desde ${r.fundacao}</li>`);
+  const facts = [`<div><dt>Segmento</dt><dd>${seg.nome}</dd></div>`];
+  if (r.local) facts.push(`<div><dt>Origem</dt><dd>${esc(r.local)}</dd></div>`);
+  if (r.fundacao) facts.push(`<div><dt>Fundação</dt><dd>${r.fundacao}</dd></div>`);
 
-  const actions = [`<a class="btn btn-whats" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Solicitar orçamento</a>`];
-  if (r.catalogo) actions.push(`<a class="btn btn-primary" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Baixar catálogo (PDF)</a>`);
-  if (r.site) actions.push(`<a class="btn btn-outline" href="${r.site}" target="_blank" rel="noopener">Site oficial ${icon("external")}</a>`);
+  const actions = [`<a class="btn btn-whats btn-lg" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento</a>`];
+  if (r.catalogo) actions.push(`<a class="btn btn-line btn-lg" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Catálogo em PDF</a>`);
+  if (r.site) actions.push(`<a class="btn btn-text" href="${r.site}" target="_blank" rel="noopener">Site da ${esc(r.nome)} ${icon("external")}</a>`);
 
   const linhas = r.linhas && r.linhas.length
-    ? `<h2>Linhas de produtos e serviços</h2>
-          <ul class="lines">${r.linhas.map((l) => `<li>${icon("check")}<span>${esc(l)}</span></li>`).join("")}</ul>`
+    ? `<h2>Produtos e serviços</h2>
+          <ul class="lines">${r.linhas.map((l) => `<li>${esc(l)}</li>`).join("")}</ul>`
     : "";
 
   const fotos = r.fotos && r.fotos.length
-    ? `<div class="gallery">${r.fotos.map((f) => `<figure><img src="${base}images/representadas/${f.src}" alt="${esc(f.alt)}" loading="lazy"></figure>`).join("")}</div>`
+    ? `<div class="gallery g${Math.min(r.fotos.length, 2)}">${r.fotos.map((f) => `<figure><img src="${base}images/representadas/${f.src}" alt="${esc(f.alt)}" loading="lazy"></figure>`).join("")}</div>`
     : "";
 
-  const outras = REPRESENTADAS.filter((o) => o.slug !== r.slug)
-    .sort((a, b) => (b.segmento === r.segmento) - (a.segmento === r.segmento))
-    .slice(0, 4).map((o) => repCard(o, base)).join("\n        ");
+  const mesmas = REPRESENTADAS.filter((o) => o.slug !== r.slug && o.segmento === r.segmento);
+  const outras = (mesmas.length >= 2 ? mesmas : REPRESENTADAS.filter((o) => o.slug !== r.slug)).slice(0, 4);
+  const outrasTitulo = mesmas.length >= 2 ? `Mais em ${seg.nome.charAt(0).toLowerCase() + seg.nome.slice(1)}` : "Outras representadas";
 
   return head({
-    title: `${r.nome} – ${seg.nome} | DH Representações`,
-    description: `${r.resumo} Representação comercial da ${r.nome} pela DH Representações. Solicite catálogo e orçamento.`,
+    title: `${r.nome}: ${seg.nome.toLowerCase()} | DH Representações`,
+    description: `${r.resumo} A DH Representações representa a ${r.nome}. Peça catálogo e orçamento.`,
     canonical: `${SITE.url}/representadas/${r.slug}.html`,
     base,
   }) + header(base, false) + `
 <main id="conteudo">
-  <section class="page-hero">
-    <div class="container">
+  <section class="rep-hero">
+    <div class="wrap">
       <nav class="breadcrumb" aria-label="Você está em">
         <ol>
           <li><a href="${base}index.html">Início</a></li>
@@ -625,49 +558,42 @@ function pageRep(r) {
           <li aria-current="page">${esc(r.nome)}</li>
         </ol>
       </nav>
-      <div class="page-hero-grid">
+      <div class="rep-hero-grid">
+        <div class="rep-hero-logo"><img src="${base}images/representadas/${r.logo}" alt="Logo ${esc(r.nome)}"></div>
         <div>
-          <span class="eyebrow">Representada</span>
           <h1>${esc(r.nome)}</h1>
-          <p class="lead">${esc(r.resumo)}</p>
-          <ul class="facts">${facts.join("")}</ul>
-          <div class="page-actions">${actions.join("\n            ")}</div>
+          <p class="rep-hero-lead">${esc(r.resumo)}</p>
+          <dl class="facts">${facts.join("")}</dl>
+          <div class="rep-hero-actions">${actions.join("\n            ")}</div>
         </div>
-        <div class="logo-panel"><img src="${base}images/representadas/${r.logo}" alt="Logo ${esc(r.nome)}"></div>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <div class="container detail">
+    <div class="wrap detail">
       <div class="prose">
         <h2>Sobre a ${esc(r.nome)}</h2>
         ${r.sobre.map((p) => `<p>${esc(p)}</p>`).join("\n        ")}
-        ${r.slogan ? `<p class="slogan">“${esc(r.slogan)}”</p>` : ""}
+        ${r.slogan ? `<blockquote>${esc(r.slogan)}</blockquote>` : ""}
         ${linhas}
-        ${fotos}
       </div>
-      <aside class="aside-card">
+      <aside class="buy">
         <h2>Compre ${esc(r.nome)} com a DH</h2>
-        <p>Somos representantes comerciais da ${esc(r.nome)}. Fale com a nossa equipe para receber catálogo, condições e orçamento.</p>
-        <ul>
-          <li><a href="${tel(SITE.telefone)}">${icon("phone")} ${formatFone(SITE.telefone)}</a></li>
-          <li><a href="mailto:${SITE.email}">${icon("mail")} ${SITE.email}</a></li>
-        </ul>
-        <a class="btn btn-whats" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a>
+        <p>Somos representantes comerciais da ${esc(r.nome)}. Nossa equipe envia catálogo, condições e orçamento.</p>
+        <a class="btn btn-whats btn-block" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a>
+        <p class="buy-alt"><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a><br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
       </aside>
     </div>
+    ${fotos ? `<div class="wrap">${fotos}</div>` : ""}
   </section>
 
-  <section class="section section-soft">
-    <div class="container">
-      <div class="section-head">
-        <span class="eyebrow">Outras representadas</span>
-        <h2>Veja também</h2>
-      </div>
-      <div class="rep-grid">
-        ${outras}
-      </div>
+  <section class="section section-alu">
+    <div class="wrap">
+      <div class="sec-head"><h2>${outrasTitulo}</h2></div>
+      <ul class="rep-list">
+          ${outras.map((o) => repRow(o, base)).join("\n          ")}
+      </ul>
     </div>
   </section>
 </main>
@@ -686,14 +612,14 @@ function pagePrivacidade() {
     base,
   }) + header(base, false) + `
 <main id="conteudo">
-  <section class="page-hero">
-    <div class="container">
+  <section class="rep-hero">
+    <div class="wrap">
       <nav class="breadcrumb" aria-label="Você está em"><ol><li><a href="index.html">Início</a></li><li aria-current="page">Política de privacidade</li></ol></nav>
       <h1>Política de privacidade</h1>
     </div>
   </section>
   <section class="section">
-    <div class="container legal">
+    <div class="wrap legal">
       <p>A DH Representações preza pela transparência sobre o tratamento dos seus dados pessoais.</p>
       <p>Esta política tem como objetivo assegurar o compromisso da DH Representações perante nossas representadas e nossos clientes, em cumprimento à Lei Geral de Proteção de Dados – LGPD (Lei nº 13.709/18). Ela apresenta informações sobre a coleta, o tratamento e a proteção dos dados pessoais no site da DH Representações (dhrepresentacoes.com.br).</p>
       <p>A aceitação desta política se dá quando você acessa ou utiliza o nosso site ou os nossos serviços, indicando que está ciente e de acordo com a forma como utilizaremos as suas informações e os seus dados.</p>
