@@ -1,0 +1,16 @@
+# Redirecionamentos dos endereços antigos (WordPress) para o site novo
+# Mantém o Google e links salvos funcionando.
+Redirect 301 /alpa/ /representadas/alpa.html
+Redirect 301 /plastiben/ /representadas/plastiben.html
+Redirect 301 /hd-ferragens/ /representadas/hd-ferragens.html
+Redirect 301 /puxe/ /representadas/puxe.html
+Redirect 301 /formato/ /representadas/formato.html
+Redirect 301 /ageplast/ /representadas/ageplast.html
+Redirect 301 /alumiconte/ /representadas/alumiconte.html
+Redirect 301 /glass-house/ /representadas/glass-house.html
+Redirect 301 /bragagnolo/ /representadas/bragagnolo.html
+Redirect 301 /alcaplas/ /representadas/alcaplas.html
+Redirect 301 /politicas-de-privacidade/ /politica-de-privacidade.html
+Redirect 301 /sample-page/ /
+
+ErrorDocument 404 /index.html

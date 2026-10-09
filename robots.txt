@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dhrepresentacoes.com.br/sitemap.xml
