@@ -130,25 +130,16 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 }
 
 /* ---------- O quarto: roupeiro com as peças das representadas ---------- */
-.room { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start; }
-.room-stage { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #e8ecf1; }
-.room-svg { display: block; width: 100%; height: auto; }
+.room { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; }
+.room-stage { position: relative; border-radius: 10px; overflow: hidden; background: var(--alu); }
+.room-photo { display: block; width: 100%; height: auto; }
 
-.room .part { transition: opacity .25s, filter .25s; }
-.room.has-sel .part { opacity: .42; }
-.room.has-sel .part.is-sel { opacity: 1; filter: drop-shadow(0 0 2px #1f6db4) drop-shadow(0 0 6px rgba(31, 109, 180, .55)); }
 
-/* A luz do espelho acende quando a página abre */
-.led-strip { stroke: #e6dfcd; animation: led-strip .3s ease-out .5s forwards; }
-.led-glow { opacity: 0; animation: led-on 1.1s ease-out .5s forwards; }
-@keyframes led-strip { to { stroke: #fff6dc; } }
-@keyframes led-on { to { opacity: 1; } }
 
 .spot {
   position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; padding: 0;
   border: 3px solid #fff; border-radius: 50%; background: var(--ink); cursor: pointer;
   box-shadow: 0 2px 8px rgba(13, 24, 48, .35);
-  opacity: 0; animation: spot-in .35s ease-out forwards; animation-delay: calc(1s + var(--d) * 70ms);
   transition: background-color .15s, transform .15s;
 }
 .spot::before, .spot::after { content: ""; position: absolute; left: 50%; top: 50%; background: #fff; border-radius: 1px; transform: translate(-50%, -50%); }
@@ -157,16 +148,18 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .spot:hover { transform: scale(1.12); }
 .spot[aria-pressed="true"] { background: var(--blue); box-shadow: 0 0 0 5px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
 .spot[aria-pressed="true"]::after { opacity: 0; }
-@keyframes spot-in { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: scale(1); } }
 
-.room-panel { padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: 10px; }
+.room-panel { background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.panel-photo { margin: 0; aspect-ratio: 4 / 3; background: var(--alu); }
+.panel-photo img { width: 100%; height: 100%; object-fit: cover; }
+.panel-body { padding: 18px 22px 22px; }
 .panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .panel-count { font-size: .875rem; color: var(--steel); font-variant-numeric: tabular-nums; }
 .panel-nav { display: flex; gap: 6px; }
 .panel-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); color: var(--ink); cursor: pointer; }
 .panel-btn:hover { border-color: var(--ink); }
 .room-panel h3 { font-size: 1.375rem; margin-bottom: 8px; }
-.room-panel > p { margin-bottom: 18px; }
+.panel-body > p { margin-bottom: 16px; }
 .panel-brands { list-style: none; display: grid; gap: 12px; }
 .panel-brands li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); }
 .panel-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 6px; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); }
@@ -175,12 +168,20 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .panel-brands h4 a { color: var(--ink); }
 .panel-brands p { margin: 0; font-size: .9375rem; line-height: 1.45; }
 
-@media (max-width: 960px) { .room { grid-template-columns: 1fr; } }
+@media (max-width: 960px) {
+  .room { grid-template-columns: 1fr; }
+  .room-panel { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+  .panel-photo { aspect-ratio: auto; }
+}
+@media (max-width: 640px) {
+  .room-panel { display: block; }
+  .panel-photo { aspect-ratio: 4 / 3; }
+}
 @media (max-width: 560px) {
   .spot { width: 24px; height: 24px; margin: -12px 0 0 -12px; border-width: 2px; }
   .spot::before { width: 10px; }
   .spot::after { height: 10px; }
-  .room-panel { padding: 18px; }
+  .panel-body { padding: 16px 18px 20px; }
 }
 
 /* Logo que ainda não tem arquivo: nome escrito */
@@ -405,8 +406,5 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .led-strip { animation: none; stroke: #fff6dc; }
-  .led-glow { animation: none; opacity: 1; }
-  .spot { animation: none; opacity: 1; }
   *, *::before, *::after { transition: none !important; }
 }

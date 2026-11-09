@@ -200,35 +200,33 @@ const REPRESENTADAS = [
 const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium"];
 REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
 
-// Peças do roupeiro desenhado no topo da home.
-// x/y = posição do ponto clicável no desenho (viewBox 1000 x 600).
+// Peças do roupeiro (foto images/roupeiro/roupeiro.jpg).
+// x/y = posição do ponto clicável na foto, em % da largura e da altura.
+// img = foto de detalhe que aparece ao lado quando a peça é escolhida.
 const PECAS = [
-  { id: "led", nome: "Iluminação LED do espelho", x: 364, y: 68,
-    texto: "A luz que contorna o espelho do nicho. LED feito para móveis.",
-    marcas: ["iluminium"] },
-  { id: "vidro", nome: "Espelho e vidro da porta", x: 300, y: 196,
-    texto: "O espelho do nicho e o vidro da porta de correr.",
-    marcas: ["glass-house"] },
-  { id: "puxadores", nome: "Puxadores", x: 252, y: 309,
-    texto: "Puxadores das gavetas e das portas, injetados e com acabamento metalizado.",
+  { id: "led", nome: "Espelho com LED", x: 34.1, y: 17.9, img: "zoom-led.jpg",
+    texto: "A fita de LED que contorna o espelho e o perfil difusor que deixa a luz contínua, sem pontos aparentes.",
+    marcas: ["iluminium", "ageplast"] },
+  { id: "puxadores", nome: "Puxadores", x: 25.4, y: 59.7, img: "zoom-puxadores.jpg",
+    texto: "Os puxadores das gavetas, com acabamento metalizado.",
     marcas: ["puxe", "formato"] },
-  { id: "madeira", nome: "Lâminas, madeira e ferragens", x: 117, y: 200,
-    texto: "Lâminas e madeiras da estrutura do roupeiro, além das ferragens de montagem.",
+  { id: "corredica", nome: "Corrediça telescópica", x: 32.2, y: 70.5, img: "zoom-corredica.jpg",
+    texto: "A ferragem que faz a gaveta abrir por inteiro, com deslizamento suave sobre esferas.",
     marcas: ["hd-ferragens"] },
-  { id: "trilho-al", nome: "Trilho e perfil de alumínio", x: 520, y: 60,
-    texto: "Os trilhos de alumínio das portas de correr e o perfil que emoldura a porta de vidro.",
-    marcas: ["alumiconte"] },
-  { id: "porta-correr", nome: "Trilho plástico, roldanas e guias", x: 712, y: 485,
-    texto: "Os componentes termoplásticos e o sistema que fazem a porta de correr deslizar.",
-    marcas: ["plastiben"] },
-  { id: "acessorios", nome: "Acessórios metálicos", x: 743, y: 117,
-    texto: "Peças estampadas e em zamak, como os suportes do cabideiro.",
+  { id: "trilho-superior", nome: "Trilho superior", x: 44.3, y: 11.1, img: "zoom-trilho-superior.webp",
+    texto: "O trilho de plástico no alto do roupeiro, onde correm as guias das portas.",
     marcas: ["alpa"] },
-  { id: "perfil-plastico", nome: "Perfil plástico do rodapé", x: 300, y: 510,
-    texto: "Perfis plásticos extrudados para rodapés, bordas e acabamentos.",
-    marcas: ["ageplast"] },
-  { id: "embalagem", nome: "Embalagem para o transporte", x: 887, y: 462,
-    texto: "A caixa de papelão e o filme plástico que levam o móvel inteiro até o cliente.",
+  { id: "sistema-correr", nome: "Sistema de porta de correr", x: 68.3, y: 88.4, img: "zoom-sistema-correr.jpg",
+    texto: "A roldana que faz a porta deslizar, com parafuso para regular a altura.",
+    marcas: ["plastiben"] },
+  { id: "trilho-inferior", nome: "Trilho inferior", x: 44.6, y: 89.2, img: "zoom-trilho-inferior.webp",
+    texto: "O trilho de alumínio no chão, por onde as portas correm.",
+    marcas: ["alumiconte"] },
+  { id: "vidro", nome: "Vidro, perfil e baguete", x: 61.3, y: 66.5, img: "zoom-vidro.jpg",
+    texto: "O vidro da porta, o perfil de alumínio que o emoldura e a baguete plástica que prende o vidro no perfil.",
+    marcas: ["glass-house", "alumiconte", "ageplast"] },
+  { id: "embalagem", nome: "Embalagem", x: 79.6, y: 76.5, img: "zoom-embalagem.jpg",
+    texto: "A caixa de papelão e o filme plástico que protegem o móvel até chegar ao cliente.",
     marcas: ["bragagnolo", "alcaplas"] },
 ];
 
@@ -438,165 +436,36 @@ function repIndex(base, lista) {
 }
 
 // ---------------------------------------------------------
-// O quarto: roupeiro em vista frontal, cada peça ligada a uma representada
+// O quarto: foto do roupeiro com as peças das representadas
 // ---------------------------------------------------------
-function roomSvg() {
-  const ink = "#13213f", edge = "#8e9aab", metal = "#6f7c8f";
-  const gavetas = [286, 340, 394, 448];
-  return `<svg class="room-svg" viewBox="0 0 1000 600" role="img" aria-labelledby="room-title">
-          <title id="room-title">Quarto com um roupeiro: cada peça é fornecida por uma indústria representada pela DH</title>
-          <defs>
-            <linearGradient id="g-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f4f7"/><stop offset="1" stop-color="#e5eaf0"/></linearGradient>
-            <linearGradient id="g-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dfe6"/><stop offset="1" stop-color="#e8ecf1"/></linearGradient>
-            <linearGradient id="g-alu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f7f9"/><stop offset=".55" stop-color="#bcc6d1"/><stop offset="1" stop-color="#8e9aab"/></linearGradient>
-            <linearGradient id="g-alu-v" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa6b5"/><stop offset=".5" stop-color="#eef1f4"/><stop offset="1" stop-color="#9aa6b5"/></linearGradient>
-            <linearGradient id="g-mirror" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f7fa"/><stop offset="1" stop-color="#c6d2df"/></linearGradient>
-            <linearGradient id="g-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9dcec" stop-opacity=".5"/><stop offset="1" stop-color="#8fabc6" stop-opacity=".42"/></linearGradient>
-            <linearGradient id="g-box" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfab7c"/><stop offset="1" stop-color="#bb945f"/></linearGradient>
-            <pattern id="p-wood" width="60" height="120" patternUnits="userSpaceOnUse">
-              <rect width="60" height="120" fill="#d6bc96"/>
-              <path d="M6 0c3 30-3 60 0 120M22 0c-4 40 4 70 0 120M41 0c3 25-2 75 1 120M53 0c-2 35 3 65 0 120" stroke="#c6a97f" stroke-width="1.4" fill="none"/>
-            </pattern>
-            <pattern id="p-lam" width="46" height="140" patternUnits="userSpaceOnUse">
-              <rect width="46" height="140" fill="#efe6d8"/>
-              <path d="M9 0c2 50-2 90 0 140M27 0c-3 45 3 95 0 140M39 0c2 60-2 80 0 140" stroke="#e3d6c2" stroke-width="1.2" fill="none"/>
-            </pattern>
-            <filter id="f-glow" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="7"/></filter>
-          </defs>
-
-          <rect width="1000" height="520" fill="url(#g-wall)"/>
-          <rect y="520" width="1000" height="80" fill="url(#g-floor)"/>
-          <path d="M0 520H1000M0 551H1000M0 580H1000" stroke="#c9d1db" stroke-width="1.5"/>
-          <ellipse cx="440" cy="521" rx="352" ry="6" fill="${ink}" opacity=".1"/>
-          <ellipse cx="887" cy="521" rx="84" ry="5" fill="${ink}" opacity=".1"/>
-
-          <!-- fundos internos -->
-          <rect x="124" y="54" width="256" height="216" fill="#f4f0ea"/>
-          <rect x="394" y="66" width="362" height="422" fill="#f4f0ea"/>
-
-          <!-- estrutura: lâminas e madeira (HD Ferragens) -->
-          <g class="part" data-peca="madeira">
-            <rect x="110" y="40" width="660" height="14" fill="url(#p-wood)"/>
-            <rect x="110" y="40" width="14" height="460" fill="url(#p-wood)"/>
-            <rect x="756" y="40" width="14" height="460" fill="url(#p-wood)"/>
-            <rect x="380" y="54" width="14" height="446" fill="url(#p-wood)"/>
-            <rect x="124" y="270" width="256" height="12" fill="url(#p-wood)"/>
-          </g>
-
-          <!-- LED do espelho (Iluminium) -->
-          <g class="part" data-peca="led">
-            <rect class="led-glow" x="140" y="68" width="224" height="188" rx="10" fill="none" stroke="#ffd47e" stroke-width="12" filter="url(#f-glow)"/>
-            <rect class="led-strip" x="140" y="68" width="224" height="188" rx="10" fill="none" stroke-width="3.5"/>
-          </g>
-
-          <!-- espelho e vidro (Glass House) -->
-          <g class="part" data-peca="vidro">
-            <rect x="148" y="76" width="208" height="172" rx="5" fill="url(#g-mirror)" stroke="#a3b0bf"/>
-            <path d="M176 244 252 80M206 244 282 80" stroke="#fff" stroke-width="7" opacity=".55"/>
-          </g>
-
-          <!-- gavetas -->
-          <g fill="#fbfaf7" stroke="#a3b0bf" stroke-width="1.5">
-            ${gavetas.map((y) => `<rect x="128" y="${y}" width="248" height="48" rx="2"/>`).join("")}
-          </g>
-
-          <!-- interior visto pelo vidro: cabideiro e roupas -->
-          <line x1="398" y1="118" x2="752" y2="118" stroke="${edge}" stroke-width="5" stroke-linecap="round"/>
-          <g stroke="${metal}" stroke-width="2" fill="none">
-            <path d="M604 118v8l-18 12h36zM652 118v8l-18 12h36zM700 118v8l-18 12h36z"/>
-          </g>
-          <path d="M588 138h32l6 168h-44z" fill="#c4d0de"/>
-          <path d="M636 138h32l8 196h-48z" fill="#d9cbb7"/>
-          <path d="M684 138h32l4 150h-40z" fill="#a9bacd"/>
-
-          <!-- suportes do cabideiro (Alpa) -->
-          <g class="part" data-peca="acessorios">
-            <rect x="398" y="105" width="12" height="26" rx="3" fill="${metal}"/>
-            <rect x="737" y="105" width="12" height="26" rx="3" fill="${metal}"/>
-          </g>
-
-          <!-- porta de correr em laminado -->
-          <rect x="398" y="68" width="186" height="418" fill="url(#p-lam)" stroke="#a3b0bf" stroke-width="1.5"/>
-
-          <!-- porta de vidro -->
-          <g class="part" data-peca="vidro">
-            <rect x="572" y="68" width="180" height="418" fill="url(#g-glass)"/>
-            <path d="M600 470 690 90M630 470 720 90" stroke="#fff" stroke-width="7" opacity=".4"/>
-          </g>
-
-          <!-- trilhos e perfil de alumínio (Alumiconte) -->
-          <g class="part" data-peca="trilho-al">
-            <rect x="394" y="54" width="362" height="12" fill="url(#g-alu)" stroke="${edge}"/>
-            <rect x="394" y="488" width="362" height="12" fill="url(#g-alu)" stroke="${edge}"/>
-            <rect x="572" y="68" width="180" height="418" fill="none" stroke="url(#g-alu-v)" stroke-width="9"/>
-            <rect x="567.5" y="63.5" width="189" height="427" fill="none" stroke="${edge}" stroke-width="1"/>
-          </g>
-
-          <!-- puxadores (Puxe e Formato) -->
-          <g class="part" data-peca="puxadores">
-            ${gavetas.map((y) => `<rect x="217" y="${y + 18}" width="70" height="7" rx="3.5" fill="${metal}"/>`).join("")}
-            <rect x="405" y="228" width="7" height="110" rx="3.5" fill="${metal}"/>
-          </g>
-
-          <!-- trilho plástico, roldanas e guias (Plastiben) -->
-          <g class="part" data-peca="porta-correr">
-            <rect x="420" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="536" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="592" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="699" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="426" y="66" width="18" height="6" rx="2" fill="#2f3a52"/>
-            <rect x="700" y="66" width="18" height="6" rx="2" fill="#2f3a52"/>
-          </g>
-
-          <!-- perfil plástico do rodapé (Ageplast) -->
-          <g class="part" data-peca="perfil-plastico">
-            <rect x="110" y="500" width="660" height="20" fill="#c6ced8"/>
-            <path d="M110 505H770" stroke="#eef1f4" stroke-width="2"/>
-            <path d="M110 520H770" stroke="${edge}" stroke-width="1.5"/>
-          </g>
-
-          <!-- contorno do roupeiro -->
-          <rect x="110" y="40" width="660" height="480" fill="none" stroke="${ink}" stroke-width="2.5"/>
-
-          <!-- embalagem: caixa de papelão e filme plástico (Bragagnolo e Alcaplas) -->
-          <g class="part" data-peca="embalagem">
-            <rect x="812" y="400" width="150" height="120" fill="url(#g-box)" stroke="#8f6d45" stroke-width="1.5"/>
-            <rect x="878" y="400" width="18" height="120" fill="#e4cc9e" opacity=".9"/>
-            <rect x="828" y="452" width="38" height="26" fill="#f7f3ea"/>
-            <path d="M834 460h26M834 467h18" stroke="#b7a68a" stroke-width="2"/>
-            <rect x="840" y="346" width="100" height="54" fill="url(#g-box)" stroke="#8f6d45" stroke-width="1.5"/>
-            <rect x="882" y="346" width="16" height="54" fill="#e4cc9e" opacity=".9"/>
-            <rect x="806" y="394" width="162" height="126" rx="8" fill="#ffffff" fill-opacity=".16" stroke="#ffffff" stroke-opacity=".75" stroke-width="1.5"/>
-            <path d="M822 512 870 404M846 512 894 404" stroke="#fff" stroke-width="5" opacity=".4"/>
-          </g>
-        </svg>`;
-}
-
 function panelHtml(p, i, base) {
   const marcas = p.marcas.map((slug) => REPRESENTADAS.find((r) => r.slug === slug)).filter(Boolean);
-  return `<div class="panel-head">
-            <span class="panel-count">Peça ${i + 1} de ${PECAS.length}</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior">${icon("chevl")}</button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça">${icon("chevr")}</button>
-            </span>
-          </div>
-          <h3>${esc(p.nome)}</h3>
-          <p>${esc(p.texto)}</p>
-          <ul class="panel-brands">
-            ${marcas.map((r) => `<li>
-              <a class="panel-logo" href="${base}representadas/${r.slug}.html" tabindex="-1" aria-hidden="true">${logo(r, base)}</a>
-              <div><h4><a href="${base}representadas/${r.slug}.html">${esc(r.nome)}</a></h4><p>${esc(r.resumo)}</p></div>
-            </li>`).join("")}
-          </ul>`;
+  return `<figure class="panel-photo"><img src="${base}images/roupeiro/${p.img}" alt="Detalhe: ${esc(p.nome.toLowerCase())}" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça ${i + 1} de ${PECAS.length}</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior">${icon("chevl")}</button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça">${icon("chevr")}</button>
+              </span>
+            </div>
+            <h3>${esc(p.nome)}</h3>
+            <p>${esc(p.texto)}</p>
+            <ul class="panel-brands">
+              ${marcas.map((r) => `<li>
+                <a class="panel-logo" href="${base}representadas/${r.slug}.html" tabindex="-1" aria-hidden="true">${logo(r, base)}</a>
+                <div><h4><a href="${base}representadas/${r.slug}.html">${esc(r.nome)}</a></h4><p>${esc(r.resumo)}</p></div>
+              </li>`).join("")}
+            </ul>
+          </div>`;
 }
 
 function room(base) {
-  const spots = PECAS.map((p, i) => `<button type="button" class="spot" data-peca="${p.id}" style="left:${p.x / 10}%;top:${(p.y / 6).toFixed(2)}%;--d:${i}" aria-label="${esc(p.nome)}" aria-pressed="${i === 0}"></button>`).join("\n          ");
+  const spots = PECAS.map((p, i) => `<button type="button" class="spot" data-peca="${p.id}" style="left:${p.x}%;top:${p.y}%;--d:${i}" aria-label="${esc(p.nome)}" aria-pressed="${i === 0}"></button>`).join("\n          ");
   const tpls = PECAS.map((p, i) => `<template data-peca="${p.id}">${panelHtml(p, i, base)}</template>`).join("\n      ");
-  return `<div class="room has-sel" data-sel="${PECAS[0].id}">
+  return `<div class="room" data-sel="${PECAS[0].id}">
         <div class="room-stage">
-          ${roomSvg()}
+          <img class="room-photo" src="${base}images/roupeiro/roupeiro.jpg" width="2000" height="1116" alt="Quarto com roupeiro de portas de correr, nicho com espelho iluminado, gavetas e caixas de embalagem" loading="lazy">
           ${spots}
         </div>
         <div class="room-panel" aria-live="polite">

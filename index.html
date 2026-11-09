@@ -63,304 +63,201 @@
         <h2>Do trilho ao puxador</h2>
         <p>Um roupeiro reúne peças de várias indústrias, e a DH representa todas elas. Toque nas peças do desenho para ver quem fabrica cada uma.</p>
       </div>
-      <div class="room has-sel" data-sel="led">
+      <div class="room" data-sel="led">
         <div class="room-stage">
-          <svg class="room-svg" viewBox="0 0 1000 600" role="img" aria-labelledby="room-title">
-          <title id="room-title">Quarto com um roupeiro: cada peça é fornecida por uma indústria representada pela DH</title>
-          <defs>
-            <linearGradient id="g-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1f4f7"/><stop offset="1" stop-color="#e5eaf0"/></linearGradient>
-            <linearGradient id="g-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dfe6"/><stop offset="1" stop-color="#e8ecf1"/></linearGradient>
-            <linearGradient id="g-alu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5f7f9"/><stop offset=".55" stop-color="#bcc6d1"/><stop offset="1" stop-color="#8e9aab"/></linearGradient>
-            <linearGradient id="g-alu-v" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa6b5"/><stop offset=".5" stop-color="#eef1f4"/><stop offset="1" stop-color="#9aa6b5"/></linearGradient>
-            <linearGradient id="g-mirror" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f4f7fa"/><stop offset="1" stop-color="#c6d2df"/></linearGradient>
-            <linearGradient id="g-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9dcec" stop-opacity=".5"/><stop offset="1" stop-color="#8fabc6" stop-opacity=".42"/></linearGradient>
-            <linearGradient id="g-box" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfab7c"/><stop offset="1" stop-color="#bb945f"/></linearGradient>
-            <pattern id="p-wood" width="60" height="120" patternUnits="userSpaceOnUse">
-              <rect width="60" height="120" fill="#d6bc96"/>
-              <path d="M6 0c3 30-3 60 0 120M22 0c-4 40 4 70 0 120M41 0c3 25-2 75 1 120M53 0c-2 35 3 65 0 120" stroke="#c6a97f" stroke-width="1.4" fill="none"/>
-            </pattern>
-            <pattern id="p-lam" width="46" height="140" patternUnits="userSpaceOnUse">
-              <rect width="46" height="140" fill="#efe6d8"/>
-              <path d="M9 0c2 50-2 90 0 140M27 0c-3 45 3 95 0 140M39 0c2 60-2 80 0 140" stroke="#e3d6c2" stroke-width="1.2" fill="none"/>
-            </pattern>
-            <filter id="f-glow" x="-25%" y="-25%" width="150%" height="150%"><feGaussianBlur stdDeviation="7"/></filter>
-          </defs>
-
-          <rect width="1000" height="520" fill="url(#g-wall)"/>
-          <rect y="520" width="1000" height="80" fill="url(#g-floor)"/>
-          <path d="M0 520H1000M0 551H1000M0 580H1000" stroke="#c9d1db" stroke-width="1.5"/>
-          <ellipse cx="440" cy="521" rx="352" ry="6" fill="#13213f" opacity=".1"/>
-          <ellipse cx="887" cy="521" rx="84" ry="5" fill="#13213f" opacity=".1"/>
-
-          <!-- fundos internos -->
-          <rect x="124" y="54" width="256" height="216" fill="#f4f0ea"/>
-          <rect x="394" y="66" width="362" height="422" fill="#f4f0ea"/>
-
-          <!-- estrutura: lâminas e madeira (HD Ferragens) -->
-          <g class="part" data-peca="madeira">
-            <rect x="110" y="40" width="660" height="14" fill="url(#p-wood)"/>
-            <rect x="110" y="40" width="14" height="460" fill="url(#p-wood)"/>
-            <rect x="756" y="40" width="14" height="460" fill="url(#p-wood)"/>
-            <rect x="380" y="54" width="14" height="446" fill="url(#p-wood)"/>
-            <rect x="124" y="270" width="256" height="12" fill="url(#p-wood)"/>
-          </g>
-
-          <!-- LED do espelho (Iluminium) -->
-          <g class="part" data-peca="led">
-            <rect class="led-glow" x="140" y="68" width="224" height="188" rx="10" fill="none" stroke="#ffd47e" stroke-width="12" filter="url(#f-glow)"/>
-            <rect class="led-strip" x="140" y="68" width="224" height="188" rx="10" fill="none" stroke-width="3.5"/>
-          </g>
-
-          <!-- espelho e vidro (Glass House) -->
-          <g class="part" data-peca="vidro">
-            <rect x="148" y="76" width="208" height="172" rx="5" fill="url(#g-mirror)" stroke="#a3b0bf"/>
-            <path d="M176 244 252 80M206 244 282 80" stroke="#fff" stroke-width="7" opacity=".55"/>
-          </g>
-
-          <!-- gavetas -->
-          <g fill="#fbfaf7" stroke="#a3b0bf" stroke-width="1.5">
-            <rect x="128" y="286" width="248" height="48" rx="2"/><rect x="128" y="340" width="248" height="48" rx="2"/><rect x="128" y="394" width="248" height="48" rx="2"/><rect x="128" y="448" width="248" height="48" rx="2"/>
-          </g>
-
-          <!-- interior visto pelo vidro: cabideiro e roupas -->
-          <line x1="398" y1="118" x2="752" y2="118" stroke="#8e9aab" stroke-width="5" stroke-linecap="round"/>
-          <g stroke="#6f7c8f" stroke-width="2" fill="none">
-            <path d="M604 118v8l-18 12h36zM652 118v8l-18 12h36zM700 118v8l-18 12h36z"/>
-          </g>
-          <path d="M588 138h32l6 168h-44z" fill="#c4d0de"/>
-          <path d="M636 138h32l8 196h-48z" fill="#d9cbb7"/>
-          <path d="M684 138h32l4 150h-40z" fill="#a9bacd"/>
-
-          <!-- suportes do cabideiro (Alpa) -->
-          <g class="part" data-peca="acessorios">
-            <rect x="398" y="105" width="12" height="26" rx="3" fill="#6f7c8f"/>
-            <rect x="737" y="105" width="12" height="26" rx="3" fill="#6f7c8f"/>
-          </g>
-
-          <!-- porta de correr em laminado -->
-          <rect x="398" y="68" width="186" height="418" fill="url(#p-lam)" stroke="#a3b0bf" stroke-width="1.5"/>
-
-          <!-- porta de vidro -->
-          <g class="part" data-peca="vidro">
-            <rect x="572" y="68" width="180" height="418" fill="url(#g-glass)"/>
-            <path d="M600 470 690 90M630 470 720 90" stroke="#fff" stroke-width="7" opacity=".4"/>
-          </g>
-
-          <!-- trilhos e perfil de alumínio (Alumiconte) -->
-          <g class="part" data-peca="trilho-al">
-            <rect x="394" y="54" width="362" height="12" fill="url(#g-alu)" stroke="#8e9aab"/>
-            <rect x="394" y="488" width="362" height="12" fill="url(#g-alu)" stroke="#8e9aab"/>
-            <rect x="572" y="68" width="180" height="418" fill="none" stroke="url(#g-alu-v)" stroke-width="9"/>
-            <rect x="567.5" y="63.5" width="189" height="427" fill="none" stroke="#8e9aab" stroke-width="1"/>
-          </g>
-
-          <!-- puxadores (Puxe e Formato) -->
-          <g class="part" data-peca="puxadores">
-            <rect x="217" y="304" width="70" height="7" rx="3.5" fill="#6f7c8f"/><rect x="217" y="358" width="70" height="7" rx="3.5" fill="#6f7c8f"/><rect x="217" y="412" width="70" height="7" rx="3.5" fill="#6f7c8f"/><rect x="217" y="466" width="70" height="7" rx="3.5" fill="#6f7c8f"/>
-            <rect x="405" y="228" width="7" height="110" rx="3.5" fill="#6f7c8f"/>
-          </g>
-
-          <!-- trilho plástico, roldanas e guias (Plastiben) -->
-          <g class="part" data-peca="porta-correr">
-            <rect x="420" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="536" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="592" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="699" y="478" width="26" height="10" rx="4" fill="#2f3a52"/>
-            <rect x="426" y="66" width="18" height="6" rx="2" fill="#2f3a52"/>
-            <rect x="700" y="66" width="18" height="6" rx="2" fill="#2f3a52"/>
-          </g>
-
-          <!-- perfil plástico do rodapé (Ageplast) -->
-          <g class="part" data-peca="perfil-plastico">
-            <rect x="110" y="500" width="660" height="20" fill="#c6ced8"/>
-            <path d="M110 505H770" stroke="#eef1f4" stroke-width="2"/>
-            <path d="M110 520H770" stroke="#8e9aab" stroke-width="1.5"/>
-          </g>
-
-          <!-- contorno do roupeiro -->
-          <rect x="110" y="40" width="660" height="480" fill="none" stroke="#13213f" stroke-width="2.5"/>
-
-          <!-- embalagem: caixa de papelão e filme plástico (Bragagnolo e Alcaplas) -->
-          <g class="part" data-peca="embalagem">
-            <rect x="812" y="400" width="150" height="120" fill="url(#g-box)" stroke="#8f6d45" stroke-width="1.5"/>
-            <rect x="878" y="400" width="18" height="120" fill="#e4cc9e" opacity=".9"/>
-            <rect x="828" y="452" width="38" height="26" fill="#f7f3ea"/>
-            <path d="M834 460h26M834 467h18" stroke="#b7a68a" stroke-width="2"/>
-            <rect x="840" y="346" width="100" height="54" fill="url(#g-box)" stroke="#8f6d45" stroke-width="1.5"/>
-            <rect x="882" y="346" width="16" height="54" fill="#e4cc9e" opacity=".9"/>
-            <rect x="806" y="394" width="162" height="126" rx="8" fill="#ffffff" fill-opacity=".16" stroke="#ffffff" stroke-opacity=".75" stroke-width="1.5"/>
-            <path d="M822 512 870 404M846 512 894 404" stroke="#fff" stroke-width="5" opacity=".4"/>
-          </g>
-        </svg>
-          <button type="button" class="spot" data-peca="led" style="left:36.4%;top:11.33%;--d:0" aria-label="Iluminação LED do espelho" aria-pressed="true"></button>
-          <button type="button" class="spot" data-peca="vidro" style="left:30%;top:32.67%;--d:1" aria-label="Espelho e vidro da porta" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="puxadores" style="left:25.2%;top:51.50%;--d:2" aria-label="Puxadores" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="madeira" style="left:11.7%;top:33.33%;--d:3" aria-label="Lâminas, madeira e ferragens" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="trilho-al" style="left:52%;top:10.00%;--d:4" aria-label="Trilho e perfil de alumínio" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="porta-correr" style="left:71.2%;top:80.83%;--d:5" aria-label="Trilho plástico, roldanas e guias" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="acessorios" style="left:74.3%;top:19.50%;--d:6" aria-label="Acessórios metálicos" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="perfil-plastico" style="left:30%;top:85.00%;--d:7" aria-label="Perfil plástico do rodapé" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="embalagem" style="left:88.7%;top:77.00%;--d:8" aria-label="Embalagem para o transporte" aria-pressed="false"></button>
+          <img class="room-photo" src="images/roupeiro/roupeiro.jpg" width="2000" height="1116" alt="Quarto com roupeiro de portas de correr, nicho com espelho iluminado, gavetas e caixas de embalagem" loading="lazy">
+          <button type="button" class="spot" data-peca="led" style="left:34.1%;top:17.9%;--d:0" aria-label="Espelho com LED" aria-pressed="true"></button>
+          <button type="button" class="spot" data-peca="puxadores" style="left:25.4%;top:59.7%;--d:1" aria-label="Puxadores" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="corredica" style="left:32.2%;top:70.5%;--d:2" aria-label="Corrediça telescópica" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="trilho-superior" style="left:44.3%;top:11.1%;--d:3" aria-label="Trilho superior" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="sistema-correr" style="left:68.3%;top:88.4%;--d:4" aria-label="Sistema de porta de correr" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="trilho-inferior" style="left:44.6%;top:89.2%;--d:5" aria-label="Trilho inferior" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="vidro" style="left:61.3%;top:66.5%;--d:6" aria-label="Vidro, perfil e baguete" aria-pressed="false"></button>
+          <button type="button" class="spot" data-peca="embalagem" style="left:79.6%;top:76.5%;--d:7" aria-label="Embalagem" aria-pressed="false"></button>
         </div>
         <div class="room-panel" aria-live="polite">
-          <div class="panel-head">
-            <span class="panel-count">Peça 1 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
+          <figure class="panel-photo"><img src="images/roupeiro/zoom-led.jpg" alt="Detalhe: espelho com led" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 1 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Espelho com LED</h3>
+            <p>A fita de LED que contorna o espelho e o perfil difusor que deixa a luz contínua, sem pontos aparentes.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/iluminium.html" tabindex="-1" aria-hidden="true"><span class="logo-word">Iluminium</span></a>
+                <div><h4><a href="representadas/iluminium.html">Iluminium</a></h4><p>Iluminação LED para a indústria moveleira.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/ageplast.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/ageplast.html">Ageplast</a></h4><p>Perfis plásticos extrudados e coextrudados, inclusive sob medida.</p></div>
+              </li>
+            </ul>
           </div>
-          <h3>Iluminação LED do espelho</h3>
-          <p>A luz que contorna o espelho do nicho. LED feito para móveis.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/iluminium.html" tabindex="-1" aria-hidden="true"><span class="logo-word">Iluminium</span></a>
-              <div><h4><a href="representadas/iluminium.html">Iluminium</a></h4><p>Iluminação LED para a indústria moveleira.</p></div>
-            </li>
-          </ul>
         </div>
       </div>
-      <template data-peca="led"><div class="panel-head">
-            <span class="panel-count">Peça 1 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Iluminação LED do espelho</h3>
-          <p>A luz que contorna o espelho do nicho. LED feito para móveis.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/iluminium.html" tabindex="-1" aria-hidden="true"><span class="logo-word">Iluminium</span></a>
-              <div><h4><a href="representadas/iluminium.html">Iluminium</a></h4><p>Iluminação LED para a indústria moveleira.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="vidro"><div class="panel-head">
-            <span class="panel-count">Peça 2 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Espelho e vidro da porta</h3>
-          <p>O espelho do nicho e o vidro da porta de correr.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/glass-house.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/glass-house-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/glass-house.html">Glass House</a></h4><p>Vidros processados em escala industrial para o Brasil e o exterior.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="puxadores"><div class="panel-head">
-            <span class="panel-count">Peça 3 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Puxadores</h3>
-          <p>Puxadores das gavetas e das portas, injetados e com acabamento metalizado.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/puxe.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/puxe-logo.jpg" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/puxe.html">Puxe Componentes</a></h4><p>Puxadores para móveis com ótima relação custo-benefício.</p></div>
-            </li><li>
-              <a class="panel-logo" href="representadas/formato.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/formato-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/formato.html">Formato</a></h4><p>Puxadores injetados com metalização em alto vácuo e pintura robotizada.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="madeira"><div class="panel-head">
-            <span class="panel-count">Peça 4 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Lâminas, madeira e ferragens</h3>
-          <p>Lâminas e madeiras da estrutura do roupeiro, além das ferragens de montagem.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/hd-ferragens.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/hd-ferragens-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/hd-ferragens.html">HD Ferragens</a></h4><p>Ferragens, lâminas e madeiras com despacho médio em 24 horas.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="trilho-al"><div class="panel-head">
-            <span class="panel-count">Peça 5 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Trilho e perfil de alumínio</h3>
-          <p>Os trilhos de alumínio das portas de correr e o perfil que emoldura a porta de vidro.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/alumiconte.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alumiconte-logo.jpg" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/alumiconte.html">Alumiconte</a></h4><p>Perfis, componentes e persianas para esquadrias, móveis e construção.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="porta-correr"><div class="panel-head">
-            <span class="panel-count">Peça 6 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Trilho plástico, roldanas e guias</h3>
-          <p>Os componentes termoplásticos e o sistema que fazem a porta de correr deslizar.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/plastiben.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/plastiben-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/plastiben.html">Plastiben</a></h4><p>Componentes em metal e termoplástico e sistemas de porta de correr.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="acessorios"><div class="panel-head">
-            <span class="panel-count">Peça 7 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Acessórios metálicos</h3>
-          <p>Peças estampadas e em zamak, como os suportes do cabideiro.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/alpa.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alpa-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/alpa.html">Alpa</a></h4><p>Acessórios para móveis em peças estampadas, zamak e extrusão.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="perfil-plastico"><div class="panel-head">
-            <span class="panel-count">Peça 8 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Perfil plástico do rodapé</h3>
-          <p>Perfis plásticos extrudados para rodapés, bordas e acabamentos.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/ageplast.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/ageplast.html">Ageplast</a></h4><p>Perfis plásticos extrudados e coextrudados, inclusive sob medida.</p></div>
-            </li>
-          </ul></template>
-      <template data-peca="embalagem"><div class="panel-head">
-            <span class="panel-count">Peça 9 de 9</span>
-            <span class="panel-nav">
-              <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
-              <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
-            </span>
-          </div>
-          <h3>Embalagem para o transporte</h3>
-          <p>A caixa de papelão e o filme plástico que levam o móvel inteiro até o cliente.</p>
-          <ul class="panel-brands">
-            <li>
-              <a class="panel-logo" href="representadas/bragagnolo.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/bragagnolo-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/bragagnolo.html">Bragagnolo</a></h4><p>Papel e embalagens, com parque industrial automatizado e frota própria.</p></div>
-            </li><li>
-              <a class="panel-logo" href="representadas/alcaplas.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alcaplas-logo.png" alt="" loading="lazy"></a>
-              <div><h4><a href="representadas/alcaplas.html">Alcaplas</a></h4><p>Resinas e embalagens plásticas a partir da recuperação de plásticos.</p></div>
-            </li>
-          </ul></template>
+      <template data-peca="led"><figure class="panel-photo"><img src="images/roupeiro/zoom-led.jpg" alt="Detalhe: espelho com led" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 1 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Espelho com LED</h3>
+            <p>A fita de LED que contorna o espelho e o perfil difusor que deixa a luz contínua, sem pontos aparentes.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/iluminium.html" tabindex="-1" aria-hidden="true"><span class="logo-word">Iluminium</span></a>
+                <div><h4><a href="representadas/iluminium.html">Iluminium</a></h4><p>Iluminação LED para a indústria moveleira.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/ageplast.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/ageplast.html">Ageplast</a></h4><p>Perfis plásticos extrudados e coextrudados, inclusive sob medida.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="puxadores"><figure class="panel-photo"><img src="images/roupeiro/zoom-puxadores.jpg" alt="Detalhe: puxadores" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 2 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Puxadores</h3>
+            <p>Os puxadores das gavetas, com acabamento metalizado.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/puxe.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/puxe-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/puxe.html">Puxe Componentes</a></h4><p>Puxadores para móveis com ótima relação custo-benefício.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/formato.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/formato-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/formato.html">Formato</a></h4><p>Puxadores injetados com metalização em alto vácuo e pintura robotizada.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="corredica"><figure class="panel-photo"><img src="images/roupeiro/zoom-corredica.jpg" alt="Detalhe: corrediça telescópica" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 3 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Corrediça telescópica</h3>
+            <p>A ferragem que faz a gaveta abrir por inteiro, com deslizamento suave sobre esferas.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/hd-ferragens.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/hd-ferragens-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/hd-ferragens.html">HD Ferragens</a></h4><p>Ferragens, lâminas e madeiras com despacho médio em 24 horas.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="trilho-superior"><figure class="panel-photo"><img src="images/roupeiro/zoom-trilho-superior.webp" alt="Detalhe: trilho superior" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 4 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Trilho superior</h3>
+            <p>O trilho de plástico no alto do roupeiro, onde correm as guias das portas.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/alpa.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alpa-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/alpa.html">Alpa</a></h4><p>Acessórios para móveis em peças estampadas, zamak e extrusão.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="sistema-correr"><figure class="panel-photo"><img src="images/roupeiro/zoom-sistema-correr.jpg" alt="Detalhe: sistema de porta de correr" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 5 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Sistema de porta de correr</h3>
+            <p>A roldana que faz a porta deslizar, com parafuso para regular a altura.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/plastiben.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/plastiben-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/plastiben.html">Plastiben</a></h4><p>Componentes em metal e termoplástico e sistemas de porta de correr.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="trilho-inferior"><figure class="panel-photo"><img src="images/roupeiro/zoom-trilho-inferior.webp" alt="Detalhe: trilho inferior" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 6 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Trilho inferior</h3>
+            <p>O trilho de alumínio no chão, por onde as portas correm.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/alumiconte.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alumiconte-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/alumiconte.html">Alumiconte</a></h4><p>Perfis, componentes e persianas para esquadrias, móveis e construção.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="vidro"><figure class="panel-photo"><img src="images/roupeiro/zoom-vidro.jpg" alt="Detalhe: vidro, perfil e baguete" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 7 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Vidro, perfil e baguete</h3>
+            <p>O vidro da porta, o perfil de alumínio que o emoldura e a baguete plástica que prende o vidro no perfil.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/glass-house.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/glass-house-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/glass-house.html">Glass House</a></h4><p>Vidros processados em escala industrial para o Brasil e o exterior.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/alumiconte.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alumiconte-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/alumiconte.html">Alumiconte</a></h4><p>Perfis, componentes e persianas para esquadrias, móveis e construção.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/ageplast.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/ageplast.html">Ageplast</a></h4><p>Perfis plásticos extrudados e coextrudados, inclusive sob medida.</p></div>
+              </li>
+            </ul>
+          </div></template>
+      <template data-peca="embalagem"><figure class="panel-photo"><img src="images/roupeiro/zoom-embalagem.jpg" alt="Detalhe: embalagem" loading="lazy"></figure>
+          <div class="panel-body">
+            <div class="panel-head">
+              <span class="panel-count">Peça 8 de 8</span>
+              <span class="panel-nav">
+                <button type="button" class="panel-btn" data-step="-1" aria-label="Peça anterior"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+                <button type="button" class="panel-btn" data-step="1" aria-label="Próxima peça"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </span>
+            </div>
+            <h3>Embalagem</h3>
+            <p>A caixa de papelão e o filme plástico que protegem o móvel até chegar ao cliente.</p>
+            <ul class="panel-brands">
+              <li>
+                <a class="panel-logo" href="representadas/bragagnolo.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/bragagnolo-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/bragagnolo.html">Bragagnolo</a></h4><p>Papel e embalagens, com parque industrial automatizado e frota própria.</p></div>
+              </li><li>
+                <a class="panel-logo" href="representadas/alcaplas.html" tabindex="-1" aria-hidden="true"><img src="images/representadas/alcaplas-logo.png" alt="" loading="lazy"></a>
+                <div><h4><a href="representadas/alcaplas.html">Alcaplas</a></h4><p>Resinas e embalagens plásticas a partir da recuperação de plásticos.</p></div>
+              </li>
+            </ul>
+          </div></template>
     </div>
   </section>
 
