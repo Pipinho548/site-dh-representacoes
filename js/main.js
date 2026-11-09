@@ -20,16 +20,48 @@
     });
   }
 
-  // Diagrama do topo: acende a linha da marca sob o mouse/foco
-  document.querySelectorAll(".hub-tile").forEach(function (tile) {
-    var line = document.querySelector('.hub-line[data-i="' + tile.dataset.i + '"]');
-    if (!line) return;
-    var on = function () { line.classList.add("is-on"); };
-    var off = function () { line.classList.remove("is-on"); };
-    tile.addEventListener("mouseenter", on);
-    tile.addEventListener("mouseleave", off);
-    tile.addEventListener("focus", on);
-    tile.addEventListener("blur", off);
+  // O quarto: tocar numa peça destaca a peça e mostra quem fabrica
+  var room = document.querySelector(".room");
+  if (room) {
+    var spots = Array.prototype.slice.call(room.querySelectorAll(".spot"));
+    var panel = room.querySelector(".room-panel");
+    var ids = spots.map(function (s) { return s.dataset.peca; });
+
+    var select = function (id) {
+      var tpl = document.querySelector('template[data-peca="' + id + '"]');
+      if (!tpl) return;
+      room.dataset.sel = id;
+      room.querySelectorAll(".part").forEach(function (p) {
+        p.classList.toggle("is-sel", p.dataset.peca === id);
+      });
+      spots.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.peca === id ? "true" : "false"); });
+      panel.innerHTML = tpl.innerHTML;
+    };
+
+    spots.forEach(function (s) {
+      s.addEventListener("click", function () { select(s.dataset.peca); });
+    });
+    panel.addEventListener("click", function (e) {
+      var btn = e.target.closest(".panel-btn");
+      if (!btn) return;
+      var i = ids.indexOf(room.dataset.sel);
+      var next = ids[(i + Number(btn.dataset.step) + ids.length) % ids.length];
+      select(next);
+      var again = panel.querySelector('.panel-btn[data-step="' + btn.dataset.step + '"]');
+      if (again) again.focus();
+    });
+    select(room.dataset.sel);
+  }
+
+  // Filtro das representadas por segmento
+  var chips = document.querySelectorAll(".chip[data-filter]");
+  var cards = document.querySelectorAll(".rep-card[data-segment]");
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var seg = chip.dataset.filter;
+      chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
+      cards.forEach(function (card) { card.hidden = !(seg === "todas" || card.dataset.segment === seg); });
+    });
   });
 
   // Formulário de contato → abre o WhatsApp com a mensagem pronta
