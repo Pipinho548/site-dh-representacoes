@@ -460,8 +460,27 @@ function panelHtml(p, i, base) {
           </div>`;
 }
 
+// Cartão que abre ao lado do ponto quando o mouse chega perto (computador)
+function popHtml(p, base) {
+  const marcas = p.marcas.map((slug) => REPRESENTADAS.find((r) => r.slug === slug)).filter(Boolean);
+  return `<div class="pop" id="pop-${p.id}" role="tooltip">
+              <img src="${base}images/roupeiro/${p.img}" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>${esc(p.nome)}</h3>
+                <p>${esc(p.texto)}</p>
+                <ul class="pop-brands">
+                  ${marcas.map((r) => `<li><a href="${base}representadas/${r.slug}.html"><span class="pop-logo">${logo(r, base)}</span>${esc(r.nome)}</a></li>`).join("")}
+                </ul>
+              </div>
+            </div>`;
+}
+
 function room(base) {
-  const spots = PECAS.map((p, i) => `<button type="button" class="spot" data-peca="${p.id}" style="left:${p.x}%;top:${p.y}%;--d:${i}" aria-label="${esc(p.nome)}" aria-pressed="${i === 0}"></button>`).join("\n          ");
+  // O cartão abre para o lado com mais espaço: direita/esquerda e para baixo/cima
+  const spots = PECAS.map((p, i) => `<div class="hot" style="left:${p.x}%;top:${p.y}%" data-h="${p.x > 55 ? "l" : "r"}" data-v="${p.y < 35 ? "d" : p.y > 65 ? "u" : "c"}">
+            <button type="button" class="spot" data-peca="${p.id}" aria-label="${esc(p.nome)}" aria-describedby="pop-${p.id}" aria-pressed="${i === 0}"></button>
+            ${popHtml(p, base)}
+          </div>`).join("\n          ");
   const tpls = PECAS.map((p, i) => `<template data-peca="${p.id}">${panelHtml(p, i, base)}</template>`).join("\n      ");
   return `<div class="room" data-sel="${PECAS[0].id}">
         <div class="room-stage">
@@ -517,20 +536,18 @@ function pageHome() {
     <div class="hero-photo" style="background-image:url('${base}images/escritorio.webp')" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <h1><span>${porExtenso(n)} indústrias.</span> <span>Um só contato.</span></h1>
-      <p class="hero-lead">A DH Representações, de Lagoa Vermelha (RS), leva até a sua empresa componentes e ferragens para móveis, perfis, vidros, iluminação LED e embalagens, com atendimento direto da nossa equipe comercial.</p>
+      <p class="hero-lead">A solução para a sua empresa.</p>
       <div class="hero-actions">
         <a class="btn btn-whats btn-lg" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento</a>
         <a class="btn btn-ghost btn-lg" href="#representadas">Ver representadas</a>
-      </div>
-      <p class="hero-note">Atendimento ${SITE.horario.charAt(0).toLowerCase() + SITE.horario.slice(1)}</p>
-    </div>
+      </div>    </div>
   </section>
 
   <section class="section" id="roupeiro">
     <div class="wrap">
       <div class="sec-head">
         <h2>Do trilho ao puxador</h2>
-        <p>Um roupeiro reúne peças de várias indústrias, e a DH representa todas elas. Toque nas peças do desenho para ver quem fabrica cada uma.</p>
+        <p>Um roupeiro reúne peças de várias indústrias, e a DH representa todas elas. <span class="if-mouse">Passe o mouse sobre</span><span class="if-touch">Toque nos</span> pontos da foto para ver quem fabrica cada peça.</p>
       </div>
       ${room(base)}
     </div>

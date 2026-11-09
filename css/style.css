@@ -118,9 +118,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .hero-inner { position: relative; }
 .hero h1 { color: #fff; font-size: clamp(2.2rem, 5.6vw, 5rem); line-height: 1; letter-spacing: -0.03em; font-weight: 790; margin-bottom: 26px; }
 .hero h1 span { display: block; }
-.hero-lead { max-width: 36em; font-size: 1.1875rem; color: #d6deeb; margin-bottom: 32px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
-.hero-note { margin: 0; font-size: .9375rem; color: #9fb0c8; }
+.hero-lead { font-size: clamp(1.25rem, 2.2vw, 1.75rem); line-height: 1.35; color: #dfe6f1; margin-bottom: 36px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .btn-ghost { border-color: rgba(255, 255, 255, .55); color: #fff; background: transparent; }
 .btn-ghost:hover { border-color: #fff; background: rgba(255, 255, 255, .1); }
 @media (max-width: 640px) {
@@ -130,14 +129,15 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 }
 
 /* ---------- O quarto: roupeiro com as peças das representadas ---------- */
-.room { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; }
-.room-stage { position: relative; border-radius: 10px; overflow: hidden; background: var(--alu); }
-.room-photo { display: block; width: 100%; height: auto; }
+/* Celular/tablet: toca no ponto e o zoom aparece embaixo da foto (painel).
+   Computador (mouse): chega perto do ponto e o zoom abre ao lado dele (cartão). */
+.room { display: grid; gap: 20px; }
+.room-stage { position: relative; }
+.room-photo { display: block; width: 100%; height: auto; border-radius: 12px; background: var(--alu); }
 
-
-
+.hot { position: absolute; width: 0; height: 0; }
 .spot {
-  position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; padding: 0;
+  position: absolute; left: -15px; top: -15px; width: 30px; height: 30px; padding: 0;
   border: 3px solid #fff; border-radius: 50%; background: var(--ink); cursor: pointer;
   box-shadow: 0 2px 8px rgba(13, 24, 48, .35);
   transition: background-color .15s, transform .15s;
@@ -145,9 +145,11 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .spot::before, .spot::after { content: ""; position: absolute; left: 50%; top: 50%; background: #fff; border-radius: 1px; transform: translate(-50%, -50%); }
 .spot::before { width: 12px; height: 2.5px; }
 .spot::after { width: 2.5px; height: 12px; transition: opacity .15s; }
-.spot:hover { transform: scale(1.12); }
 .spot[aria-pressed="true"] { background: var(--blue); box-shadow: 0 0 0 5px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
 .spot[aria-pressed="true"]::after { opacity: 0; }
+.if-mouse { display: none; }
+
+.pop { display: none; }
 
 .room-panel { background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 .panel-photo { margin: 0; aspect-ratio: 4 / 3; background: var(--alu); }
@@ -156,7 +158,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
 .panel-count { font-size: .875rem; color: var(--steel); font-variant-numeric: tabular-nums; }
 .panel-nav { display: flex; gap: 6px; }
-.panel-btn { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); color: var(--ink); cursor: pointer; }
+.panel-btn { width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); color: var(--ink); cursor: pointer; }
 .panel-btn:hover { border-color: var(--ink); }
 .room-panel h3 { font-size: 1.375rem; margin-bottom: 8px; }
 .panel-body > p { margin-bottom: 16px; }
@@ -168,20 +170,57 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .panel-brands h4 a { color: var(--ink); }
 .panel-brands p { margin: 0; font-size: .9375rem; line-height: 1.45; }
 
-@media (max-width: 960px) {
-  .room { grid-template-columns: 1fr; }
+@media (min-width: 641px) and (max-width: 960px) {
   .room-panel { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
   .panel-photo { aspect-ratio: auto; }
 }
-@media (max-width: 640px) {
-  .room-panel { display: block; }
-  .panel-photo { aspect-ratio: 4 / 3; }
-}
 @media (max-width: 560px) {
-  .spot { width: 24px; height: 24px; margin: -12px 0 0 -12px; border-width: 2px; }
+  .spot { left: -12px; top: -12px; width: 24px; height: 24px; border-width: 2px; }
   .spot::before { width: 10px; }
   .spot::after { height: 10px; }
   .panel-body { padding: 16px 18px 20px; }
+}
+
+/* Computador com mouse: zoom em cartão ao lado do ponto */
+@media (hover: hover) and (pointer: fine) and (min-width: 961px) {
+  .if-mouse { display: inline; }
+  .if-touch { display: none; }
+  .room-panel { display: none; }
+
+  /* área invisível em volta do ponto: basta chegar perto */
+  .hot::before { content: ""; position: absolute; left: -38px; top: -38px; width: 76px; height: 76px; border-radius: 50%; }
+  .hot:hover, .hot:has(:focus-visible) { z-index: 10; }
+  .hot:hover .spot, .hot:has(:focus-visible) .spot { background: var(--blue); transform: scale(1.12); box-shadow: 0 0 0 6px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
+  .hot:hover .spot::after, .hot:has(:focus-visible) .spot::after { opacity: 0; }
+  .spot[aria-pressed="true"] { background: var(--ink); box-shadow: 0 2px 8px rgba(13, 24, 48, .35); }
+  .spot[aria-pressed="true"]::after { opacity: 1; }
+
+  .pop {
+    display: block; position: absolute; z-index: 1; width: 320px;
+    background: var(--white); border-radius: 12px; overflow: hidden;
+    box-shadow: 0 2px 6px rgba(13, 24, 48, .12), 0 24px 48px rgba(13, 24, 48, .28);
+    opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.96);
+    transition: opacity .16s ease-out, transform .16s ease-out, visibility 0s linear .16s;
+  }
+  .hot[data-h="r"] .pop { left: 30px; transform-origin: left center; }
+  .hot[data-h="l"] .pop { right: 30px; transform-origin: right center; }
+  .hot[data-v="d"] .pop { top: -40px; }
+  .hot[data-v="u"] .pop { bottom: -40px; }
+  .hot[data-v="c"] .pop { top: 0; translate: 0 -50%; }
+  .hot:hover .pop, .hot:has(:focus-visible) .pop {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+    transition: opacity .16s ease-out, transform .16s ease-out, visibility 0s;
+  }
+  .pop img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+  .pop-body { padding: 14px 18px 16px; }
+  .pop h3 { font-size: 1.1875rem; margin-bottom: 6px; }
+  .pop p { margin: 0 0 12px; font-size: .9375rem; line-height: 1.45; }
+  .pop-brands { list-style: none; display: grid; gap: 6px; }
+  .pop-brands a { display: flex; align-items: center; gap: 12px; padding: 6px; margin: 0 -6px; border-radius: var(--r); color: var(--ink); font-weight: 650; }
+  .pop-brands a:hover { background: var(--alu-soft); text-decoration: none; }
+  .pop-logo { flex: 0 0 72px; height: 44px; display: grid; place-items: center; padding: 4px; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); }
+  .pop-logo img { max-height: 100%; width: auto; object-fit: contain; }
+  .pop-logo .logo-word { font-size: .75rem; }
 }
 
 /* Logo que ainda não tem arquivo: nome escrito */

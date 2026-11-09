@@ -48,32 +48,126 @@
     <div class="hero-photo" style="background-image:url('images/escritorio.webp')" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <h1><span>Onze indústrias.</span> <span>Um só contato.</span></h1>
-      <p class="hero-lead">A DH Representações, de Lagoa Vermelha (RS), leva até a sua empresa componentes e ferragens para móveis, perfis, vidros, iluminação LED e embalagens, com atendimento direto da nossa equipe comercial.</p>
+      <p class="hero-lead">A solução para a sua empresa.</p>
       <div class="hero-actions">
         <a class="btn btn-whats btn-lg" href="https://wa.me/5554996260648?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20DH%20Representa%C3%A7%C3%B5es%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener"><svg class="icon " viewBox="0 0 448 512" fill="currentColor" aria-hidden="true"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg> Pedir orçamento</a>
         <a class="btn btn-ghost btn-lg" href="#representadas">Ver representadas</a>
-      </div>
-      <p class="hero-note">Atendimento seg. a sex., 8h às 18h</p>
-    </div>
+      </div>    </div>
   </section>
 
   <section class="section" id="roupeiro">
     <div class="wrap">
       <div class="sec-head">
         <h2>Do trilho ao puxador</h2>
-        <p>Um roupeiro reúne peças de várias indústrias, e a DH representa todas elas. Toque nas peças do desenho para ver quem fabrica cada uma.</p>
+        <p>Um roupeiro reúne peças de várias indústrias, e a DH representa todas elas. <span class="if-mouse">Passe o mouse sobre</span><span class="if-touch">Toque nos</span> pontos da foto para ver quem fabrica cada peça.</p>
       </div>
       <div class="room" data-sel="led">
         <div class="room-stage">
           <img class="room-photo" src="images/roupeiro/roupeiro.jpg" width="2000" height="1116" alt="Quarto com roupeiro de portas de correr, nicho com espelho iluminado, gavetas e caixas de embalagem" loading="lazy">
-          <button type="button" class="spot" data-peca="led" style="left:34.1%;top:17.9%;--d:0" aria-label="Espelho com LED" aria-pressed="true"></button>
-          <button type="button" class="spot" data-peca="puxadores" style="left:25.4%;top:59.7%;--d:1" aria-label="Puxadores" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="corredica" style="left:32.2%;top:70.5%;--d:2" aria-label="Corrediça telescópica" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="trilho-superior" style="left:44.3%;top:11.1%;--d:3" aria-label="Trilho superior" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="sistema-correr" style="left:68.3%;top:88.4%;--d:4" aria-label="Sistema de porta de correr" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="trilho-inferior" style="left:44.6%;top:89.2%;--d:5" aria-label="Trilho inferior" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="vidro" style="left:61.3%;top:66.5%;--d:6" aria-label="Vidro, perfil e baguete" aria-pressed="false"></button>
-          <button type="button" class="spot" data-peca="embalagem" style="left:79.6%;top:76.5%;--d:7" aria-label="Embalagem" aria-pressed="false"></button>
+          <div class="hot" style="left:34.1%;top:17.9%" data-h="r" data-v="d">
+            <button type="button" class="spot" data-peca="led" aria-label="Espelho com LED" aria-describedby="pop-led" aria-pressed="true"></button>
+            <div class="pop" id="pop-led" role="tooltip">
+              <img src="images/roupeiro/zoom-led.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Espelho com LED</h3>
+                <p>A fita de LED que contorna o espelho e o perfil difusor que deixa a luz contínua, sem pontos aparentes.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/iluminium.html"><span class="pop-logo"><span class="logo-word">Iluminium</span></span>Iluminium</a></li><li><a href="representadas/ageplast.html"><span class="pop-logo"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></span>Ageplast</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:25.4%;top:59.7%" data-h="r" data-v="c">
+            <button type="button" class="spot" data-peca="puxadores" aria-label="Puxadores" aria-describedby="pop-puxadores" aria-pressed="false"></button>
+            <div class="pop" id="pop-puxadores" role="tooltip">
+              <img src="images/roupeiro/zoom-puxadores.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Puxadores</h3>
+                <p>Os puxadores das gavetas, com acabamento metalizado.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/puxe.html"><span class="pop-logo"><img src="images/representadas/puxe-logo.jpg" alt="" loading="lazy"></span>Puxe Componentes</a></li><li><a href="representadas/formato.html"><span class="pop-logo"><img src="images/representadas/formato-logo.png" alt="" loading="lazy"></span>Formato</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:32.2%;top:70.5%" data-h="r" data-v="u">
+            <button type="button" class="spot" data-peca="corredica" aria-label="Corrediça telescópica" aria-describedby="pop-corredica" aria-pressed="false"></button>
+            <div class="pop" id="pop-corredica" role="tooltip">
+              <img src="images/roupeiro/zoom-corredica.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Corrediça telescópica</h3>
+                <p>A ferragem que faz a gaveta abrir por inteiro, com deslizamento suave sobre esferas.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/hd-ferragens.html"><span class="pop-logo"><img src="images/representadas/hd-ferragens-logo.png" alt="" loading="lazy"></span>HD Ferragens</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:44.3%;top:11.1%" data-h="r" data-v="d">
+            <button type="button" class="spot" data-peca="trilho-superior" aria-label="Trilho superior" aria-describedby="pop-trilho-superior" aria-pressed="false"></button>
+            <div class="pop" id="pop-trilho-superior" role="tooltip">
+              <img src="images/roupeiro/zoom-trilho-superior.webp" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Trilho superior</h3>
+                <p>O trilho de plástico no alto do roupeiro, onde correm as guias das portas.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/alpa.html"><span class="pop-logo"><img src="images/representadas/alpa-logo.png" alt="" loading="lazy"></span>Alpa</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:68.3%;top:88.4%" data-h="l" data-v="u">
+            <button type="button" class="spot" data-peca="sistema-correr" aria-label="Sistema de porta de correr" aria-describedby="pop-sistema-correr" aria-pressed="false"></button>
+            <div class="pop" id="pop-sistema-correr" role="tooltip">
+              <img src="images/roupeiro/zoom-sistema-correr.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Sistema de porta de correr</h3>
+                <p>A roldana que faz a porta deslizar, com parafuso para regular a altura.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/plastiben.html"><span class="pop-logo"><img src="images/representadas/plastiben-logo.png" alt="" loading="lazy"></span>Plastiben</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:44.6%;top:89.2%" data-h="r" data-v="u">
+            <button type="button" class="spot" data-peca="trilho-inferior" aria-label="Trilho inferior" aria-describedby="pop-trilho-inferior" aria-pressed="false"></button>
+            <div class="pop" id="pop-trilho-inferior" role="tooltip">
+              <img src="images/roupeiro/zoom-trilho-inferior.webp" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Trilho inferior</h3>
+                <p>O trilho de alumínio no chão, por onde as portas correm.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/alumiconte.html"><span class="pop-logo"><img src="images/representadas/alumiconte-logo.jpg" alt="" loading="lazy"></span>Alumiconte</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:61.3%;top:66.5%" data-h="l" data-v="u">
+            <button type="button" class="spot" data-peca="vidro" aria-label="Vidro, perfil e baguete" aria-describedby="pop-vidro" aria-pressed="false"></button>
+            <div class="pop" id="pop-vidro" role="tooltip">
+              <img src="images/roupeiro/zoom-vidro.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Vidro, perfil e baguete</h3>
+                <p>O vidro da porta, o perfil de alumínio que o emoldura e a baguete plástica que prende o vidro no perfil.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/glass-house.html"><span class="pop-logo"><img src="images/representadas/glass-house-logo.png" alt="" loading="lazy"></span>Glass House</a></li><li><a href="representadas/alumiconte.html"><span class="pop-logo"><img src="images/representadas/alumiconte-logo.jpg" alt="" loading="lazy"></span>Alumiconte</a></li><li><a href="representadas/ageplast.html"><span class="pop-logo"><img src="images/representadas/ageplast-logo.jpg" alt="" loading="lazy"></span>Ageplast</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="hot" style="left:79.6%;top:76.5%" data-h="l" data-v="u">
+            <button type="button" class="spot" data-peca="embalagem" aria-label="Embalagem" aria-describedby="pop-embalagem" aria-pressed="false"></button>
+            <div class="pop" id="pop-embalagem" role="tooltip">
+              <img src="images/roupeiro/zoom-embalagem.jpg" alt="" loading="lazy">
+              <div class="pop-body">
+                <h3>Embalagem</h3>
+                <p>A caixa de papelão e o filme plástico que protegem o móvel até chegar ao cliente.</p>
+                <ul class="pop-brands">
+                  <li><a href="representadas/bragagnolo.html"><span class="pop-logo"><img src="images/representadas/bragagnolo-logo.png" alt="" loading="lazy"></span>Bragagnolo</a></li><li><a href="representadas/alcaplas.html"><span class="pop-logo"><img src="images/representadas/alcaplas-logo.png" alt="" loading="lazy"></span>Alcaplas</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="room-panel" aria-live="polite">
           <figure class="panel-photo"><img src="images/roupeiro/zoom-led.jpg" alt="Detalhe: espelho com led" loading="lazy"></figure>
