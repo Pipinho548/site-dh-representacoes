@@ -196,6 +196,10 @@ const REPRESENTADAS = [
   },
 ];
 
+// Ordem de exibição (a mesma do site antigo, com a Glass House na frente)
+const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium"];
+REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
+
 // Peças do roupeiro desenhado no topo da home.
 // x/y = posição do ponto clicável no desenho (viewBox 1000 x 600).
 const PECAS = [
@@ -610,9 +614,6 @@ function pageHome() {
   const n = REPRESENTADAS.length;
   const msg = "Olá! Vim pelo site da DH Representações e gostaria de um orçamento.";
 
-  const segNav = [`<button type="button" class="chip" data-filter="todas" aria-pressed="true">Todas<span>${n}</span></button>`]
-    .concat(Object.entries(SEGMENTOS).map(([k, s]) =>
-      `<button type="button" class="chip" data-filter="${k}" aria-pressed="false">${s.curto}<span>${REPRESENTADAS.filter((r) => r.segmento === k).length}</span></button>`)).join("");
 
   const team = EQUIPE.map((p) => `<li class="person">
           <div class="person-name"><h3>${esc(p.nome)}</h3><p>${esc(p.cargo)}</p></div>
@@ -672,7 +673,6 @@ function pageHome() {
         <h2>Empresas que representamos</h2>
         <p>${n} fabricantes de ${porExtenso(Object.keys(SEGMENTOS).length).toLowerCase()} segmentos. Abra a página de cada empresa ou baixe o catálogo direto daqui.</p>
       </div>
-      <div class="filters" role="group" aria-label="Filtrar por segmento">${segNav}</div>
       <ul class="rep-grid">
         ${REPRESENTADAS.map((r) => repCard(r, base)).join("\n        ")}
       </ul>
