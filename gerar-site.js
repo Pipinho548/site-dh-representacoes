@@ -55,7 +55,7 @@ const REPRESENTADAS = [
     linhas: ["Peças estampadas", "Peças injetadas em zamak", "Extrusão de poliestireno e PVC"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/ALPA-CATALOGO-24.pdf",
     site: "https://alpaindustrial.com.br/site/",
-    logo: "alpa-logo.png",
+    logo: "logo-alpa.png",
     fotos: [{ src: "alpa-industria.jpg", alt: "Parque industrial da Alpa" }],
   },
   {
@@ -70,7 +70,7 @@ const REPRESENTADAS = [
     linhas: ["Sistemas de porta de correr", "Termoplásticos injetados: PVC, PA, POM, PP, PE e PS", "Peças em zamak injetado", "Chapas de aço estampadas"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/Plastiben-Completo-2024-2.pdf",
     site: "https://plastiben.com.br/",
-    logo: "plastiben-logo.png",
+    logo: "logo-plastiben.png",
     fotos: [{ src: "plastiben-industria.jpg", alt: "Indústria da Plastiben" }],
   },
   {
@@ -83,7 +83,7 @@ const REPRESENTADAS = [
     linhas: ["Ferragens", "Lâminas", "Madeiras"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/catalogo-hd-ferragens-3_compressedffffffffffffffffffff.pdf",
     site: "https://www.hdferragens.com.br/",
-    logo: "hd-ferragens-logo.png",
+    logo: "logo-hd-ferragens.png",
     fotos: [{ src: "hd-ferragens-industria.jpg", alt: "Estrutura da HD Ferragens" }],
   },
   {
@@ -97,7 +97,7 @@ const REPRESENTADAS = [
     linhas: ["Puxadores para móveis"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/FOLDER-PUXADORES-1_compressed.pdf",
     site: "https://puxecomponentes.com.br",
-    logo: "puxe-logo.jpg",
+    logo: "logo-puxe.png",
     fotos: [{ src: "puxe-empresa.jpg", alt: "Puxe Componentes" }],
   },
   {
@@ -111,7 +111,7 @@ const REPRESENTADAS = [
     linhas: ["Puxadores", "Desenvolvimento de desenho e moldes", "Injeção de termoplásticos", "Metalização em alto vácuo", "Pintura robotizada com secagem UV", "Produtos especiais sob encomenda"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2023/01/Catalogo-Formato.pdf",
     site: "https://www.sulformato.com.br/",
-    logo: "formato-logo.png",
+    logo: "logo-formato.png",
     fotos: [{ src: "formato-fachada.png", alt: "Fachada da Formato" }],
   },
   {
@@ -124,7 +124,7 @@ const REPRESENTADAS = [
     ],
     linhas: ["Perfis para o setor moveleiro", "Perfis para implementos rodoviários", "Perfis para ônibus", "Perfis para refrigeração", "Projetos especiais sob medida"],
     site: "https://www.ageplast.com.br",
-    logo: "ageplast-logo.jpg",
+    logo: "logo-ageplast.png",
     fotos: [{ src: "ageplast-industria.jpg", alt: "Ageplast" }],
   },
   {
@@ -137,7 +137,7 @@ const REPRESENTADAS = [
     ],
     linhas: ["Componentes para esquadrias", "Persianas", "Perfis para a indústria moveleira", "Perfis para construção civil", "Anodização, pintura eletrostática e sublimação"],
     site: "https://www.alumiconte.com.br/pt/",
-    logo: "alumiconte-logo.jpg",
+    logo: "logo-alumiconte.webp",
     fotos: [{ src: "alumiconte-industria.jpg", alt: "Vista aérea da Alumiconte" }],
   },
   {
@@ -149,17 +149,18 @@ const REPRESENTADAS = [
     ],
     linhas: ["Vidros processados"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/Catalogo_Glass-House.pdf",
-    logo: "glass-house-logo.png",
+    logo: "logo-glass-house.png",
     fotos: [{ src: "glass-house-industria.jpg", alt: "Indústria da Glass House" }],
   },
   {
-    // Nova representada. Falta: logo, site, catálogo e cidade.
+    // Nova representada. Falta: site, catálogo e cidade.
     slug: "iluminium", nome: "Iluminium", segmento: "iluminacao",
     resumo: "Iluminação LED para a indústria moveleira.",
     sobre: [
       "A Iluminium Brasil é uma fábrica de iluminação LED para o setor moveleiro, com venda direta para fábricas de móveis.",
     ],
-    logo: null,
+    logo: "logo-iluminium.webp",
+    logoZoom: 1.25, // o arquivo tem margem transparente; aumenta só este logo
     fotos: [],
   },
   {
@@ -172,7 +173,7 @@ const REPRESENTADAS = [
       "A frota própria, com mais de 100 veículos, roda cerca de 50 mil quilômetros por dia para levar os produtos a diversos setores com prazo, agilidade e segurança.",
     ],
     site: "https://bragagnolo.com.br/",
-    logo: "bragagnolo-logo.png",
+    logo: "logo-bragagnolo.png",
     fotos: [
       { src: "bragagnolo-industria.jpg", alt: "Parque industrial da Bragagnolo" },
       { src: "bragagnolo-transporte.jpg", alt: "Frota própria da Bragagnolo" },
@@ -188,7 +189,7 @@ const REPRESENTADAS = [
     linhas: ["Resinas plásticas (polímeros)", "Embalagens plásticas"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2023/06/FOLDER-PRODUTOS-ALCAPLAS3-1.pdf",
     site: "https://www.alcaplas.com.br/",
-    logo: "alcaplas-logo.png",
+    logo: "logo-alcaplas.png",
     fotos: [
       { src: "alcaplas-industria.jpeg", alt: "Indústria da Alcaplas" },
       { src: "alcaplas-empresa.jpg", alt: "Alcaplas" },
@@ -383,7 +384,7 @@ function footer(base, home) {
 // Logo da representada; sem arquivo de logo, mostra o nome escrito
 function logo(r, base, alt = "") {
   return r.logo
-    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}" loading="lazy">`
+    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}" loading="lazy"${r.logoZoom ? ` style="transform:scale(${r.logoZoom})"` : ""}>`
     : `<span class="logo-word">${esc(r.nome)}</span>`;
 }
 

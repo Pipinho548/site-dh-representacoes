@@ -165,7 +165,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .panel-brands { list-style: none; display: grid; gap: 12px; }
 .panel-brands li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: center; padding-top: 12px; border-top: 1px solid var(--line); }
 .panel-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 6px; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); }
-.panel-logo img { max-height: 100%; width: auto; object-fit: contain; }
+.panel-logo img { width: 100%; height: 100%; object-fit: contain; }
 .panel-brands h4 { font-size: 1.0625rem; margin-bottom: 2px; }
 .panel-brands h4 a { color: var(--ink); }
 .panel-brands p { margin: 0; font-size: .9375rem; line-height: 1.45; }
@@ -219,9 +219,13 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
   .pop-brands a { display: flex; align-items: center; gap: 12px; padding: 6px; margin: 0 -6px; border-radius: var(--r); color: var(--ink); font-weight: 650; }
   .pop-brands a:hover { background: var(--alu-soft); text-decoration: none; }
   .pop-logo { flex: 0 0 72px; height: 44px; display: grid; place-items: center; padding: 4px; border: 1px solid var(--line); border-radius: var(--r); background: var(--white); }
-  .pop-logo img { max-height: 100%; width: auto; object-fit: contain; }
+  .pop-logo img { width: 100%; height: 100%; object-fit: contain; }
   .pop-logo .logo-word { font-size: .75rem; }
 }
+
+/* Logos: a imagem fica presa na área do logo (respeitando o espaçamento) e nunca estoura */
+.rep-card-logo, .rep-tile, .rep-hero-logo, .panel-logo, .pop-logo { position: relative; }
+.rep-card-logo img, .rep-tile img, .rep-hero-logo img, .panel-logo img, .pop-logo img { position: absolute; inset: 0; padding: inherit; }
 
 /* Logo que ainda não tem arquivo: nome escrito */
 .logo-word { font-stretch: 122%; font-weight: 800; color: var(--ink); font-size: clamp(1rem, 2.4vw, 1.6rem); letter-spacing: -0.02em; text-align: center; line-height: 1.1; }
@@ -240,8 +244,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .rep-card { display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; transition: border-color .2s, box-shadow .2s; }
 .rep-card:hover { border-color: var(--line-strong); box-shadow: 0 10px 28px rgba(19, 33, 63, .1); }
 .rep-card[hidden] { display: none; }
-.rep-card-logo { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: 14px; background: var(--white); border-bottom: 1px solid var(--line); }
-.rep-card-logo img { max-height: 100%; width: auto; object-fit: contain; }
+.rep-card-logo { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: 26px 32px; background: var(--white); border-bottom: 1px solid var(--line); }
+.rep-card-logo img { width: 100%; height: 100%; object-fit: contain; }
 .rep-card-body { display: flex; flex-direction: column; flex: 1; padding: 18px 20px 20px; background: #fafbfc; }
 .tag { align-self: flex-start; margin-bottom: 10px; font-size: .8125rem; color: var(--steel); }
 .rep-card h3 { font-size: 1.25rem; margin-bottom: 6px; }
@@ -281,7 +285,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 }
 .rep-tile { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: 10px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s; }
 .rep-tile:hover { border-color: var(--blue); }
-.rep-tile img { max-height: 100%; width: auto; object-fit: contain; }
+.rep-tile img { width: 100%; height: 100%; object-fit: contain; }
 .rep-info h4 { font-size: 1.25rem; margin-bottom: 4px; }
 .rep-info h4 a { color: var(--ink); }
 .rep-info p { margin: 0; max-width: 52ch; }
@@ -376,7 +380,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .rep-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; margin-bottom: 14px; }
 .rep-hero-grid { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 56px; align-items: center; }
 .rep-hero-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
-.rep-hero-logo img { max-height: 100%; width: auto; object-fit: contain; }
+.rep-hero-logo img { width: 100%; height: 100%; object-fit: contain; }
 .rep-hero-lead { font-size: 1.25rem; color: var(--ink); max-width: 36em; }
 .facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 24px 0 28px; }
 .facts dt { font-size: .875rem; }
