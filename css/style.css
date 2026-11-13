@@ -428,6 +428,21 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
   .gallery.g1 img { aspect-ratio: 16 / 10; }
 }
 
+/* ---------- Vídeos (capa leve; YouTube só carrega ao clicar) ---------- */
+.videos { margin-top: 64px; }
+.videos h2 { font-size: 1.75rem; margin-bottom: 18px; }
+.video-grid { display: grid; gap: 16px; }
+.video-grid.v2 { grid-template-columns: 1fr 1fr; }
+.video { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 10px; overflow: hidden; background: #000; cursor: pointer; }
+.video img { width: 100%; height: 100%; object-fit: cover; opacity: .85; transition: opacity .2s; }
+.video:hover img { opacity: 1; }
+.video-play { position: absolute; left: 50%; top: 50%; width: 68px; height: 48px; transform: translate(-50%, -50%); border-radius: 12px; background: rgba(13, 24, 48, .85); transition: background-color .2s; }
+.video-play::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-35%, -50%); border-style: solid; border-width: 10px 0 10px 17px; border-color: transparent transparent transparent #fff; }
+.video:hover .video-play { background: #ff0000; }
+.video-title { position: absolute; left: 0; right: 0; bottom: 0; padding: 28px 16px 12px; background: linear-gradient(transparent, rgba(0, 0, 0, .75)); color: #fff; font-weight: 600; text-align: left; font-size: .9688rem; }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+@media (max-width: 640px) { .video-grid.v2 { grid-template-columns: 1fr; } }
+
 /* ---------- Política ---------- */
 .legal { max-width: calc(72ch + var(--gutter) * 2); }
 .legal h2 { font-size: 1.375rem; margin: 40px 0 14px; }

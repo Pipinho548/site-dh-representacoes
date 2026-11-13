@@ -123,6 +123,7 @@ const REPRESENTADAS = [
     catalogo: "https://hdferragens.com.br/documento/catalogo/Cat%C3%A1logo%20HD%20Ferragens.pdf",
     site: "https://hdferragens.com.br/",
     logo: "logo-hd-ferragens.png",
+    videos: [{ id: "FnHb5pPcOz4", titulo: "HD Ferragens para móveis" }, { id: "TulEtDZl5Aw", titulo: "Fornecedor de ferragens para todo o Brasil" }], // canal oficial no YouTube (autoria conferida)
     fotos: [{ src: "hd-ferragens-industria.jpg", alt: "Estrutura da HD Ferragens" }],
   },
   {
@@ -212,6 +213,7 @@ const REPRESENTADAS = [
     catalogosExtras: [{ nome: "Perfis para móveis com LED (PDF)", url: "https://www.alumiconte.com.br/wp-content/uploads/2026/10/FOLDER_PERFIS-DE-LED_WEB_REV-01_.pdf" }],
     site: "https://www.alumiconte.com.br/pt/",
     logo: "logo-alumiconte.webp",
+    videos: [{ id: "fgJghjG9kTE", titulo: "Alumiconte – Feita por pessoas" }, { id: "P6fODVi8poY", titulo: "Alumiconte 38 anos" }], // canal oficial no YouTube (autoria conferida)
     fotos: [{ src: "alumiconte-industria.jpg", alt: "Vista aérea da Alumiconte" }],
   },
   {
@@ -270,6 +272,7 @@ const REPRESENTADAS = [
     ],
     site: "https://bragagnolo.com.br/",
     logo: "logo-bragagnolo.png",
+    videos: [{ id: "Ko22pVQ9EKw", titulo: "Institucional Bragagnolo" }], // canal oficial no YouTube (autoria conferida)
     fotos: [
       { src: "bragagnolo-industria.jpg", alt: "Parque industrial da Bragagnolo" },
       { src: "bragagnolo-transporte.jpg", alt: "Frota própria da Bragagnolo" },
@@ -297,6 +300,7 @@ const REPRESENTADAS = [
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2023/06/FOLDER-PRODUTOS-ALCAPLAS3-1.pdf",
     site: "https://www.alcaplas.com.br/",
     logo: "logo-alcaplas.png",
+    videos: [{ id: "o-5M1wQ3vqE", titulo: "Transformando o plástico. Transformando o futuro." }, { id: "yeJV86R2COA", titulo: "Processo de produção Alcaplas" }], // canal oficial no YouTube (autoria conferida)
     fotos: [
       { src: "alcaplas-industria.jpeg", alt: "Indústria da Alcaplas" },
       { src: "alcaplas-empresa.jpg", alt: "Alcaplas" },
@@ -741,6 +745,21 @@ function pageHome() {
 ` + footer(base, true);
 }
 
+// Vídeo leve: mostra a capa e só carrega o YouTube (modo privacidade) ao clicar
+function videosHtml(r) {
+  if (!r.videos || !r.videos.length) return "";
+  return `<div class="wrap videos">
+      <h2>${r.videos.length > 1 ? "Vídeos" : "Vídeo"} da ${esc(r.nome)}</h2>
+      <div class="video-grid v${Math.min(r.videos.length, 2)}">
+        ${r.videos.map((v) => `<button type="button" class="video" data-yt="${v.id}" aria-label="Assistir: ${esc(v.titulo)}">
+          <img src="https://i.ytimg.com/vi/${v.id}/hqdefault.jpg" alt="" loading="lazy">
+          <span class="video-play" aria-hidden="true"></span>
+          <span class="video-title">${esc(v.titulo)}</span>
+        </button>`).join("")}
+      </div>
+    </div>`;
+}
+
 // ---------------------------------------------------------
 // Página de cada representada
 // ---------------------------------------------------------
@@ -823,6 +842,7 @@ function pageRep(r) {
       </aside>
     </div>
     ${fotos ? `<div class="wrap">${fotos}</div>` : ""}
+    ${videosHtml(r)}
   </section>
 
   <section class="section section-alu">

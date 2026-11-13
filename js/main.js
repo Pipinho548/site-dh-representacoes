@@ -87,6 +87,21 @@
     });
   }
 
+  // Vídeos: troca a capa pelo player do YouTube (modo privacidade) só quando a pessoa clica
+  document.querySelectorAll(".video[data-yt]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + btn.dataset.yt + "?autoplay=1&rel=0";
+      f.title = btn.getAttribute("aria-label") || "Vídeo";
+      f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+      f.allowFullscreen = true;
+      var box = document.createElement("div");
+      box.className = "video";
+      box.appendChild(f);
+      btn.replaceWith(box);
+    });
+  });
+
   // Ano no rodapé
   var y = document.getElementById("ano");
   if (y) y.textContent = new Date().getFullYear();
