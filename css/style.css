@@ -335,6 +335,10 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 }
 .person-name h3 { font-size: 1.1875rem; margin-bottom: 2px; }
 .person-name p { margin: 0; font-size: .9375rem; }
+.person-region { color: var(--blue); font-weight: 600; }
+.person-reps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px !important; }
+.person-reps a { padding: 3px 9px; border: 1px solid var(--line); border-radius: 999px; font-size: .8125rem; color: var(--ink); background: var(--white); }
+.person-reps a:hover { border-color: var(--blue); color: var(--blue); text-decoration: none; }
 .person-link { color: var(--ink); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .person-link:hover { color: var(--blue); }
 @media (max-width: 860px) {
@@ -404,6 +408,11 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .buy p { font-size: 1rem; }
 .buy .btn { margin: 8px 0 18px; }
 .buy-alt { margin: 0; line-height: 1.8; }
+.buy-team { list-style: none; display: grid; gap: 10px; margin: 0 0 18px; }
+.buy-team li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 14px; background: rgba(255, 255, 255, .06); border-radius: var(--r); }
+.buy-team strong { display: block; color: #fff; font-weight: 650; }
+.buy-team span { display: block; font-size: .875rem; color: #9fb0c8; }
+.buy-team .btn { margin: 0; padding: 9px 14px; }
 .buy-alt a { color: #fff; }
 .gallery { display: grid; gap: 16px; margin-top: 64px; }
 .gallery.g2 { grid-template-columns: 1fr 1fr; }

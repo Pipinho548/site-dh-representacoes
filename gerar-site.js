@@ -33,14 +33,23 @@ const SEGMENTOS = {
   embalagens: { nome: "Embalagens e resinas",                curto: "Embalagens", icone: "package" },
 };
 
+// atende = slugs das representadas que cada vendedor atende (definido pela DH em 13/11/2026).
+// Sem "atende": a pessoa aparece na equipe, mas não nas páginas das representadas.
+// regiao = área de atendimento, quando o vendedor não atende o estado todo.
 const EQUIPE = [
   { nome: "Evandro Silva",    cargo: "Diretor comercial",       fone: "54996260648", email: "atendimento@dh.ind.br" },
   { nome: "José Reis",        cargo: "Representante comercial", fone: "54999758770", email: "jose@dh.ind.br" },
-  { nome: "Jefersson Didoné", cargo: "Representante comercial", fone: "54981295827", email: "jefersson@dh.ind.br" },
-  { nome: "Palmer Bueno",     cargo: "Representante comercial", fone: "54999876260", email: "palmer@dh.ind.br" },
-  { nome: "Fausto Manto",     cargo: "Representante comercial", fone: "54999300433", email: "fausto@dh.ind.br" },
-  { nome: "Higor dos Reis",   cargo: "Representante comercial", fone: "4797689965",  email: "higor@dh.ind.br" },
+  { nome: "Jefersson Didoné", cargo: "Representante comercial", fone: "54981295827", email: "jefersson@dh.ind.br",
+    atende: ["bragagnolo", "hd-ferragens", "plastiben", "alpa"] },
+  { nome: "Palmer Bueno",     cargo: "Representante comercial", fone: "54999876260", email: "palmer@dh.ind.br",
+    atende: ["glass-house", "ageplast", "iluminium", "mmn", "benpor", "sannypack"] },
+  { nome: "Fausto Manto",     cargo: "Representante comercial", fone: "54999300433", email: "fausto@dh.ind.br",
+    atende: ["puxe", "alcaplas", "formato"] },
+  { nome: "Higor dos Reis",   cargo: "Representante comercial", fone: "4797689965",  email: "higor@dh.ind.br",
+    atende: ["glass-house", "alcaplas", "ageplast", "puxe", "iluminium"], regiao: "Litoral de Santa Catarina" },
 ];
+const vendedoresDe = (slug) => EQUIPE.filter((p) => (p.atende || []).includes(slug));
+const primeiroNome = (p) => p.nome.split(" ")[0];
 
 // Textos conferidos nos sites oficiais das representadas (novembro de 2026).
 // catalogo = catálogo principal (botão do card); catalogosExtras = outros PDFs na página da empresa.
@@ -602,8 +611,9 @@ function pageHome() {
   const msg = "Olá! Vim pelo site da DH Representações e gostaria de um orçamento.";
 
 
+  const atendeHtml = (p, b) => { const rs = (p.atende || []).map((s) => REPRESENTADAS.find((r) => r.slug === s)).filter(Boolean); return rs.length ? `<p class="person-reps">${rs.map((r) => `<a href="${b}representadas/${r.slug}.html">${esc(r.nome)}</a>`).join("")}</p>` : ""; };
   const team = EQUIPE.map((p) => `<li class="person">
-          <div class="person-name"><h3>${esc(p.nome)}</h3><p>${esc(p.cargo)}</p></div>
+          <div class="person-name"><h3>${esc(p.nome)}</h3><p>${esc(p.cargo)}</p>${p.regiao ? `<p class="person-region">${esc(p.regiao)}</p>` : ""}${atendeHtml(p, base)}</div>
           <a class="person-link" href="${tel(p.fone)}">${formatFone(p.fone)}</a>
           <a class="person-link" href="mailto:${p.email}">${p.email}</a>
           <a class="btn btn-whats" href="${wa(p.fone, `Olá, ${p.nome.split(" ")[0]}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} Chamar ${esc(p.nome.split(" ")[0])}</a>
@@ -738,6 +748,7 @@ function pageRep(r) {
   const base = "../";
   const seg = SEGMENTOS[r.segmento];
   const msg = `Olá! Vim pelo site da DH Representações e gostaria de um orçamento de produtos da ${r.nome}.`;
+  const vendedores = vendedoresDe(r.slug);
 
   const facts = [`<div><dt>Segmento</dt><dd>${seg.nome}</dd></div>`];
   if (r.local) facts.push(`<div><dt>Origem</dt><dd>${esc(r.local)}</dd></div>`);
@@ -800,9 +811,15 @@ function pageRep(r) {
       </div>
       <aside class="buy">
         <h2>Compre ${esc(r.nome)} com a DH</h2>
-        <p>Somos representantes comerciais da ${esc(r.nome)}. Nossa equipe envia catálogo, condições e orçamento.</p>
+        ${vendedores.length ? `<p>Fale direto com quem atende a ${esc(r.nome)}:</p>
+        <ul class="buy-team">${vendedores.map((p) => `<li>
+          <div><strong>${esc(p.nome)}</strong>${p.regiao ? `<span>${esc(p.regiao)}</span>` : ""}</div>
+          <a class="btn btn-whats" href="${wa(p.fone, `Olá, ${primeiroNome(p)}! Vim pelo site da DH Representações e gostaria de um orçamento de produtos da ${r.nome}.`)}" target="_blank" rel="noopener" aria-label="Chamar ${esc(p.nome)} no WhatsApp">${icon("whats")} ${esc(primeiroNome(p))}</a>
+        </li>`).join("")}</ul>
+        <p class="buy-alt">Ou fale com o escritório:<br><a href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">WhatsApp ${formatFone(SITE.whatsapp.slice(2))}</a><br><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a></p>`
+        : `<p>Somos representantes comerciais da ${esc(r.nome)}. Nossa equipe envia catálogo, condições e orçamento.</p>
         <a class="btn btn-whats btn-block" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a>
-        <p class="buy-alt"><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a><br><a href="mailto:${SITE.email}">${SITE.email}</a></p>
+        <p class="buy-alt"><a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a><br><a href="mailto:${SITE.email}">${SITE.email}</a></p>`}
       </aside>
     </div>
     ${fotos ? `<div class="wrap">${fotos}</div>` : ""}
