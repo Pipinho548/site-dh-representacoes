@@ -34,19 +34,19 @@ const SEGMENTOS = {
 };
 
 // atende = slugs das representadas que cada vendedor atende (definido pela DH em 13/11/2026).
-// Sem "atende": a pessoa aparece na equipe, mas não nas páginas das representadas.
+// Sem "atende": gerência do escritório (contato geral); aparece na equipe, não nas páginas das representadas.
 // regiao = área de atendimento, quando o vendedor não atende o estado todo.
 const EQUIPE = [
-  { nome: "Evandro Silva",    cargo: "Diretor comercial",       fone: "54996260648", email: "atendimento@dh.ind.br" },
-  { nome: "José Reis",        cargo: "Representante comercial", fone: "54999758770", email: "jose@dh.ind.br" },
+  { nome: "Evandro Silva",    cargo: "Proprietário",       fone: "54996260648", email: "atendimento@dh.ind.br" },
+  { nome: "José Reis",        cargo: "Diretor de vendas", fone: "54999758770", email: "jose@dh.ind.br" },
   { nome: "Jefersson Didoné", cargo: "Representante comercial", fone: "54981295827", email: "jefersson@dh.ind.br",
     atende: ["bragagnolo", "hd-ferragens", "plastiben", "alpa"] },
   { nome: "Palmer Bueno",     cargo: "Representante comercial", fone: "54999876260", email: "palmer@dh.ind.br",
     atende: ["glass-house", "ageplast", "iluminium", "mmn", "benpor", "sannypack"] },
   { nome: "Fausto Manto",     cargo: "Representante comercial", fone: "54999300433", email: "fausto@dh.ind.br",
     atende: ["puxe", "alcaplas", "formato"] },
-  { nome: "Higor dos Reis",   cargo: "Representante comercial", fone: "4797689965",  email: "higor@dh.ind.br",
-    atende: ["glass-house", "alcaplas", "ageplast", "puxe", "iluminium"], regiao: "Litoral de Santa Catarina" },
+  { nome: "Higor dos Reis",   cargo: "Representante comercial", fone: "47997689965", email: "higor@dh.ind.br",
+    atende: ["glass-house", "alcaplas", "ageplast", "puxe", "iluminium", "alumiconte"], regiao: "Litoral de Santa Catarina" },
 ];
 const vendedoresDe = (slug) => EQUIPE.filter((p) => (p.atende || []).includes(slug));
 const primeiroNome = (p) => p.nome.split(" ")[0];
