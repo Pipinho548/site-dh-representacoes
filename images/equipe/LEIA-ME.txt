@@ -1,0 +1,9 @@
+Fotos da equipe: salve aqui com o nome da pessoa em minúsculas, sem acento,
+e rode "node gerar-site.js". Formatos: .jpg, .png ou .webp (quadrada, mínimo 400x400).
+
+evandro-silva.jpg
+jose-reis.jpg
+jefersson-didone.jpg
+palmer-bueno.jpg
+fausto-manto.jpg
+higor-dos-reis.jpg

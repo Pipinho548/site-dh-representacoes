@@ -53,6 +53,36 @@
     select(room.dataset.sel);
   }
 
+  // Equipe: escolher um vendedor mostra as representadas que ele atende
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".team-tabs [role=tab]"));
+  if (tabs.length) {
+    var show = function (tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      });
+      if (focus) tab.focus();
+    };
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () {
+        show(tab, false);
+        // no celular o painel fica abaixo de todos os cards: rola até ele se estiver fora da tela
+        var panel = document.getElementById(tab.getAttribute("aria-controls"));
+        if (panel.getBoundingClientRect().top > window.innerHeight - 120) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      tab.addEventListener("keydown", function (e) {
+        var k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
+        if (e.key === "Home") k = -i; else if (e.key === "End") k = tabs.length - 1 - i;
+        if (k === undefined) return;
+        e.preventDefault();
+        show(tabs[(i + k + tabs.length) % tabs.length], true);
+      });
+    });
+    show(tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0], false);
+  }
+
   // Filtro das representadas por segmento
   var chips = document.querySelectorAll(".chip[data-filter]");
   var cards = document.querySelectorAll(".rep-card[data-segment]");

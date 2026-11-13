@@ -652,13 +652,40 @@ function pageHome() {
   const msg = "Olá! Vim pelo site da DH Representações e gostaria de um orçamento.";
 
 
-  const atendeHtml = (p, b) => { const rs = (p.atende || []).map((s) => REPRESENTADAS.find((r) => r.slug === s)).filter(Boolean); return rs.length ? `<p class="person-reps">${rs.map((r) => `<a href="${b}representadas/${r.slug}.html">${esc(r.nome)}</a>`).join("")}</p>` : ""; };
-  const team = EQUIPE.map((p) => `<li class="person">
-          <div class="person-name"><h3>${esc(p.nome)}</h3><p>${esc(p.cargo)}</p>${p.regiao ? `<p class="person-region">${esc(p.regiao)}</p>` : ""}${atendeHtml(p, base)}</div>
-          <a class="person-link" href="${tel(p.fone)}">${formatFone(p.fone)}</a>
-          <a class="person-link" href="mailto:${p.email}">${p.email}</a>
-          <a class="btn btn-whats" href="${wa(p.fone, `Olá, ${p.nome.split(" ")[0]}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} Chamar ${esc(p.nome.split(" ")[0])}</a>
-        </li>`).join("\n        ");
+  // Equipe: cards com foto; ao escolher um vendedor, mostra as representadas que ele atende
+  const slugPessoa = (p) => p.nome.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-");
+  const fotoPessoa = (p) => ["jpg", "png", "webp"].map((e) => `images/equipe/${slugPessoa(p)}.${e}`).find((f) => fs.existsSync(path.join(__dirname, f)));
+  const iniciaisPessoa = (p) => p.nome.split(" ").filter((w) => w.length > 2).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
+  const repsDe = (p) => (p.atende ? p.atende.map((s) => REPRESENTADAS.find((r) => r.slug === s)).filter(Boolean) : REPRESENTADAS);
+  const teamTabs = EQUIPE.map((p, i) => {
+    const s = slugPessoa(p), foto = fotoPessoa(p);
+    return `<button type="button" class="member" role="tab" id="tab-${s}" aria-controls="painel-${s}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" style="--tone:${i % 3}">
+          <span class="member-photo">${foto ? `<img src="${base}${foto}" alt="" loading="lazy">` : `<span aria-hidden="true">${iniciaisPessoa(p)}</span>`}</span>
+          <span class="member-name">${esc(p.nome)}</span>
+          <span class="member-role">${esc(p.cargo)}</span>
+          ${p.regiao ? `<span class="member-region">${esc(p.regiao)}</span>` : ""}
+        </button>`;
+  }).join("\n        ");
+  const teamPanels = EQUIPE.map((p, i) => {
+    const s = slugPessoa(p), nome = primeiroNome(p), reps = repsDe(p);
+    const titulo = p.atende ? `Representadas atendidas por ${esc(nome)}` : `${esc(nome)} atende todas as representadas`;
+    return `<div class="member-panel" role="tabpanel" id="painel-${s}" aria-labelledby="tab-${s}" tabindex="0">
+        <div class="member-panel-head">
+          <div>
+            <h3>${titulo}</h3>
+            <p>${p.atende ? `${reps.length} ${reps.length === 1 ? "indústria" : "indústrias"}${p.regiao ? ` · ${esc(p.regiao)}` : ""}` : `${esc(p.cargo)} da DH: fale sobre qualquer uma das ${reps.length} indústrias.`}</p>
+          </div>
+          <div class="member-contacts">
+            <a class="btn btn-whats" href="${wa(p.fone, `Olá, ${nome}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} Chamar ${esc(nome)}</a>
+            <a href="${tel(p.fone)}">${formatFone(p.fone)}</a>
+            <a href="mailto:${p.email}">${p.email}</a>
+          </div>
+        </div>
+        <ul class="member-reps">
+          ${reps.map((r) => `<li><a href="${base}representadas/${r.slug}.html"><span class="member-rep-logo">${logo(r, base, "")}</span><span>${esc(r.nome)}</span></a></li>`).join("")}
+        </ul>
+      </div>`;
+  }).join("\n      ");
 
   const options = REPRESENTADAS.map((r) => `<option>${esc(r.nome)}</option>`).join("");
 
@@ -741,12 +768,13 @@ function pageHome() {
   <section class="section" id="equipe">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Equipe comercial</h2>
-        <p>Fale direto com quem vai atender o seu pedido.</p>
+        <h2>Nossa equipe</h2>
+        <p>Escolha um vendedor para ver as representadas que ele atende e falar direto com ele.</p>
       </div>
-      <ul class="team">
-        ${team}
-      </ul>
+      <div class="team-tabs" role="tablist" aria-label="Equipe comercial">
+        ${teamTabs}
+      </div>
+      ${teamPanels}
     </div>
   </section>
 
