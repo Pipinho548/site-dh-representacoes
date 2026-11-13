@@ -330,10 +330,23 @@ const REPRESENTADAS = [
     videos: [{ id: "-TIuQpvBOdM", titulo: "MMN – Institucional" }], // canal oficial no YouTube (autoria conferida)
     fotos: [],
   },
+  {
+    // Sem site no ar (benpor.com.br é página provisória). Dados: logo da empresa e registro público do CNPJ.
+    slug: "benpor", nome: "Benpor", segmento: "embalagens",
+    resumo: "Soluções em EPS (isopor), fabricadas em Lagoa Vermelha (RS).",
+    local: "Lagoa Vermelha – RS", fundacao: "2023",
+    slogan: "Qualidade, inovação e soluções.",
+    sobre: [
+      "A Benpor é uma indústria de EPS (isopor) de Lagoa Vermelha (RS), a mesma cidade da DH Representações, focada em soluções em EPS com qualidade e inovação.",
+    ],
+    linhas: ["Soluções em EPS (isopor)"],
+    logo: "logo-benpor.png",
+    fotos: [],
+  },
 ];
 
 // Ordem de exibição (a mesma do site antigo, com a Glass House na frente)
-const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn"];
+const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn", "benpor"];
 REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
 
 // Peças do roupeiro (foto images/roupeiro/roupeiro.jpg).
