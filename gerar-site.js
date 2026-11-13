@@ -23,6 +23,11 @@ const SITE = {
   whatsapp: "5554996260648",       // WhatsApp principal (com 55 + DDD)
   email: "atendimento@dh.ind.br",
   horario: "Seg. a sex., 8h às 18h",
+  // Números de credibilidade informados pela DH (o de indústrias é contado automaticamente)
+  numeros: [
+    { valor: "+20", texto: "anos de mercado" },
+    { valor: "+500", texto: "empresas atendidas" },
+  ],
 };
 
 const SEGMENTOS = {
@@ -758,11 +763,10 @@ function pageHome() {
           <div><dt>Indústrias consolidadas</dt><dd>Fabricantes com décadas de mercado, sistemas de gestão da qualidade e grandes parques industriais.</dd></div>
         </dl>
       </div>
-      <div class="mvv">
-        <div><h3>Missão</h3><p>Encurtar distâncias entre fornecedores e clientes, trabalhando sempre com responsabilidade e comprometimento e valorizando produtos que atendam aos padrões de exigência e sustentabilidade do mercado global.</p></div>
-        <div><h3>Visão</h3><p>Aprimorar-se cada vez mais em tecnologia e informação de mercado para trazer o que existe de melhor para os nossos parceiros.</p></div>
-        <div><h3>Valores</h3><p>Ganhar reconhecimento pelo trabalho de excelência, prezando sempre pela honestidade e pelos bons valores.</p></div>
-      </div>
+      <ul class="proof">
+        ${SITE.numeros.map((x) => `<li><strong>${x.valor}</strong><span>${x.texto}</span></li>`).join("")}
+        <li><strong>${n}</strong><span>indústrias representadas</span></li>
+      </ul>
     </div>
   </section>
 
@@ -781,6 +785,17 @@ function pageHome() {
         <ul>
           ${GERENCIA.map((p) => `<li><strong>${esc(p.nome)}</strong><span>${esc(p.cargo)}</span><a href="${wa(p.fone, `Olá, ${primeiroNome(p)}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} ${formatFone(p.fone)}</a><a href="mailto:${p.email}">${icon("mail")} ${p.email}</a></li>`).join("")}
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alu" id="missao">
+    <div class="wrap">
+      <div class="sec-head"><h2>Missão, visão e valores</h2></div>
+      <div class="mvv">
+        <div><h3>Missão</h3><p>Encurtar distâncias entre fornecedores e clientes, trabalhando sempre com responsabilidade e comprometimento e valorizando produtos que atendam aos padrões de exigência e sustentabilidade do mercado global.</p></div>
+        <div><h3>Visão</h3><p>Aprimorar-se cada vez mais em tecnologia e informação de mercado para trazer o que existe de melhor para os nossos parceiros.</p></div>
+        <div><h3>Valores</h3><p>Ganhar reconhecimento pelo trabalho de excelência, prezando sempre pela honestidade e pelos bons valores.</p></div>
       </div>
     </div>
   </section>

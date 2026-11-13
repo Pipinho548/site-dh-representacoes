@@ -313,7 +313,18 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .reasons dt { color: var(--ink); font-weight: 700; font-stretch: 110%; line-height: 1.35; }
 .reasons dd { line-height: 1.55; }
 
-.mvv { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 80px; border-top: 2px solid var(--ink); }
+.mvv { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+/* Números de credibilidade da DH */
+.proof { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 64px; border-top: 2px solid var(--ink); }
+.proof li { padding: 28px 24px 0 0; }
+.proof li + li { padding-left: 28px; border-left: 1px solid var(--line-strong); }
+.proof strong { display: block; color: var(--ink); font-size: clamp(2.75rem, 5.5vw, 4.25rem); font-weight: 800; font-stretch: var(--wide); letter-spacing: -0.03em; line-height: 1; }
+.proof span { display: block; margin-top: 8px; font-size: 1.0625rem; color: var(--steel); }
+@media (max-width: 700px) {
+  .proof { grid-template-columns: 1fr; margin-top: 48px; }
+  .proof li, .proof li + li { padding: 18px 0; border-left: 0; }
+  .proof li + li { border-top: 1px solid var(--line-strong); }
+}
 .mvv > div { padding: 24px 32px 0 0; }
 .mvv > div + div { padding-left: 32px; border-left: 1px solid var(--line-strong); }
 .mvv h3 { font-size: 1.125rem; margin-bottom: 10px; }
@@ -322,7 +333,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 @media (max-width: 900px) {
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .reasons > div { grid-template-columns: 1fr; gap: 4px; }
-  .mvv { grid-template-columns: 1fr; margin-top: 56px; }
+  .mvv { grid-template-columns: 1fr; }
   .mvv > div, .mvv > div + div { padding: 20px 0; border-left: 0; }
   .mvv > div + div { border-top: 1px solid var(--line-strong); }
 }
