@@ -187,7 +187,7 @@ const REPRESENTADAS = [
       "Projetos especiais sob medida",
     ],
     site: "https://www.ageplast.com.br",
-    logo: "logo-ageplast.png",
+    logo: "logo-ageplast.svg",
     fotos: [{ src: "ageplast-industria.jpg", alt: "Ageplast" }],
   },
   {
@@ -306,10 +306,34 @@ const REPRESENTADAS = [
       { src: "alcaplas-empresa.jpg", alt: "Alcaplas" },
     ],
   },
+  {
+    slug: "mmn", nome: "MMN Alumínio", segmento: "perfis",
+    resumo: "Perfis, puxadores, trilhos e portas deslizantes em alumínio, da extrusão ao acabamento.",
+    local: "São Bento do Sul – SC",
+    slogan: "Transformando alumínio em soluções.",
+    sobre: [
+      "A MMN Indústria de Componentes de Metal, de São Bento do Sul (SC), é especializada na fabricação e comercialização de soluções em alumínio, da extrusão ao acabamento, com extrusora própria.",
+      "Tem um parque fabril com mais de 4.000 m² e capacidade produtiva superior a 100 toneladas por mês. Atende a linha de móveis sob medida e as indústrias de móveis seriados, em todo o território nacional e no Mercosul.",
+      "Trabalha com materiais certificados e entrega produtos customizados conforme o projeto de cada cliente. Toda a sobra de alumínio da produção vai para a reciclagem.",
+    ],
+    linhas: [
+      "Perfis de alumínio para móveis e painéis",
+      "Puxadores e portas deslizantes",
+      "Trilhos, prolongadores e complementos",
+      "Frentes de gaveta, peças em zamac e fixadores",
+      "Barra chata, cantoneiras, vergalhões, perfil U e tubos",
+      "Linhas Easy, Elite, Faceal, Pull e Seven",
+    ],
+    catalogosExtras: [{ nome: "Catálogos no site da MMN", url: "https://mmnaluminio.com.br/catalogos/novo-catalogo-mmn/" }],
+    site: "https://mmnaluminio.com.br/",
+    logo: "logo-mmn.png",
+    videos: [{ id: "-TIuQpvBOdM", titulo: "MMN – Institucional" }], // canal oficial no YouTube (autoria conferida)
+    fotos: [],
+  },
 ];
 
 // Ordem de exibição (a mesma do site antigo, com a Glass House na frente)
-const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium"];
+const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn"];
 REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
 
 // Peças do roupeiro (foto images/roupeiro/roupeiro.jpg).

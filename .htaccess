@@ -11,6 +11,7 @@ Redirect 301 /alpa/ /representadas/alpa.html
 Redirect 301 /plastiben/ /representadas/plastiben.html
 Redirect 301 /ageplast/ /representadas/ageplast.html
 Redirect 301 /iluminium/ /representadas/iluminium.html
+Redirect 301 /mmn/ /representadas/mmn.html
 Redirect 301 /politicas-de-privacidade/ /politica-de-privacidade.html
 Redirect 301 /sample-page/ /
 
