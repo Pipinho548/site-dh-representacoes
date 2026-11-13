@@ -16,8 +16,8 @@
   --white: #ffffff;
   --line: #d3dae3;
   --line-strong: #b4c0ce;
-  --whats: #1e9e57;
-  --whats-dark: #17834a;
+  --whats: #17834a;
+  --whats-dark: #136b3c;
 
   --font: "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --wide: 122%;
@@ -44,7 +44,7 @@ a:hover { text-decoration: underline; text-underline-offset: 3px; }
 h1, h2, h3, h4 { margin: 0; color: var(--ink); font-stretch: var(--wide); font-weight: 760; letter-spacing: -0.01em; line-height: 1.1; }
 p { margin: 0 0 1em; }
 ul, ol, dl, dd { margin: 0; padding: 0; }
-:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 2px; }
+:focus-visible { outline: 3px solid var(--focus, var(--blue)); outline-offset: 3px; border-radius: 2px; }
 
 .wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
 .skip-link { position: absolute; left: 12px; top: -64px; z-index: 100; padding: 10px 16px; background: var(--ink); color: #fff; border-radius: var(--r); }
@@ -92,6 +92,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
     flex-direction: column; align-items: stretch; gap: 12px;
     padding: 12px var(--gutter) 24px; background: var(--white); border-bottom: 1px solid var(--line);
     box-shadow: 0 24px 40px rgba(19, 33, 63, .12);
+    max-height: calc(100dvh - var(--header-h)); overflow-y: auto; overscroll-behavior: contain;
   }
   .nav-open .main-nav { display: flex; }
   .main-nav ul { flex-direction: column; gap: 0; }
@@ -145,8 +146,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .spot::before, .spot::after { content: ""; position: absolute; left: 50%; top: 50%; background: #fff; border-radius: 1px; transform: translate(-50%, -50%); }
 .spot::before { width: 12px; height: 2.5px; }
 .spot::after { width: 2.5px; height: 12px; transition: opacity .15s; }
-.spot[aria-pressed="true"] { background: var(--blue); box-shadow: 0 0 0 5px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
-.spot[aria-pressed="true"]::after { opacity: 0; }
+.spot.is-sel { background: var(--blue); box-shadow: 0 0 0 5px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
+.spot.is-sel::after { opacity: 0; }
 .if-mouse { display: none; }
 
 .pop { display: none; }
@@ -192,8 +193,8 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
   .hot:hover, .hot:has(:focus-visible) { z-index: 10; }
   .hot:hover .spot, .hot:has(:focus-visible) .spot { background: var(--blue); transform: scale(1.12); box-shadow: 0 0 0 6px rgba(31, 109, 180, .3), 0 2px 8px rgba(13, 24, 48, .35); }
   .hot:hover .spot::after, .hot:has(:focus-visible) .spot::after { opacity: 0; }
-  .spot[aria-pressed="true"] { background: var(--ink); box-shadow: 0 2px 8px rgba(13, 24, 48, .35); }
-  .spot[aria-pressed="true"]::after { opacity: 1; }
+  .spot.is-sel { background: var(--ink); box-shadow: 0 2px 8px rgba(13, 24, 48, .35); }
+  .spot.is-sel::after { opacity: 1; }
 
   .pop {
     display: block; position: absolute; z-index: 1; width: 320px;
@@ -294,11 +295,11 @@ img.logo-on-dark { background: var(--ink); }
 .rep-tile { display: grid; place-items: center; aspect-ratio: 16 / 9; padding: 10px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r); transition: border-color .2s; }
 .rep-tile:hover { border-color: var(--blue); }
 .rep-tile img { width: 100%; height: 100%; object-fit: contain; }
-.rep-info h4 { font-size: 1.25rem; margin-bottom: 4px; }
-.rep-info h4 a { color: var(--ink); }
+.rep-info h3 { font-size: 1.25rem; margin-bottom: 4px; }
+.rep-info h3 a { color: var(--ink); }
 .rep-info p { margin: 0; max-width: 52ch; }
 .rep-where { margin: 0; font-size: .9375rem; line-height: 1.5; }
-.rep-act { display: flex; align-items: center; justify-content: flex-end; gap: 14px; }
+.rep-act { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px 14px; }
 
 @media (max-width: 900px) {
   .rep-row { grid-template-columns: 132px minmax(0, 1fr); gap: 8px 20px; align-items: start; }
@@ -309,7 +310,7 @@ img.logo-on-dark { background: var(--ink); }
 @media (max-width: 480px) {
   .rep-row { grid-template-columns: 92px minmax(0, 1fr); gap: 6px 14px; }
   .rep-tile { padding: 6px; }
-  .rep-info h4 { font-size: 1.125rem; }
+  .rep-info h3 { font-size: 1.125rem; }
   .rep-info p { font-size: .9688rem; }
 }
 
@@ -385,7 +386,7 @@ img.logo-on-dark { background: var(--ink); }
 @media (max-width: 1020px) { .team-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .office-contacts { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
 .office-contacts h3 { font-size: 1.125rem; margin-bottom: 14px; }
-.office-contacts ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.office-contacts ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 12px; }
 .office-contacts li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; padding: 16px 18px; background: var(--white); border: 1px solid var(--line); border-radius: 12px; }
 .office-contacts strong { color: var(--ink); font-stretch: 112%; font-weight: 760; }
 .office-contacts span { color: var(--blue); font-weight: 600; font-size: .9375rem; flex: 1 1 auto; }
@@ -415,7 +416,7 @@ img.logo-on-dark { background: var(--ink); }
 .field label { color: var(--ink); font-weight: 650; font-size: .9375rem; }
 .field label span { color: var(--steel); font-weight: 400; margin-left: 4px; }
 .field input, .field select, .field textarea {
-  width: 100%; padding: 12px 14px; border: 1px solid #c3ccd8; border-radius: var(--r); background: var(--white);
+  width: 100%; padding: 12px 14px; border: 1px solid #8593a6; border-radius: var(--r); background: var(--white);
   color: var(--ink); font: 400 1rem/1.4 var(--font); transition: border-color .15s, box-shadow .15s;
 }
 .field textarea { resize: vertical; min-height: 110px; }
@@ -432,7 +433,7 @@ img.logo-on-dark { background: var(--ink); }
 .breadcrumb a { color: var(--steel); }
 .rep-hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.02em; margin-bottom: 14px; }
 .rep-hero-grid { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 56px; align-items: center; }
-.rep-hero-logo { display: grid; place-items: center; aspect-ratio: 16 / 10; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.rep-hero-logo { display: grid; place-items: center; overflow: hidden; aspect-ratio: 16 / 10; padding: 28px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
 .rep-hero-logo img { width: 100%; height: 100%; object-fit: contain; }
 .rep-hero-lead { font-size: 1.25rem; color: var(--ink); max-width: 36em; }
 .facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: 24px 0 28px; }
@@ -523,4 +524,36 @@ img.logo-on-dark { background: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; }
+}
+
+/* ---------- Ajustes da auditoria ---------- */
+/* contorno de foco branco nos fundos escuros */
+.hero, .section-ink, .member-panel, .buy, .site-footer { --focus: #fff; }
+/* links no meio do texto sublinhados */
+.form-note a, .legal a, .prose a, .buy-alt a { text-decoration: underline; text-underline-offset: 3px; }
+/* roupeiro: Esc fecha o cartão; área de toque maior no celular */
+@media (hover: hover) and (pointer: fine) and (min-width: 961px) {
+  .hot.is-closed .pop { visibility: hidden !important; opacity: 0 !important; }
+}
+@media (max-width: 960px) {
+  .hot::before { content: ""; position: absolute; left: -20px; top: -20px; width: 40px; height: 40px; border-radius: 50%; }
+}
+.panel-quote { margin-top: 16px; }
+/* WhatsApp flutuante some quando o formulário ou o menu estão na tela */
+.whats-float { transition: opacity .2s, visibility .2s; }
+.whats-float.is-hidden, .nav-open .whats-float { opacity: 0; visibility: hidden; }
+.form-alt { margin: 10px 0 0; font-size: .875rem; text-align: center; }
+.form-alt a { text-decoration: underline; text-underline-offset: 3px; }
+/* nada estoura a largura do celular */
+.rep-hero-grid > *, .detail > *, .buy, .facts > * { min-width: 0; }
+.office-contacts a, .buy-alt a, .member-contacts a { overflow-wrap: anywhere; }
+@media (max-width: 480px) {
+  .rep-hero-actions { display: flex; flex-wrap: wrap; }
+  .rep-hero-actions .btn { flex: 1 1 100%; white-space: normal; text-align: center; }
+}
+a[href^="mailto:"] { overflow-wrap: anywhere; }
+h1, h2, h3 { overflow-wrap: break-word; }
+@media (max-width: 480px) {
+  .rep-hero h1 { font-size: clamp(1.625rem, 8.5vw, 2.5rem); }
+  .sec-head h2 { font-size: min(2rem, 9vw); }
 }

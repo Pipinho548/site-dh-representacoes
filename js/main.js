@@ -2,21 +2,23 @@
 (function () {
   "use strict";
 
-  var WHATSAPP = "5554996260648";
+  var reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // Menu do celular
   var toggle = document.querySelector(".nav-toggle");
-  if (toggle) {
-    toggle.addEventListener("click", function () {
-      var open = document.body.classList.toggle("nav-open");
+  var menu = document.getElementById("menu");
+  if (toggle && menu) {
+    var setMenu = function (open) {
+      document.body.classList.toggle("nav-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
       toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    };
+    toggle.addEventListener("click", function () { setMenu(!document.body.classList.contains("nav-open")); });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () { setMenu(false); });
     });
-    document.querySelectorAll(".main-nav a").forEach(function (a) {
-      a.addEventListener("click", function () {
-        document.body.classList.remove("nav-open");
-        toggle.setAttribute("aria-expanded", "false");
-      });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && document.body.classList.contains("nav-open")) { setMenu(false); toggle.focus(); }
     });
   }
 
@@ -31,10 +33,7 @@
       var tpl = document.querySelector('template[data-peca="' + id + '"]');
       if (!tpl) return;
       room.dataset.sel = id;
-      room.querySelectorAll(".part").forEach(function (p) {
-        p.classList.toggle("is-sel", p.dataset.peca === id);
-      });
-      spots.forEach(function (s) { s.setAttribute("aria-pressed", s.dataset.peca === id ? "true" : "false"); });
+      spots.forEach(function (s) { s.classList.toggle("is-sel", s.dataset.peca === id); });
       panel.innerHTML = tpl.innerHTML;
     };
 
@@ -51,6 +50,23 @@
       if (again) again.focus();
     });
     select(room.dataset.sel);
+
+    // Computador: o cartão abre ao chegar perto (CSS); aqui só o estado para leitores de tela e o Esc
+    room.querySelectorAll(".hot").forEach(function (hot) {
+      var spot = hot.querySelector(".spot");
+      var open = function () { hot.classList.remove("is-closed"); spot.setAttribute("aria-expanded", "true"); };
+      var close = function () { spot.setAttribute("aria-expanded", "false"); };
+      hot.addEventListener("mouseenter", open);
+      hot.addEventListener("mouseleave", function () { close(); hot.classList.remove("is-closed"); });
+      hot.addEventListener("focusin", function () { if (!hot.classList.contains("is-closed")) open(); });
+      hot.addEventListener("focusout", function (e) { if (!hot.contains(e.relatedTarget)) { close(); hot.classList.remove("is-closed"); } });
+      hot.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        hot.classList.add("is-closed");
+        close();
+        spot.focus();
+      });
+    });
   }
 
   // Equipe: escolher um vendedor mostra as representadas que ele atende
@@ -69,8 +85,8 @@
       tab.addEventListener("click", function () {
         show(tab, false);
         // no celular o painel fica abaixo de todos os cards: rola até ele se estiver fora da tela
-        var panel = document.getElementById(tab.getAttribute("aria-controls"));
-        if (panel.getBoundingClientRect().top > window.innerHeight - 120) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+        var p = document.getElementById(tab.getAttribute("aria-controls"));
+        if (p.getBoundingClientRect().top > window.innerHeight - 120) p.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" });
       });
       tab.addEventListener("keydown", function (e) {
         var k = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key];
@@ -83,25 +99,12 @@
     show(tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0], false);
   }
 
-  // Filtro das representadas por segmento
-  var chips = document.querySelectorAll(".chip[data-filter]");
-  var cards = document.querySelectorAll(".rep-card[data-segment]");
-  chips.forEach(function (chip) {
-    chip.addEventListener("click", function () {
-      var seg = chip.dataset.filter;
-      chips.forEach(function (c) { c.setAttribute("aria-pressed", c === chip ? "true" : "false"); });
-      cards.forEach(function (card) { card.hidden = !(seg === "todas" || card.dataset.segment === seg); });
-    });
-  });
-
-  // Formulário de contato → abre o WhatsApp com a mensagem pronta
+  // Formulário de contato → abre o WhatsApp (ou o e-mail) com a mensagem pronta
   var form = document.getElementById("form-contato");
   if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!form.reportValidity()) return;
+    var mensagem = function () {
       var d = new FormData(form);
-      var linhas = [
+      return [
         "Olá! Vim pelo site da DH Representações.",
         "",
         "*Nome:* " + d.get("nome"),
@@ -111,10 +114,27 @@
         d.get("interesse") ? "*Representada:* " + d.get("interesse") : null,
         d.get("mensagem") ? "" : null,
         d.get("mensagem") || null
-      ].filter(function (l) { return l !== null; });
-      var url = "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(linhas.join("\n"));
-      window.open(url, "_blank", "noopener");
+      ].filter(function (l) { return l !== null; }).join("\n");
+    };
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      window.open("https://wa.me/" + form.dataset.whats + "?text=" + encodeURIComponent(mensagem()), "_blank", "noopener");
     });
+    var mail = form.querySelector("[data-mail]");
+    if (mail) mail.addEventListener("click", function (e) {
+      if (!form.reportValidity()) { e.preventDefault(); return; }
+      mail.href = "mailto:" + form.dataset.email + "?subject=" + encodeURIComponent("Orçamento pelo site") +
+        "&body=" + encodeURIComponent(mensagem().replace(/\*/g, ""));
+    });
+
+    // O botão flutuante do WhatsApp não cobre o formulário
+    var flutuante = document.querySelector(".whats-float");
+    if (flutuante && "IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        flutuante.classList.toggle("is-hidden", entries[0].isIntersecting);
+      }).observe(form);
+    }
   }
 
   // Vídeos: troca a capa pelo player do YouTube (modo privacidade) só quando a pessoa clica

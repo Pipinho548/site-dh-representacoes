@@ -32,7 +32,7 @@ const SITE = {
 
 const SEGMENTOS = {
   moveis:     { nome: "Componentes e ferragens para móveis", curto: "Móveis", icone: "tool" },
-  perfis:     { nome: "Perfis e esquadrias",                 curto: "Perfis", icone: "layers" },
+  perfis:     { nome: "Perfis de alumínio e plástico",       curto: "Perfis", icone: "layers" },
   vidros:     { nome: "Vidros processados",                  curto: "Vidros", icone: "glass" },
   iluminacao: { nome: "Iluminação LED para móveis",          curto: "LED", icone: "glass" },
   embalagens: { nome: "Embalagens e resinas",                curto: "Embalagens", icone: "package" },
@@ -80,8 +80,8 @@ const REPRESENTADAS = [
     ],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/ALPA-CATALOGO-24.pdf",
     site: "https://alpaindustrial.com.br/",
-    logo: "logo-alpa.png",
-    fotos: [{ src: "alpa-industria.jpg", alt: "Parque industrial da Alpa" }],
+    logo: "logo-alpa.webp",
+    fotos: [{ src: "alpa-industria.webp", alt: "Parque industrial da Alpa" }],
   },
   {
     slug: "plastiben", nome: "Plastiben", segmento: "moveis",
@@ -104,8 +104,8 @@ const REPRESENTADAS = [
     catalogo: "https://plastiben.com.br/wp-content/uploads/2024/06/ATUALIZADO.pdf",
     catalogosExtras: [{ nome: "Catálogo de puxadores (PDF)", url: "https://plastiben.com.br/wp-content/uploads/2024/06/Catalogo-Puxadores.pdf" }],
     site: "https://plastiben.com.br/",
-    logo: "logo-plastiben.png",
-    fotos: [{ src: "plastiben-industria.jpg", alt: "Indústria da Plastiben" }],
+    logo: "logo-plastiben.webp",
+    fotos: [{ src: "plastiben-industria.webp", alt: "Indústria da Plastiben" }],
   },
   {
     slug: "hd-ferragens", nome: "HD Ferragens", segmento: "moveis",
@@ -127,9 +127,9 @@ const REPRESENTADAS = [
     ],
     catalogo: "https://hdferragens.com.br/documento/catalogo/Cat%C3%A1logo%20HD%20Ferragens.pdf",
     site: "https://hdferragens.com.br/",
-    logo: "logo-hd-ferragens.png",
+    logo: "logo-hd-ferragens.webp",
     videos: [{ id: "FnHb5pPcOz4", titulo: "HD Ferragens para móveis" }, { id: "TulEtDZl5Aw", titulo: "Fornecedor de ferragens para todo o Brasil" }], // canal oficial no YouTube (autoria conferida)
-    fotos: [{ src: "hd-ferragens-industria.jpg", alt: "Estrutura da HD Ferragens" }],
+    fotos: [{ src: "hd-ferragens-industria.webp", alt: "Estoque e estrutura da HD Ferragens" }],
   },
   {
     slug: "puxe", nome: "Puxe Componentes", segmento: "moveis",
@@ -149,8 +149,8 @@ const REPRESENTADAS = [
     ],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/FOLDER-PUXADORES-1_compressed.pdf",
     site: "https://puxecomponentes.com.br/",
-    logo: "logo-puxe.png",
-    fotos: [{ src: "puxe-empresa.jpg", alt: "Puxe Componentes" }],
+    logo: "logo-puxe.webp",
+    fotos: [{ src: "puxe-empresa.webp", alt: "Sede da Puxe Componentes" }],
   },
   {
     slug: "formato", nome: "Formato", segmento: "moveis",
@@ -170,8 +170,8 @@ const REPRESENTADAS = [
     ],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2023/01/Catalogo-Formato.pdf",
     site: "https://sulformato.com.br/",
-    logo: "logo-formato.png",
-    fotos: [{ src: "formato-fachada.png", alt: "Fachada da Formato" }],
+    logo: "logo-formato.webp",
+    fotos: [{ src: "formato-fachada.webp", alt: "Fachada da Formato" }],
   },
   {
     slug: "ageplast", nome: "Ageplast", segmento: "perfis",
@@ -193,7 +193,7 @@ const REPRESENTADAS = [
     ],
     site: "https://www.ageplast.com.br",
     logo: "logo-ageplast.svg",
-    fotos: [{ src: "ageplast-industria.jpg", alt: "Ageplast" }],
+    fotos: [{ src: "ageplast-industria.webp", alt: "Indústria de perfis plásticos da Ageplast" }],
   },
   {
     slug: "alumiconte", nome: "Alumiconte", segmento: "perfis",
@@ -219,7 +219,7 @@ const REPRESENTADAS = [
     site: "https://www.alumiconte.com.br/pt/",
     logo: "logo-alumiconte.webp",
     videos: [{ id: "fgJghjG9kTE", titulo: "Alumiconte – Feita por pessoas" }, { id: "P6fODVi8poY", titulo: "Alumiconte 38 anos" }], // canal oficial no YouTube (autoria conferida)
-    fotos: [{ src: "alumiconte-industria.jpg", alt: "Vista aérea da Alumiconte" }],
+    fotos: [{ src: "alumiconte-industria.webp", alt: "Vista aérea da Alumiconte" }],
   },
   {
     slug: "glass-house", nome: "Glass House", segmento: "vidros",
@@ -230,8 +230,8 @@ const REPRESENTADAS = [
     ],
     linhas: ["Vidros processados"],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2024/10/Catalogo_Glass-House.pdf",
-    logo: "logo-glass-house.png",
-    fotos: [{ src: "glass-house-industria.jpg", alt: "Indústria da Glass House" }],
+    logo: "logo-glass-house.webp",
+    fotos: [{ src: "glass-house-industria.webp", alt: "Indústria da Glass House" }],
   },
   {
     slug: "iluminium", nome: "Iluminium", segmento: "iluminacao",
@@ -276,11 +276,11 @@ const REPRESENTADAS = [
       "Portas de madeira",
     ],
     site: "https://bragagnolo.com.br/",
-    logo: "logo-bragagnolo.png",
+    logo: "logo-bragagnolo.webp",
     videos: [{ id: "Ko22pVQ9EKw", titulo: "Institucional Bragagnolo" }], // canal oficial no YouTube (autoria conferida)
     fotos: [
-      { src: "bragagnolo-industria.jpg", alt: "Parque industrial da Bragagnolo" },
-      { src: "bragagnolo-transporte.jpg", alt: "Frota própria da Bragagnolo" },
+      { src: "bragagnolo-industria.webp", alt: "Parque industrial da Bragagnolo" },
+      { src: "bragagnolo-transporte.webp", alt: "Frota própria da Bragagnolo" },
     ],
   },
   {
@@ -304,11 +304,11 @@ const REPRESENTADAS = [
     ],
     catalogo: "https://dhrepresentacoes.com.br/wp-content/uploads/2023/06/FOLDER-PRODUTOS-ALCAPLAS3-1.pdf",
     site: "https://www.alcaplas.com.br/",
-    logo: "logo-alcaplas.png",
+    logo: "logo-alcaplas.webp",
     videos: [{ id: "o-5M1wQ3vqE", titulo: "Transformando o plástico. Transformando o futuro." }, { id: "yeJV86R2COA", titulo: "Processo de produção Alcaplas" }], // canal oficial no YouTube (autoria conferida)
     fotos: [
-      { src: "alcaplas-industria.jpeg", alt: "Indústria da Alcaplas" },
-      { src: "alcaplas-empresa.jpg", alt: "Alcaplas" },
+      { src: "alcaplas-industria.webp", alt: "Indústria da Alcaplas" },
+      { src: "alcaplas-empresa.webp", alt: "Sede da Alcaplas" },
     ],
   },
   {
@@ -331,7 +331,7 @@ const REPRESENTADAS = [
     ],
     catalogosExtras: [{ nome: "Catálogos no site da MMN", url: "https://mmnaluminio.com.br/catalogos/novo-catalogo-mmn/" }],
     site: "https://mmnaluminio.com.br/",
-    logo: "logo-mmn.png",
+    logo: "logo-mmn.webp",
     videos: [{ id: "-TIuQpvBOdM", titulo: "MMN – Institucional" }], // canal oficial no YouTube (autoria conferida)
     fotos: [],
   },
@@ -345,7 +345,7 @@ const REPRESENTADAS = [
       "A Benpor é uma indústria de EPS (isopor) de Lagoa Vermelha (RS), a mesma cidade da DH Representações, focada em soluções em EPS com qualidade e inovação.",
     ],
     linhas: ["Soluções em EPS (isopor)"],
-    logo: "logo-benpor.png",
+    logo: "logo-benpor.webp",
     fotos: [],
   },
   {
@@ -378,32 +378,32 @@ const REPRESENTADAS = [
 const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn", "benpor", "sannypack"];
 REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
 
-// Peças do roupeiro (foto images/roupeiro/roupeiro.jpg).
+// Peças do roupeiro (foto images/roupeiro/roupeiro-2000.webp).
 // x/y = posição do ponto clicável na foto, em % da largura e da altura.
 // img = foto de detalhe que aparece ao lado quando a peça é escolhida.
 const PECAS = [
-  { id: "led", nome: "Espelho com LED", x: 34.1, y: 17.9, img: "zoom-led.jpg",
+  { id: "led", nome: "Espelho com LED", x: 34.1, y: 17.9, img: "zoom-led.webp",
     texto: "A fita de LED que contorna o espelho e o perfil difusor que deixa a luz contínua, sem pontos aparentes.",
     marcas: ["iluminium", "ageplast"] },
-  { id: "puxadores", nome: "Puxadores", x: 25.4, y: 59.7, img: "zoom-puxadores.jpg",
+  { id: "puxadores", nome: "Puxadores", x: 25.4, y: 59.7, img: "zoom-puxadores.webp",
     texto: "Os puxadores das gavetas, com acabamento metalizado.",
     marcas: ["puxe", "formato"] },
-  { id: "corredica", nome: "Corrediça telescópica", x: 32.2, y: 70.5, img: "zoom-corredica.jpg",
+  { id: "corredica", nome: "Corrediça telescópica", x: 32.2, y: 70.5, img: "zoom-corredica.webp",
     texto: "A ferragem que faz a gaveta abrir por inteiro, com deslizamento suave sobre esferas.",
     marcas: ["hd-ferragens"] },
   { id: "trilho-superior", nome: "Trilho superior", x: 44.3, y: 11.1, img: "zoom-trilho-superior.webp",
     texto: "O trilho de plástico no alto do roupeiro, onde correm as guias das portas.",
     marcas: ["alpa"] },
-  { id: "sistema-correr", nome: "Sistema de porta de correr", x: 68.3, y: 88.4, img: "zoom-sistema-correr.jpg",
+  { id: "sistema-correr", nome: "Sistema de porta de correr", x: 68.3, y: 88.4, img: "zoom-sistema-correr.webp",
     texto: "A roldana que faz a porta deslizar, com parafuso para regular a altura.",
     marcas: ["plastiben"] },
   { id: "trilho-inferior", nome: "Trilho inferior", x: 44.6, y: 89.2, img: "zoom-trilho-inferior.webp",
     texto: "O trilho de alumínio no chão, por onde as portas correm.",
     marcas: ["alumiconte"] },
-  { id: "vidro", nome: "Vidro, perfil e baguete", x: 61.3, y: 66.5, img: "zoom-vidro.jpg",
+  { id: "vidro", nome: "Vidro, perfil e baguete", x: 61.3, y: 66.5, img: "zoom-vidro.webp",
     texto: "O vidro da porta, o perfil de alumínio que o emoldura e a baguete plástica que prende o vidro no perfil.",
     marcas: ["glass-house", "alumiconte", "ageplast"] },
-  { id: "embalagem", nome: "Embalagem", x: 79.6, y: 76.5, img: "zoom-embalagem.jpg",
+  { id: "embalagem", nome: "Embalagem", x: 79.6, y: 76.5, img: "zoom-embalagem.webp",
     texto: "A caixa de papelão e o filme plástico que protegem o móvel até chegar ao cliente.",
     marcas: ["bragagnolo", "alcaplas"] },
 ];
@@ -460,7 +460,7 @@ const EXTENSO = { 1: "Uma", 2: "Duas", 3: "Três", 4: "Quatro", 5: "Cinco", 6: "
 const porExtenso = (n) => EXTENSO[n] || String(n);
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("Rua Rotary Internacional, 299, Pedregal, Lagoa Vermelha - RS");
 
-function head({ title, description, canonical, base, extraHead = "" }) {
+function head({ title, description, canonical, base, extraHead = "", image = "/images/og-dh.jpg", noindex = false }) {
   return `<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -475,6 +475,8 @@ function head({ title, description, canonical, base, extraHead = "" }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${SITE.url}${image}">
+<meta name="twitter:card" content="summary_large_image">${noindex ? '\n<meta name="robots" content="noindex">' : ""}
 <meta name="theme-color" content="#13213f">
 <link rel="icon" href="${base}images/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -493,7 +495,7 @@ function header(base, home) {
   return `<header class="site-header">
   <div class="wrap header-row">
     <a class="brand" href="${base}index.html" aria-label="${SITE.nome}, página inicial">
-      <img src="${base}images/logo-dh.png" alt="${SITE.nome}" width="370" height="275">
+      <img src="${base}images/logo-dh.webp" alt="${SITE.nome}" width="240" height="178">
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
       ${icon("menu", "icon-open")}${icon("close", "icon-close")}
@@ -519,7 +521,7 @@ function footer(base, home) {
   return `<footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <img src="${base}images/logo-dh.png" alt="${SITE.nome}" width="370" height="275" loading="lazy">
+      <img src="${base}images/logo-dh.webp" alt="${SITE.nome}" width="240" height="178" loading="lazy">
       <p>${SITE.endereco}<br>${SITE.cidade}</p>
     </div>
     <div>
@@ -559,9 +561,9 @@ function footer(base, home) {
 }
 
 // Logo da representada; sem arquivo de logo, mostra o nome escrito
-function logo(r, base, alt = "") {
+function logo(r, base, alt = "", eager = false) {
   return r.logo
-    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}" loading="lazy"${r.logoEscuro ? ` class="logo-on-dark"` : ""}${r.logoZoom ? ` style="transform:scale(${r.logoZoom})"` : ""}>`
+    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}"${eager ? ' fetchpriority="high"' : ' loading="lazy"'}${r.logoEscuro ? ` class="logo-on-dark"` : ""}${r.logoZoom ? ` style="transform:scale(${r.logoZoom})"` : ""}>`
     : `<span class="logo-word">${esc(r.nome)}</span>`;
 }
 
@@ -572,7 +574,7 @@ function repRow(r, base) {
   return `<li class="rep-row">
             <a class="rep-tile" href="${url}" tabindex="-1" aria-hidden="true">${logo(r, base)}</a>
             <div class="rep-info">
-              <h4><a href="${url}">${esc(r.nome)}</a></h4>
+              <h3><a href="${url}">${esc(r.nome)}</a></h3>
               <p>${esc(r.resumo)}</p>
             </div>
             <p class="rep-where">${onde.map(esc).join("<br>")}</p>
@@ -594,7 +596,7 @@ function repCard(r, base) {
             <p>${esc(r.resumo)}</p>
             <div class="rep-card-act">
               <a class="btn btn-line" href="${url}">Saiba mais</a>
-              ${r.catalogo ? `<a class="btn btn-text" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Catálogo</a>` : ""}
+              ${r.catalogo ? `<a class="btn btn-text" href="${r.catalogo}" target="_blank" rel="noopener">${icon("download")} Catálogo</a>` : `<a class="btn btn-text" href="${wa(SITE.whatsapp, `Olá! Vim pelo site da DH Representações e gostaria de receber o catálogo da ${r.nome}.`)}" target="_blank" rel="noopener">Pedir catálogo</a>`}
             </div>
           </div>
         </li>`;
@@ -635,13 +637,14 @@ function panelHtml(p, i, base) {
                 <div><h4><a href="${base}representadas/${r.slug}.html">${esc(r.nome)}</a></h4><p>${esc(r.resumo)}</p></div>
               </li>`).join("")}
             </ul>
+            <a class="btn btn-line panel-quote" href="${wa(SITE.whatsapp, `Olá! Vim pelo site da DH Representações e gostaria de um orçamento de ${p.nome.toLowerCase()}.`)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento desta peça</a>
           </div>`;
 }
 
 // Cartão que abre ao lado do ponto quando o mouse chega perto (computador)
 function popHtml(p, base) {
   const marcas = p.marcas.map((slug) => REPRESENTADAS.find((r) => r.slug === slug)).filter(Boolean);
-  return `<div class="pop" id="pop-${p.id}" role="tooltip">
+  return `<div class="pop" id="pop-${p.id}">
               <img src="${base}images/roupeiro/${p.img}" alt="" loading="lazy">
               <div class="pop-body">
                 <h3>${esc(p.nome)}</h3>
@@ -656,16 +659,16 @@ function popHtml(p, base) {
 function room(base) {
   // O cartão abre para o lado com mais espaço: direita/esquerda e para baixo/cima
   const spots = PECAS.map((p, i) => `<div class="hot" style="left:${p.x}%;top:${p.y}%" data-h="${p.x > 55 ? "l" : "r"}" data-v="${p.y < 35 ? "d" : p.y > 65 ? "u" : "c"}">
-            <button type="button" class="spot" data-peca="${p.id}" aria-label="${esc(p.nome)}" aria-describedby="pop-${p.id}" aria-pressed="${i === 0}"></button>
+            <button type="button" class="spot" data-peca="${p.id}" aria-label="${esc(p.nome)}" aria-controls="pop-${p.id}" aria-expanded="false"></button>
             ${popHtml(p, base)}
           </div>`).join("\n          ");
   const tpls = PECAS.map((p, i) => `<template data-peca="${p.id}">${panelHtml(p, i, base)}</template>`).join("\n      ");
   return `<div class="room" data-sel="${PECAS[0].id}">
         <div class="room-stage">
-          <img class="room-photo" src="${base}images/roupeiro/roupeiro.jpg" width="2000" height="1116" alt="Quarto com roupeiro de portas de correr, nicho com espelho iluminado, gavetas e caixas de embalagem" loading="lazy">
+          <img class="room-photo" src="${base}images/roupeiro/roupeiro-1000.webp" srcset="${base}images/roupeiro/roupeiro-1000.webp 1000w, ${base}images/roupeiro/roupeiro-2000.webp 2000w" sizes="(min-width: 1180px) 1100px, 100vw" width="2000" height="1116" alt="Quarto com roupeiro de portas de correr, nicho com espelho iluminado, gavetas e caixas de embalagem" loading="lazy">
           ${spots}
         </div>
-        <div class="room-panel" aria-live="polite">
+        <div class="room-panel">
           ${panelHtml(PECAS[0], 0, base)}
         </div>
       </div>
@@ -733,7 +736,7 @@ function pageHome() {
 
   return head({
     title: "DH Representações | Representação comercial em Lagoa Vermelha – RS",
-    description: `A DH Representações atende sua empresa com ${n} indústrias de componentes e ferragens para móveis, perfis, vidros e embalagens. Peça catálogo e orçamento.`,
+    description: `Representação comercial em Lagoa Vermelha (RS): ${n} indústrias de componentes e ferragens para móveis, perfis, vidros, iluminação LED e embalagens. Peça catálogo e orçamento.`,
     canonical: SITE.url + "/",
     base,
     extraHead: `<script type="application/ld+json">${JSON.stringify(jsonld)}</script>\n`,
@@ -743,7 +746,7 @@ function pageHome() {
     <div class="hero-photo" style="background-image:url('${base}images/escritorio.webp')" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <h1><span>${porExtenso(n)} indústrias.</span> <span>Um só contato.</span></h1>
-      <p class="hero-lead">A solução para a sua empresa.</p>
+      <p class="hero-lead">Ferragens, perfis, vidros, iluminação LED e embalagens para a indústria de móveis, com atendimento direto do vendedor.</p>
       <div class="hero-actions">
         <a class="btn btn-whats btn-lg" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento</a>
         <a class="btn btn-ghost btn-lg" href="${base}representadas/index.html">Ver representadas</a>
@@ -788,7 +791,7 @@ function pageHome() {
           <p>Trabalhamos com base em responsabilidade e comprometimento, e valorizamos produtos que atendam aos padrões de exigência e sustentabilidade do mercado.</p>
         </div>
         <dl class="reasons">
-          <div><dt>Um contato, ${n} indústrias</dt><dd>Componentes, ferragens, perfis, vidros e embalagens de ${n} fabricantes, negociados com a mesma equipe.</dd></div>
+          <div><dt>Um contato, ${n} indústrias</dt><dd>Componentes, ferragens, perfis, vidros, iluminação LED e embalagens de ${n} empresas, negociados com a mesma equipe.</dd></div>
           <div><dt>Atendimento direto</dt><dd>Você fala com o representante pelo WhatsApp, telefone ou e-mail, sem intermediários.</dd></div>
           <div><dt>Catálogos à mão</dt><dd>Os catálogos das representadas estão no site para você chegar à conversa sabendo o que quer.</dd></div>
           <div><dt>Indústrias consolidadas</dt><dd>Fabricantes com décadas de mercado, sistemas de gestão da qualidade e grandes parques industriais.</dd></div>
@@ -825,7 +828,7 @@ function pageHome() {
           <div><dt>Horário</dt><dd>${SITE.horario}</dd></div>
         </dl>
       </div>
-      <form class="form" id="form-contato" novalidate>
+      <form class="form" id="form-contato" data-whats="${SITE.whatsapp}" data-email="${SITE.email}" novalidate>
         <div class="field"><label for="f-nome">Nome</label><input id="f-nome" name="nome" type="text" autocomplete="name" required></div>
         <div class="field"><label for="f-empresa">Empresa <span>opcional</span></label><input id="f-empresa" name="empresa" type="text" autocomplete="organization"></div>
         <div class="field"><label for="f-telefone">Telefone ou WhatsApp</label><input id="f-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" required></div>
@@ -835,6 +838,7 @@ function pageHome() {
         <div class="field full"><label for="f-mensagem">O que você precisa <span>opcional</span></label><textarea id="f-mensagem" name="mensagem" rows="4" placeholder="Produtos, quantidades, prazos"></textarea></div>
         <div class="field full">
           <button class="btn btn-whats btn-lg btn-block" type="submit">${icon("whats")} Enviar pelo WhatsApp</button>
+          <p class="form-alt"><a href="mailto:${SITE.email}" data-mail>Prefiro enviar por e-mail</a></p>
           <p class="form-note">Abrimos o WhatsApp com a sua mensagem pronta para a nossa equipe. Seus dados seguem a nossa <a href="politica-de-privacidade.html">política de privacidade</a>.</p>
         </div>
       </form>
@@ -892,7 +896,7 @@ function pageRep(r) {
   const outrasTitulo = mesmas.length >= 2 ? `Mais em ${seg.nome.charAt(0).toLowerCase() + seg.nome.slice(1)}` : "Outras representadas";
 
   return head({
-    title: `${r.nome}: ${seg.nome.toLowerCase()} | DH Representações`,
+    title: `${r.nome}: ${seg.nome.charAt(0).toLowerCase() + seg.nome.slice(1)} | Representante DH`,
     description: `${r.resumo} A DH Representações representa a ${r.nome}. Peça catálogo e orçamento.`,
     canonical: `${SITE.url}/representadas/${r.slug}.html`,
     base,
@@ -908,7 +912,7 @@ function pageRep(r) {
         </ol>
       </nav>
       <div class="rep-hero-grid">
-        <div class="rep-hero-logo">${logo(r, base, `Logo ${r.nome}`)}</div>
+        <div class="rep-hero-logo">${logo(r, base, `Logo ${r.nome}`, true)}</div>
         <div>
           <h1>${esc(r.nome)}</h1>
           <p class="rep-hero-lead">${esc(r.resumo)}</p>
@@ -973,7 +977,7 @@ function pageRepresentadas() {
     <div class="wrap">
       <nav class="breadcrumb" aria-label="Você está em"><ol><li><a href="${base}index.html">Início</a></li><li aria-current="page">Representadas</li></ol></nav>
       <h1>Empresas que representamos</h1>
-      <p class="rep-hero-lead">${n} fabricantes de ${porExtenso(Object.keys(SEGMENTOS).length).toLowerCase()} segmentos. Abra a página de cada empresa ou baixe o catálogo direto daqui.</p>
+      <p class="rep-hero-lead">${n} empresas de ${porExtenso(Object.keys(SEGMENTOS).length).toLowerCase()} segmentos. Abra a página de cada empresa ou baixe o catálogo direto daqui.</p>
     </div>
   </section>
   <section class="section">
@@ -994,7 +998,7 @@ function pagePrivacidade() {
   const base = "";
   return head({
     title: "Política de privacidade | DH Representações",
-    description: "Saiba como a DH Representações coleta, usa e protege os seus dados pessoais, conforme a LGPD.",
+    description: "Quais dados o site da DH Representações recebe, para que são usados e com quem são compartilhados, conforme a LGPD.",
     canonical: SITE.url + "/politica-de-privacidade.html",
     base,
   }) + header(base, false) + `
@@ -1007,38 +1011,83 @@ function pagePrivacidade() {
   </section>
   <section class="section">
     <div class="wrap legal">
-      <p>A DH Representações preza pela transparência sobre o tratamento dos seus dados pessoais.</p>
-      <p>Esta política tem como objetivo assegurar o compromisso da DH Representações perante nossas representadas e nossos clientes, em cumprimento à Lei Geral de Proteção de Dados – LGPD (Lei nº 13.709/18). Ela apresenta informações sobre a coleta, o tratamento e a proteção dos dados pessoais no site da DH Representações (dhrepresentacoes.com.br).</p>
-      <p>A aceitação desta política se dá quando você acessa ou utiliza o nosso site ou os nossos serviços, indicando que está ciente e de acordo com a forma como utilizaremos as suas informações e os seus dados.</p>
+      <p>A DH Representações preza pela transparência sobre o tratamento dos seus dados pessoais. Esta política explica, em cumprimento à Lei Geral de Proteção de Dados – LGPD (Lei nº 13.709/18), quais dados este site (dhrepresentacoes.com.br) recebe, para que são usados e com quem são compartilhados.</p>
 
-      <h2>Quais informações são coletadas?</h2>
-      <p>Coletamos as informações que você nos fornece, como nome, e-mail, telefone, empresa, estado, cidade e demais dados informados por você em nossos formulários de contato. Em síntese, coletamos as informações ativamente disponibilizadas pelo usuário na utilização do nosso site.</p>
+      <h2>Quais dados recebemos?</h2>
+      <p>O site não tem cadastro nem área de login. Recebemos apenas os dados que você decide nos enviar pelo formulário de contato: nome, empresa, telefone, cidade, a representada de interesse e a sua mensagem.</p>
+      <p>Ao enviar o formulário, o site abre o WhatsApp (ou o seu programa de e-mail) com a mensagem já escrita. Os dados só chegam até nós se você confirmar o envio por lá. O próprio site não guarda nenhuma cópia.</p>
 
-      <h2>Como utilizamos seus dados?</h2>
-      <p>Todos os dados e informações sobre você são tratados como confidenciais e somente serão utilizados para os fins descritos e autorizados por você, visando sempre melhorar a sua experiência com nossas representadas e com a nossa equipe.</p>
-      <p>Os dados enviados pelo formulário de contato são usados para responder a solicitações de propostas comerciais e de informações sobre representadas e representantes, e são encaminhados ao setor comercial responsável conforme o assunto informado.</p>
-      <p>Por meio desta política, a DH Representações fica autorizada a utilizar seus dados para:</p>
+      <h2>Para que usamos os dados?</h2>
+      <p>Usamos os seus dados somente para responder ao seu pedido de contato, catálogo ou orçamento, e para encaminhá-lo ao vendedor que atende a representada ou a região informada. Não vendemos nem comercializamos nenhuma informação recebida.</p>
+      <p>Qualquer uso para finalidade diferente dessa será feito somente com a sua autorização prévia.</p>
+
+      <h2>Serviços de terceiros</h2>
+      <p>Algumas partes do site dependem de serviços externos, que têm políticas de privacidade próprias:</p>
       <ul>
-        <li>Permitir o acesso a recursos e funcionalidades do site;</li>
-        <li>Enviar mensagens como alertas, notificações e atualizações;</li>
-        <li>Comunicar sobre produtos, serviços, promoções, notícias e outros assuntos do seu interesse;</li>
-        <li>Personalizar serviços para que se adequem cada vez mais aos seus interesses;</li>
-        <li>Criar novos serviços, produtos e funcionalidades;</li>
-        <li>Entender melhor o seu comportamento e construir perfis comportamentais.</li>
+        <li>WhatsApp (Meta), quando você envia o formulário ou clica num botão de WhatsApp;</li>
+        <li>YouTube (Google), somente quando você clica para assistir a um vídeo, em modo de privacidade aprimorada;</li>
+        <li>Google Fonts, que entrega as fontes usadas no texto do site;</li>
+        <li>Google Maps, quando você clica no endereço do escritório;</li>
+        <li>Sites das representadas, quando você abre um catálogo ou a página de uma empresa.</li>
       </ul>
-      <p>O eventual uso dos seus dados para finalidades diferentes das descritas será feito mediante autorização prévia.</p>
 
-      <h2>Compartilhamento de informações</h2>
-      <p>Todos os seus dados são confidenciais, e somente pessoas com as devidas autorizações terão acesso a eles. Qualquer uso desses dados estará de acordo com esta política. A DH Representações empreenderá todos os esforços razoáveis de mercado para garantir a segurança dos nossos sistemas e dos seus dados, sempre atendendo aos princípios da LGPD.</p>
+      <h2>Cookies</h2>
+      <p>Este site não usa cookies próprios nem ferramentas de rastreamento ou de publicidade. Os serviços de terceiros listados acima podem usar cookies quando você interage com eles.</p>
 
-      <h2>Dados de navegação (cookies)</h2>
-      <p>Cookies são arquivos de texto que os sites enviam para o computador ou outros dispositivos do usuário para identificar o dispositivo e o navegador ou para armazenar informações e configurações. A DH Representações não vende nem comercializa nenhuma informação coletada.</p>
+      <h2>Seus direitos</h2>
+      <p>Você pode pedir a qualquer momento a confirmação, a correção ou a exclusão dos dados que nos enviou, pelos contatos no final desta página.</p>
 
       <h2>Atualizações desta política</h2>
       <p>A DH Representações se reserva o direito de alterar esta política sempre que necessário, visando oferecer mais segurança e conveniência. Recomendamos que você a consulte periodicamente.</p>
 
       <h2>Contato</h2>
       <p>Em caso de dúvidas ou solicitações sobre esta política, entre em contato pelo e-mail <a href="mailto:${SITE.email}">${SITE.email}</a> ou pelo telefone <a href="${tel(SITE.telefone)}">${formatFone(SITE.telefone)}</a>.</p>
+    </div>
+  </section>
+</main>
+` + footer(base, false);
+}
+
+const HTACCESS_EXTRA = `# https e domínio sem www
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\\. [NC]
+RewriteRule ^ https://dhrepresentacoes.com.br%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# Compressão
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript image/svg+xml application/xml
+</IfModule>
+
+# Cache: imagens 1 ano, CSS/JS 1 semana, HTML sempre atualizado
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+ExpiresByType text/css "access plus 1 week"
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+`;
+
+// Página de erro 404: caminhos absolutos porque pode ser servida em qualquer endereço
+function page404() {
+  const base = "/";
+  return head({ title: "Página não encontrada | DH Representações", description: "Página não encontrada.", canonical: SITE.url + "/404.html", base, noindex: true })
+    + header(base, false) + `
+<main id="conteudo">
+  <section class="rep-hero">
+    <div class="wrap">
+      <h1>Página não encontrada</h1>
+      <p class="rep-hero-lead">O endereço pode ter mudado com o site novo. Veja as representadas ou fale com a gente pelo WhatsApp.</p>
+      <div class="rep-hero-actions">
+        <a class="btn btn-line" href="/representadas/index.html">Ver representadas</a>
+        <a class="btn btn-whats" href="${wa(SITE.whatsapp, "Olá! Vim pelo site da DH Representações.")}" target="_blank" rel="noopener">${icon("whats")} Falar no WhatsApp</a>
+      </div>
     </div>
   </section>
 </main>
@@ -1052,7 +1101,7 @@ function htaccess() {
   const linhas = REPRESENTADAS.map((r) => `Redirect 301 /${r.slug}/ /representadas/${r.slug}.html`);
   linhas.push("Redirect 301 /politicas-de-privacidade/ /politica-de-privacidade.html");
   linhas.push("Redirect 301 /sample-page/ /");
-  return `# Redirecionamentos dos endereços antigos (WordPress) para o site novo\n# Mantém o Google e links salvos funcionando.\n${linhas.join("\n")}\n\nErrorDocument 404 /index.html\n`;
+  return `# Redirecionamentos dos endereços antigos (WordPress) para o site novo\n# Mantém o Google e links salvos funcionando.\n${linhas.join("\n")}\n\nErrorDocument 404 /404.html\n\n${HTACCESS_EXTRA}`;
 }
 
 // ---------------------------------------------------------
@@ -1070,10 +1119,12 @@ write("index.html", pageHome());
 REPRESENTADAS.forEach((r) => write(`representadas/${r.slug}.html`, pageRep(r)));
 write("representadas/index.html", pageRepresentadas());
 write("politica-de-privacidade.html", pagePrivacidade());
+write("404.html", page404());
 write(".htaccess", htaccess());
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>${SITE.url}/</loc></url>
+  <url><loc>${SITE.url}/representadas/</loc></url>
 ${REPRESENTADAS.map((r) => `  <url><loc>${SITE.url}/representadas/${r.slug}.html</loc></url>`).join("\n")}
   <url><loc>${SITE.url}/politica-de-privacidade.html</loc></url>
 </urlset>
