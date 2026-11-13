@@ -13,6 +13,7 @@ Redirect 301 /ageplast/ /representadas/ageplast.html
 Redirect 301 /iluminium/ /representadas/iluminium.html
 Redirect 301 /mmn/ /representadas/mmn.html
 Redirect 301 /benpor/ /representadas/benpor.html
+Redirect 301 /sannypack/ /representadas/sannypack.html
 Redirect 301 /politicas-de-privacidade/ /politica-de-privacidade.html
 Redirect 301 /sample-page/ /
 

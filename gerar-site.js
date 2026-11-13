@@ -348,10 +348,34 @@ const REPRESENTADAS = [
     logo: "logo-benpor.png",
     fotos: [],
   },
+  {
+    slug: "sannypack", nome: "Sannypack", segmento: "embalagens",
+    resumo: "Fitas adesivas, fita gomada, filme stretch, cinta de arquear e máquinas de embalagem.",
+    local: "Sorocaba – SP",
+    slogan: "Entender para solucionar.",
+    sobre: [
+      "A Sannypack, de Sorocaba (SP), cria soluções em embalagens com qualidade, agilidade e custo-benefício para cada necessidade do negócio, com atendimento em todo o Brasil.",
+      "Além das fitas e materiais de embalagem, oferece equipamentos como seladoras automáticas de caixas, dispensadoras de fita gomada, envolvedora de pallet e arqueadoras, com assistência técnica preditiva e corretiva usando peças originais.",
+      "A fita personalizada com a marca do cliente une identidade visual e segurança: dificulta violações, porque não pode ser substituída sem ser notada.",
+    ],
+    linhas: [
+      "Fitas adesivas acrílicas e hotmelt, em 48 e 70 mm",
+      "Fitas personalizadas com a marca do cliente",
+      "Fita gomada de papel kraft, com ou sem reforço",
+      "Filme stretch manual",
+      "Cinta de arquear PET, manual e para máquinas",
+      "Seladoras de caixas, dispensadoras e arqueadoras",
+    ],
+    catalogo: "https://sannypack.com.br/wp-content/uploads/2026/03/Catalogo-Sannypack.pdf",
+    site: "https://sannypack.com.br/",
+    logo: "logo-sannypack.svg",
+    logoEscuro: true, // logo oficial é claro (feito para fundo escuro)
+    fotos: [],
+  },
 ];
 
 // Ordem de exibição (a mesma do site antigo, com a Glass House na frente)
-const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn", "benpor"];
+const ORDEM = ["glass-house", "alumiconte", "bragagnolo", "alcaplas", "hd-ferragens", "puxe", "formato", "alpa", "plastiben", "ageplast", "iluminium", "mmn", "benpor", "sannypack"];
 REPRESENTADAS.sort((a, b) => ORDEM.indexOf(a.slug) - ORDEM.indexOf(b.slug));
 
 // Peças do roupeiro (foto images/roupeiro/roupeiro.jpg).
@@ -476,7 +500,7 @@ function header(base, home) {
     </button>
     <nav class="main-nav" id="menu" aria-label="Menu principal">
       <ul>
-        <li><a href="${h}#representadas">Representadas</a></li>
+        <li><a href="${base}representadas/index.html">Representadas</a></li>
         <li><a href="${h}#a-dh">A DH</a></li>
         <li><a href="${h}#equipe">Equipe</a></li>
         <li><a href="${h}#contato">Contato</a></li>
@@ -501,7 +525,7 @@ function footer(base, home) {
     <div>
       <h2>Site</h2>
       <ul>
-        <li><a href="${h}#representadas">Representadas</a></li>
+        <li><a href="${base}representadas/index.html">Representadas</a></li>
         <li><a href="${h}#a-dh">A DH</a></li>
         <li><a href="${h}#equipe">Equipe</a></li>
         <li><a href="${h}#contato">Contato</a></li>
@@ -537,7 +561,7 @@ function footer(base, home) {
 // Logo da representada; sem arquivo de logo, mostra o nome escrito
 function logo(r, base, alt = "") {
   return r.logo
-    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}" loading="lazy"${r.logoZoom ? ` style="transform:scale(${r.logoZoom})"` : ""}>`
+    ? `<img src="${base}images/representadas/${r.logo}" alt="${esc(alt)}" loading="lazy"${r.logoEscuro ? ` class="logo-on-dark"` : ""}${r.logoZoom ? ` style="transform:scale(${r.logoZoom})"` : ""}>`
     : `<span class="logo-word">${esc(r.nome)}</span>`;
 }
 
@@ -722,7 +746,7 @@ function pageHome() {
       <p class="hero-lead">A solução para a sua empresa.</p>
       <div class="hero-actions">
         <a class="btn btn-whats btn-lg" href="${wa(SITE.whatsapp, msg)}" target="_blank" rel="noopener">${icon("whats")} Pedir orçamento</a>
-        <a class="btn btn-ghost btn-lg" href="#representadas">Ver representadas</a>
+        <a class="btn btn-ghost btn-lg" href="${base}representadas/index.html">Ver representadas</a>
       </div>    </div>
   </section>
 
@@ -736,19 +760,26 @@ function pageHome() {
     </div>
   </section>
 
-  <section class="section section-alu" id="representadas">
+  <section class="section section-alu" id="equipe">
     <div class="wrap">
       <div class="sec-head">
-        <h2>Empresas que representamos</h2>
-        <p>${n} fabricantes de ${porExtenso(Object.keys(SEGMENTOS).length).toLowerCase()} segmentos. Abra a página de cada empresa ou baixe o catálogo direto daqui.</p>
+        <h2>Nossa equipe</h2>
+        <p>Escolha um vendedor para ver as representadas que ele atende e falar direto com ele.</p>
       </div>
-      <ul class="rep-grid">
-        ${REPRESENTADAS.map((r) => repCard(r, base)).join("\n        ")}
-      </ul>
+      <div class="team-tabs" role="tablist" aria-label="Equipe comercial">
+        ${teamTabs}
+      </div>
+      ${teamPanels}
+      <div class="office-contacts">
+        <h3>Gerência</h3>
+        <ul>
+          ${GERENCIA.map((p) => `<li><strong>${esc(p.nome)}</strong><span>${esc(p.cargo)}</span><a href="${wa(p.fone, `Olá, ${primeiroNome(p)}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} ${formatFone(p.fone)}</a><a href="mailto:${p.email}">${icon("mail")} ${p.email}</a></li>`).join("")}
+        </ul>
+      </div>
     </div>
   </section>
 
-  <section class="section section-alu" id="a-dh">
+  <section class="section" id="a-dh">
     <div class="wrap">
       <div class="about-grid">
         <div class="about-intro">
@@ -767,25 +798,6 @@ function pageHome() {
         ${SITE.numeros.map((x) => `<li><strong>${x.valor}</strong><span>${x.texto}</span></li>`).join("")}
         <li><strong>${n}</strong><span>indústrias representadas</span></li>
       </ul>
-    </div>
-  </section>
-
-  <section class="section" id="equipe">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>Nossa equipe</h2>
-        <p>Escolha um vendedor para ver as representadas que ele atende e falar direto com ele.</p>
-      </div>
-      <div class="team-tabs" role="tablist" aria-label="Equipe comercial">
-        ${teamTabs}
-      </div>
-      ${teamPanels}
-      <div class="office-contacts">
-        <h3>Gerência</h3>
-        <ul>
-          ${GERENCIA.map((p) => `<li><strong>${esc(p.nome)}</strong><span>${esc(p.cargo)}</span><a href="${wa(p.fone, `Olá, ${primeiroNome(p)}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} ${formatFone(p.fone)}</a><a href="mailto:${p.email}">${icon("mail")} ${p.email}</a></li>`).join("")}
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -891,7 +903,7 @@ function pageRep(r) {
       <nav class="breadcrumb" aria-label="Você está em">
         <ol>
           <li><a href="${base}index.html">Início</a></li>
-          <li><a href="${base}index.html#representadas">Representadas</a></li>
+          <li><a href="${base}representadas/index.html">Representadas</a></li>
           <li aria-current="page">${esc(r.nome)}</li>
         </ol>
       </nav>
@@ -937,6 +949,37 @@ function pageRep(r) {
       <div class="sec-head"><h2>${outrasTitulo}</h2></div>
       <ul class="rep-list">
           ${outras.map((o) => repRow(o, base)).join("\n          ")}
+      </ul>
+    </div>
+  </section>
+</main>
+` + footer(base, false);
+}
+
+// ---------------------------------------------------------
+// Página com todas as representadas
+// ---------------------------------------------------------
+function pageRepresentadas() {
+  const base = "../";
+  const n = REPRESENTADAS.length;
+  return head({
+    title: `Representadas: ${n} indústrias | DH Representações`,
+    description: `Conheça as ${n} indústrias representadas pela DH: componentes e ferragens para móveis, perfis, vidros, iluminação LED e embalagens. Catálogos e contato direto com o vendedor.`,
+    canonical: SITE.url + "/representadas/",
+    base,
+  }) + header(base, false) + `
+<main id="conteudo">
+  <section class="rep-hero">
+    <div class="wrap">
+      <nav class="breadcrumb" aria-label="Você está em"><ol><li><a href="${base}index.html">Início</a></li><li aria-current="page">Representadas</li></ol></nav>
+      <h1>Empresas que representamos</h1>
+      <p class="rep-hero-lead">${n} fabricantes de ${porExtenso(Object.keys(SEGMENTOS).length).toLowerCase()} segmentos. Abra a página de cada empresa ou baixe o catálogo direto daqui.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <ul class="rep-grid">
+        ${REPRESENTADAS.map((r) => repCard(r, base)).join("\n        ")}
       </ul>
     </div>
   </section>
@@ -1025,6 +1068,7 @@ const write = (rel, content) => {
 
 write("index.html", pageHome());
 REPRESENTADAS.forEach((r) => write(`representadas/${r.slug}.html`, pageRep(r)));
+write("representadas/index.html", pageRepresentadas());
 write("politica-de-privacidade.html", pagePrivacidade());
 write(".htaccess", htaccess());
 write("sitemap.xml", `<?xml version="1.0" encoding="UTF-8"?>
