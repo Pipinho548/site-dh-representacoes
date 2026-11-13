@@ -328,7 +328,7 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 }
 
 /* ---------- Equipe: cards com foto; o escolhido mostra suas representadas ---------- */
-.team-tabs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.team-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 .member {
   display: flex; flex-direction: column; align-items: center; text-align: center;
   padding: 22px 12px 18px; background: var(--white); border: 1px solid var(--line); border-radius: 14px;
@@ -363,7 +363,15 @@ ul, ol, dl, dd { margin: 0; padding: 0; }
 .member-reps a:hover { text-decoration: none; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, .25); }
 .member-rep-logo { display: block; position: relative; aspect-ratio: 16 / 9; padding: 8px; margin-bottom: 8px; border-bottom: 1px solid var(--alu); }
 
-@media (max-width: 1020px) { .team-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 1020px) { .team-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.office-contacts { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); }
+.office-contacts h3 { font-size: 1.125rem; margin-bottom: 14px; }
+.office-contacts ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.office-contacts li { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; padding: 16px 18px; background: var(--white); border: 1px solid var(--line); border-radius: 12px; }
+.office-contacts strong { color: var(--ink); font-stretch: 112%; font-weight: 760; }
+.office-contacts span { color: var(--blue); font-weight: 600; font-size: .9375rem; flex: 1 1 auto; }
+.office-contacts a { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); font-size: .9375rem; }
+.office-contacts a .icon { color: var(--steel); }
 @media (max-width: 560px) {
   .team-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .member { padding: 16px 8px 14px; }

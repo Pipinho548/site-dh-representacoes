@@ -657,7 +657,8 @@ function pageHome() {
   const fotoPessoa = (p) => ["jpg", "png", "webp"].map((e) => `images/equipe/${slugPessoa(p)}.${e}`).find((f) => fs.existsSync(path.join(__dirname, f)));
   const iniciaisPessoa = (p) => p.nome.split(" ").filter((w) => w.length > 2).map((w) => w[0]).slice(0, 2).join("").toUpperCase();
   const repsDe = (p) => (p.atende ? p.atende.map((s) => REPRESENTADAS.find((r) => r.slug === s)).filter(Boolean) : REPRESENTADAS);
-  const teamTabs = EQUIPE.map((p, i) => {
+  const VENDEDORES = EQUIPE.filter((p) => p.atende), GERENCIA = EQUIPE.filter((p) => !p.atende);
+  const teamTabs = VENDEDORES.map((p, i) => {
     const s = slugPessoa(p), foto = fotoPessoa(p);
     return `<button type="button" class="member" role="tab" id="tab-${s}" aria-controls="painel-${s}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" style="--tone:${i % 3}">
           <span class="member-photo">${foto ? `<img src="${base}${foto}" alt="" loading="lazy">` : `<span aria-hidden="true">${iniciaisPessoa(p)}</span>`}</span>
@@ -666,7 +667,7 @@ function pageHome() {
           ${p.regiao ? `<span class="member-region">${esc(p.regiao)}</span>` : ""}
         </button>`;
   }).join("\n        ");
-  const teamPanels = EQUIPE.map((p, i) => {
+  const teamPanels = VENDEDORES.map((p, i) => {
     const s = slugPessoa(p), nome = primeiroNome(p), reps = repsDe(p);
     const titulo = p.atende ? `Representadas atendidas por ${esc(nome)}` : `${esc(nome)} atende todas as representadas`;
     return `<div class="member-panel" role="tabpanel" id="painel-${s}" aria-labelledby="tab-${s}" tabindex="0">
@@ -775,6 +776,12 @@ function pageHome() {
         ${teamTabs}
       </div>
       ${teamPanels}
+      <div class="office-contacts">
+        <h3>Gerência</h3>
+        <ul>
+          ${GERENCIA.map((p) => `<li><strong>${esc(p.nome)}</strong><span>${esc(p.cargo)}</span><a href="${wa(p.fone, `Olá, ${primeiroNome(p)}! Vim pelo site da DH Representações.`)}" target="_blank" rel="noopener">${icon("whats")} ${formatFone(p.fone)}</a><a href="mailto:${p.email}">${icon("mail")} ${p.email}</a></li>`).join("")}
+        </ul>
+      </div>
     </div>
   </section>
 
